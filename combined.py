@@ -1,4 +1,4 @@
-
+import copy
 low = ["偏弱", "下滑", "悲观", "弱势", "下行", "走弱", "做空", "偏空", "下跌", "试空", "回落", "短空", "空单操作",
        "承压","超涨","沽空","回吐","逢高空","下破","跳水","弱调整","弱趋势","冲低","上冲","赶底","走低","大跌"]
 high = ["偏强", "上涨", "走强", "偏多", "做多", "试多", "上行", "企稳", "乐观", "强势", "走强", "提振", "坚挺",
@@ -39,7 +39,9 @@ for i in indexes:
         after = "".join(line.split(keyword[i])[1:])
         idea[keyword[i]] = after
 
-
+zhongxin_old = {}
+for i in idea:
+    zhongxin_old[i] = idea[i][:]
 
 def simplify(c):
     if "观察" in c or "观望" in c or "震荡对待" in c or "上行空间受限" in c or "下行空间受限" in c or "波动风险加大" in c \
@@ -134,6 +136,10 @@ for l in lines:
     if '：' in l:
         idea[l.split("：")[0]] = l.split("：")[1].strip('\n')
 
+guotai_old = {}
+for i in idea:
+    guotai_old[i] = idea[i][:]
+
 topop = []
 toadd = []
 for key in idea:
@@ -180,6 +186,9 @@ for l in lines:
         a4 = l.replace("\n", "")
         idea[prev] = a4
 
+guotou_old = {}
+for i in idea:
+    guotou_old[i] = idea[i][:]
 
 def simplify_sent(c):
     cut = jieba.cut(c)
@@ -297,6 +306,9 @@ for l in lines:
         a4 = l.replace("\n", "")
         idea[prev] = a4
 
+guangda_old = {}
+for i in idea:
+    guangda_old[i] = idea[i][:]
 topop = []
 toadd = []
 for key in idea:
@@ -311,7 +323,6 @@ for key in idea:
         toadd.append(["燃油", idea[key]])
     if key == "聚烯烃":
         topop.append("聚烯烃")
-        toadd.append(["塑料", idea[key]])
     if key == "豆类":
         topop.append("豆类")
         toadd.append(["菜粕", idea[key]])
@@ -367,6 +378,10 @@ for l in lines:
         content += a4
 idea[prev] = content
 
+hongyuan_old = {}
+for i in idea:
+    hongyuan_old[i] = idea[i][:]
+
 topop = []
 toadd = []
 for key in idea:
@@ -392,37 +407,51 @@ print(idea)
 hongyuan_idea = idea
 ###########################################整合开始
 
+idea_combined = {}
+for i in [zhongxin_old, guotai_old, guotou_old, guangda_old,hongyuan_old]:
+    for j in i:
+        if j in idea_combined:
+            idea_combined[j].append(i[j])
+        else:
+            idea_combined[j] = [i[j]]
+with open('详细观点.txt', 'w') as f:
+    for i in idea_combined:
+        f.write(i + '\n')
+        for j in idea_combined[i]:
+            f.write(j + '\n')
+        f.write('\n')
+
 combined = {}
-for i in [citrix_idea, guotai_idea, anxin_idea, hongyuan_idea]:
+for i in [citrix_idea, guotai_idea, anxin_idea, guangda_idea,hongyuan_idea]:
     for j in i:
         if j in combined:
             combined[j].append(float(i[j]))
         else:
             combined[j] = [float(i[j])]
 #自己加比如倍特的
-for i in combined:
-    if i == "PP":
-        combined[i].append(-1)
-    if i == "螺纹":
-        combined[i].append(0)
-    if i == "热卷":
-        combined[i].append(0)
-    if i == "黄金":
-        combined[i].append(0)
-    if i == "白银":
-        combined[i].append(0)
-    if i == "焦炭":
-        combined[i].append(0)
-    if i == "焦煤":
-        combined[i].append(0)
-    if i == "铝":
-        combined[i].append(0)
-    if i == "纸浆":
-        combined[i].append(0.5)
-    if i == "原油":
-        combined[i].append(-0.2)
-    if i == "棉花":
-        combined[i].append(-0.5)
+# for i in combined:
+#     if i == "PP":
+#         combined[i].append(-1)
+#     if i == "螺纹":
+#         combined[i].append(0)
+#     if i == "热卷":
+#         combined[i].append(0)
+#     if i == "黄金":
+#         combined[i].append(0)
+#     if i == "白银":
+#         combined[i].append(0)
+#     if i == "焦炭":
+#         combined[i].append(0)
+#     if i == "焦煤":
+#         combined[i].append(0)
+#     if i == "铝":
+#         combined[i].append(0)
+#     if i == "纸浆":
+#         combined[i].append(0.5)
+#     if i == "原油":
+#         combined[i].append(-0.2)
+#     if i == "棉花":
+#         combined[i].append(-0.5)
 
 
 for i in combined:
