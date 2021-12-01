@@ -109,6 +109,9 @@ for key in idea:
         topop.append("蛋白粕")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
+    if key == "纸浆":
+        topop.append("纸浆")
+        toadd.append(["纸浆", "1"])
     toadd.append(["锰硅", '1'])
 
 for i in topop:
