@@ -323,6 +323,9 @@ for key in idea:
         toadd.append(["燃油", idea[key]])
     if key == "聚烯烃":
         topop.append("聚烯烃")
+        toadd.append(["塑料", idea[key]])
+        toadd.append(["PVC", idea[key]])
+        toadd.append(["PP", idea[key]])
     if key == "豆类":
         topop.append("豆类")
         toadd.append(["菜粕", idea[key]])
