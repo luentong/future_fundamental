@@ -70,6 +70,7 @@ for key in idea:
     if key == "螺纹钢":
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
+    toadd.append(["棉花", "-0.6"])
 
 
 for i in toadd:
