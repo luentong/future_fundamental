@@ -1,26 +1,6 @@
-import copy
+import keywords
 
-low = ["偏弱", "下滑", "悲观", "弱势", "下行", "走弱", "做空", "偏空", "下跌", "试空", "回落", "短空", "空单操作",
-       "逐步布空","承压", "超涨", "沽空", "回吐", "逢高空", "下破", "跳水", "弱调整", "弱趋势", "冲低", "上冲", "赶底", "走低", "大跌", "布局空单", "持空","下调","高抛","空单继续持有","回调整理"]
-high = ["偏强", "上涨", "走强", "偏多", "做多", "试多", "上行", "企稳", "乐观", "强势", "走强", "提振", "坚挺","探底回升","企稳反弹"
-        "反弹", "回升", "短多", "多单操作", "超跌", "沽多", "逢低多", "上破", "强调整", "冲高", "下冲", "赶顶", "走高", "大涨", "布局多单", "持多","上调","多单继续持有"]
-fluc = ["观望", "不宜", "离场", "观察", "观望", "上行承压", "上行乏力", "震荡对待", "先扬后抑", "短期反弹,趋势偏弱", "下行驱动逐渐放缓",
-        "反弹难持续", "正套", "反套", "上行空间受限", "暂无利好", "高位震荡", "盘面震荡", "反弹空间有限", "多单谨慎持有", "空单谨慎持有",
-        "反弹幅度已经较高", "低点支撑", "反弹难持续", "涨势趋缓", "跟涨情绪减弱", "近强远弱", "近弱远强", "止跌", "弱平衡", "阶段性震荡", "震荡中",
-        "下行空间受限","上行空间有限","下行空间有限","底部价格已现","顶部已现","底部已现","顶部价格已现","反弹后抛空","逢高抛空","多单止盈",
-        "不宜过分看跌","空单止盈","短线持多","短多看待","底部空间或将有限",'空单轻仓持有','多单轻仓持有',"短期内震荡行情","呈现震荡格局","仍较抗跌",
-        "震荡走势为主","反弹幅度有限","震荡整理","限制价格回升","短多长空","短空长多","不宜过分看跌","不宜过分看多","反复震荡","不过于追空","不过与追多"]
-other = ['高升水']
-import jieba
 
-for i in low:
-    jieba.add_word(i)
-for i in high:
-    jieba.add_word(i)
-for i in fluc:
-    jieba.add_word(i)
-for i in other:
-    jieba.add_word(i)
 
 ###########################################中信开始
 
@@ -35,73 +15,24 @@ keyword = ["黄金/白银", "黑色", "钢材", "铁矿", "焦炭", "焦煤", "�
 indexes = [0, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33,
            34, 35, 37, 38, 39, 40, 41]
 idea = {}
-for i in indexes:
-    if i != 41:
-        after = "".join(line.split(keyword[i])[1:])
-        before = after.split(keyword[i + 1])[0]
-        idea[keyword[i]] = before
-    else:
-        after = "".join(line.split(keyword[i])[1:])
-        idea[keyword[i]] = after
+for l in lines:
+    print(l)
+    if " "  in l:
+        idea[l.split(" ")[0]] = l.split(" ")[1]
+
 
 zhongxin_old = {}
 for i in idea:
     zhongxin_old[i] = idea[i][:]
 
 
-def simplify_sent(c):
-    cut = jieba.cut(c)
-    cut_list = []
-    for i in cut:
-        cut_list.append(i)
-    cut_list.reverse()
-    for c in cut_list:
-        if "观察" in c or "观望" in c or "震荡对待" in c or "上行空间受限" in c or "下行空间受限" in c or "波动风险加大" in c \
-                or "震荡为主" in c or "高位震荡" in c or "盘面震荡" in c or "反弹空间有限" in c or "反弹幅度已经较高" in c \
-                or "反弹难持续" in c or "跟涨情绪减弱" in c or "阶段性震荡" in c or "震荡中" in c or "上行空间有限" in c or "下行空间有限" in c or \
-                "底部空间或将有限" in c or "短期内震荡行情" in c or "呈现震荡格局" in c or "震荡走势为主" in c or "震荡整理" in c or "反复震荡" in c:
-            return "0"
-        if "短期反弹,趋势偏弱" in c or "先扬后抑" in c or "近强远弱" in c or "底部价格已现" in c or "底部已现" in c or "短线持多" in c \
-                or "短多看待" in c or '多单轻仓持有' in c:
-            return '0.8'
-        if "布局多单" in c:
-            return "1"
-        if "反弹难持续" in c or "布局空单" in c:
-            return "-1"
-        if "近弱远强" in c or "顶部价格已现" in c or "顶部已现" in c or "反弹后抛空" in c or "逢高抛空" in c or '空单轻仓持有' in c:
-            return "-0.8"
-        if "下行驱动逐渐放缓" in c or "弱平衡" in c or "不过于追空" in c:
-            return '-0.5'
-        if "正套" in c or "多单谨慎持有" in c or "低点支撑" in c or "涨势趋缓" in c or "空单止盈" in c or "仍较抗跌" in c or "反弹幅度有限" in c or "短多长空" in \
-                c or "不宜过分看多" in c or "不过于追多" in c:
-            return '0.5'
-        if "反套" in c or "空单谨慎持有" in c or "多单止盈" in c or "不宜过分看跌" in c or "限制价格回升" in c or "短空长多" in c:
-            return '-0.5'
-        if "反弹难持续" in c:
-            for i in low:
-                if i in c:
-                    return "-1"
-        if "多TA" in c:
-            idea["PTA"] = '1'
-            if "空EG" in c:
-                idea["乙二醇"] = '-1'
-            return "1"
-        for i in fluc:
-            if i in c:
-                return "0"
-        for i in high:
-            if i in c:
-                return "1"
-        for i in low:
-            if i in c:
-                return "-1"
-    return "0"
+
 
 topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "黄金/白银":
         topop.append("黄金/白银")
         toadd.append(["黄金", idea[key]])
@@ -127,14 +58,11 @@ for key in idea:
         toadd.append(["棕榈油", idea[key]])
     if key == "蛋白粕":
         topop.append("蛋白粕")
-        toadd.append(["豆粕", '0'])
-        toadd.append(["菜粕", '0'])
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
     if key == "乙二醇":
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
-    if key == "白糖":
-        topop.append("白糖")
-        toadd.append(["白糖", '-0.3'])
 
 for i in topop:
     idea.pop(i)
@@ -164,7 +92,7 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
@@ -187,9 +115,7 @@ for key in idea:
     if key == "乙二醇":
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
-    if key == "铝":
-        topop.append("铝")
-        toadd.append(["铝", '0.3'])
+
 for i in topop:
     idea.pop(i)
 for i in toadd:
@@ -221,7 +147,7 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -253,21 +179,21 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "0.7"])
+        toadd.append(["菜粕", "-0.3"])
         toadd.append(["菜油", "-0.7"])
-    # 玻璃纯碱自己改
-    if key == "纯碱":
-        topop.append("纯碱")
-        toadd.append(["纯碱", "0"])
-    if key == "玻璃":
-        topop.append("玻璃")
-        toadd.append(["玻璃", "0"])
-    if key == "塑料":
-        topop.append("塑料")
-        toadd.append(["塑料", "0"])
-    if key == "PP":
-        topop.append("PP")
-        toadd.append(["PP", "-0.7"])
+    # # 玻璃纯碱自己改
+    # if key == "纯碱":
+    #     topop.append("纯碱")
+    #     toadd.append(["纯碱", "1"])
+    # if key == "玻璃":
+    #     topop.append("玻璃")
+    #     toadd.append(["玻璃", "0"])
+    # if key == "塑料":
+    #     topop.append("塑料")
+    #     toadd.append(["塑料", "0"])
+    # if key == "PP":
+    #     topop.append("PP")
+    #     toadd.append(["PP", "-0.7"])
 
 for i in topop:
     idea.pop(i)
@@ -301,7 +227,7 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -337,6 +263,13 @@ for key in idea:
         topop.append("玉米淀粉")
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
+    if key == "油脂油料":
+        topop.append("油脂油料")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
@@ -344,17 +277,16 @@ for key in idea:
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
-    if key == "纯碱":
-        topop.append("纯碱")
-        toadd.append(["纯碱", "0.7"])
 
 for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
 
-idea.pop("国债")
-idea.pop("股指")
+if "国债" in idea:
+    idea.pop("国债")
+if "股指" in idea:
+    idea.pop("股指")
 print(idea)
 guangda_idea = idea
 
@@ -379,7 +311,7 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "铜及国际铜":
         topop.append("铜及国际铜")
         toadd.append(["铜", idea[key]])
@@ -414,6 +346,11 @@ for key in idea:
     if key == "菜籽类":
         topop.append("菜籽类")
         toadd.append(["菜粕", idea[key]])
+        toadd.append(["菜油", idea[key]])
+    if key == "贵金属":
+        topop.append("贵金属")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
 
 
 
@@ -460,7 +397,7 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -478,6 +415,7 @@ for key in idea:
         toadd.append(["热卷", idea[key]])
     if key == "油脂":
         topop.append("油脂")
+        toadd.append(["豆油", idea[key]])
         toadd.append(["菜油", idea[key]])
         toadd.append(["棕榈油", idea[key]])
     if key == "蛋白粕":
@@ -527,9 +465,13 @@ topop = []
 toadd = []
 for key in idea:
     if not idea[key].isdecimal():
-        idea[key] = simplify_sent(idea[key])
+        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
+    if key == "金银":
+        topop.append("金银")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
     if key == "铁矿石":
@@ -541,8 +483,13 @@ for key in idea:
         toadd.append(["热卷", idea[key]])
     if key == "油脂":
         topop.append("油脂")
+        toadd.append(["豆油", idea[key]])
         toadd.append(["菜油", idea[key]])
         toadd.append(["棕榈油", idea[key]])
+    if key == "螺纹钢":
+        topop.append("螺纹钢")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
     if key == "蛋白粕":
         topop.append("蛋白粕")
         toadd.append(["豆粕", idea[key]])
@@ -596,7 +543,7 @@ for l in lines:
         name = l.strip('\n').split(" ")[0]
         score = l.strip('\n').split(" ")[1]
         if not score.isdecimal():
-            score = simplify_sent(score)
+            score = keywords.simplify_sent(score)
         for i in combined:
             if i == name:
                 combined[i].append(float(score))
@@ -604,7 +551,7 @@ for l in lines:
         name = l.strip('\n').split(" ")[:-1]
         score = l.strip('\n').split(" ")[-1]
         if not score.isdecimal():
-            score = simplify_sent(score)
+            score = keywords.simplify_sent(score)
         for i in combined:
             for j in name:
                 if i == j:
@@ -619,9 +566,9 @@ for i in combined:
     elif len(combined[i]) <= 4:
         combined[i] = sum(combined[i]) / (len(combined[i]) + (4 - len(combined[i])) * (4 - len(combined[i])) * 0.2)
     elif len(combined[i]) == 5:
-        combined[i] = sum(combined[i]) / ((len(combined[i])) - 0.4)
-    elif len(combined[i]) >= 6:
         combined[i] = sum(combined[i]) / ((len(combined[i])) - 0.7)
+    elif len(combined[i]) >= 6:
+        combined[i] = sum(combined[i]) / ((len(combined[i])) - 0.15 * len(combined[i]))
 import pandas as pd
 
 result = pd.DataFrame(combined.items(), columns=['Name', 'Value'])
@@ -632,8 +579,8 @@ with open('之前的数据.txt', encoding='utf-8') as f:
 before = []
 for l in lines:
     if l != "\n":
-        name = l.strip('\n').split()[1]
-        score = l.strip('\n').split()[2]
+        name = l.strip('\n').split()[0]
+        score = l.strip('\n').split()[1]
         before.append([name,score])
 
 for index, row in final.iterrows():
@@ -641,10 +588,12 @@ for index, row in final.iterrows():
     for i in before:
         if i[0] == row["Name"]:
             same.append(i[1])
-    print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
+    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","股指","花生","国际铜","低硫燃油","棉纱","国债","低硫燃料油"]:
+        print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
 for index, row in final.iterrows():
     same = []
     for i in before:
         if i[0] == row["Name"]:
             same.append(i[1])
-    print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"],6))) + " " + " ".join(same))
+    if row["Name"] not in ["20号胶", "能源：", "金融:", "股指期权", "股指", "花生", "国际铜", "低硫燃油", "棉纱", "国债", "低硫燃料油"]:
+        print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"],6))) + " " + " ".join(same))
