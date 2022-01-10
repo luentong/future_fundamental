@@ -179,7 +179,7 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "-0.3"])
+        toadd.append(["菜粕", "-0.7"])
         toadd.append(["菜油", "-0.7"])
     # # 玻璃纯碱自己改
     # if key == "纯碱":
