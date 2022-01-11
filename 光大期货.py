@@ -15,6 +15,8 @@ for l in lines:
 
 guangda_old = {}
 for i in idea:
+    print(i)
+    print(idea[i])
     guangda_old[i] = idea[i][:]
 topop = []
 toadd = []
