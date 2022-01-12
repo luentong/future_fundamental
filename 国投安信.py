@@ -51,10 +51,10 @@ for key in idea:
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
     # # 菜粕菜油自己改
-    # if key == "菜粕&菜油":
-    #     topop.append("菜粕&菜油")
-    #     toadd.append(["菜粕", "0.7"])
-    #     toadd.append(["菜油", "-0.6"])
+    if key == "菜粕&菜油":
+        topop.append("菜粕&菜油")
+        toadd.append(["菜粕", "0"])
+        toadd.append(["菜油", "0.3"])
     # # 玻璃纯碱自己改
     # if key == "纯碱":
     #     topop.append("纯碱")
