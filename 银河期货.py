@@ -25,6 +25,9 @@ for l in lines:
 yinhe_old = {}
 for i in idea:
     yinhe_old[i] = idea[i][:]
+for i in yinhe_old:
+    print(i)
+    print(yinhe_old[i])
 
 topop = []
 toadd = []

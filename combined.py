@@ -573,10 +573,124 @@ for i in toadd:
 yinhe_idea = idea
 
 
+###########################################广发开始
+
+import keywords
+
+with open('广发期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["贵金属：","铜 ：","锌：","铝：","镍：","不锈钢：","锡：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：","油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：",
+         "原油：","沥青：","PTA：","乙二醇：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","甲醇：","纯碱：","玻璃：","橡胶："]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip().strip('\n').strip('【').strip('】')
+    if stripped == "":
+        continue
+    if "纯碱：" in stripped:
+        if "纯碱" in idea:
+            idea["纯碱"] += stripped
+        else:
+            idea["纯碱"] = stripped
+        continue
+    if "玻璃：" in stripped:
+        if "玻璃" in idea:
+            idea["玻璃"] += stripped
+        else:
+            idea["玻璃"] = stripped
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if l.startswith('银河期货') and stripped not in items:
+        next = False
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("：") ] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip("：") ] = l.strip().strip('\n')
+guangfa_old = {}
+for i in idea:
+    guangfa_old[i] = idea[i][:]
+
+
+topop = []
+toadd = []
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+    if key == "贵金属":
+        topop.append("贵金属")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
+    if key == "油脂":
+        topop.append("油脂")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
+    if key == "LLDPE":
+        topop.append("LLDPE")
+        toadd.append(["塑料", idea[key]])
+    if key == "尿素:":
+        topop.append("尿素:")
+        toadd.append(["尿素", idea[key]])
+
+
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+guangfa_idea = idea
+
+############################################广州开始
+
+
+with open('广州期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕"]
+next = False
+prev_item = ""
+for l in lines:
+    if "：" in l and len(l) <= 30:
+        idea[l.split('：')[0]] = l.split('：')[1]
+
+guangzhou_old = {}
+for i in idea:
+    guangzhou_old[i] = idea[i][:]
+
+topop = []
+toadd = []
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+    if key == "郑棉":
+        topop.append("郑棉")
+        toadd.append(["棉花", idea[key]])
+    if key == "螺纹钢":
+        topop.append("螺纹钢")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+guangzhou_idea = idea
+
 ###########################################整合开始
 
 idea_combined = {}
-for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old]:
+for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old, yinhe_old, guangfa_old, guangzhou_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -586,11 +700,14 @@ with open('详细观点.txt', 'w') as f:
     for i in idea_combined:
         f.write(i + '\n')
         for j in idea_combined[i]:
-            f.write(j + '\n')
+            try:
+                f.write(j + '\n')
+            except UnicodeEncodeError:
+                continue
         f.write('\n')
 
 combined = {}
-for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea]:
+for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea]:
     for j in i:
         if j in combined:
             combined[j].append(float(i[j]))
