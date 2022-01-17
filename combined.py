@@ -17,19 +17,9 @@ for l in lines:
     if " "  in l:
         idea[l.split(" ")[0]] = l.split(" ")[1]
 
-
-zhongxin_old = {}
-for i in idea:
-    zhongxin_old[i] = idea[i][:]
-
-
-
-
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "黄金/白银":
         topop.append("黄金/白银")
         toadd.append(["黄金", idea[key]])
@@ -67,7 +57,20 @@ for i in toadd:
     idea[i[0]] = i[1]
 
 idea.pop("低硫燃油")
-print(idea)
+
+zhongxin_old = {}
+for i in idea:
+    zhongxin_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in zhongxin_old:
+    if i in idea:
+        zhongxin_old[i] = idea[i] + "  " + zhongxin_old[i]
+    else:
+        zhongxin_old[i] = ""
 citrix_idea = idea
 
 ###########################################国泰开始
@@ -81,15 +84,9 @@ for l in lines:
     if '：' in l:
         idea[l.split("：")[0]] = l.split("：")[1].strip('\n')
 
-guotai_old = {}
-for i in idea:
-    guotai_old[i] = idea[i][:]
-
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
@@ -118,7 +115,19 @@ for i in topop:
 for i in toadd:
     idea[i[0]] = i[1]
 
-print(idea)
+guotai_old = {}
+for i in idea:
+    guotai_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in guotai_old:
+    if i in idea:
+        guotai_old[i] = idea[i] + "  " + guotai_old[i]
+    else:
+        guotai_old[i] = ""
 guotai_idea = idea
 
 ###########################################国投安信开始
@@ -136,15 +145,10 @@ for l in lines:
         a4 = l.replace("\n", "")
         idea[prev] = a4
 
-guotou_old = {}
-for i in idea:
-    guotou_old[i] = idea[i][:]
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -198,7 +202,21 @@ for i in toadd:
     idea[i[0]] = i[1]
 
 idea.pop("股指")
-print(idea)
+
+
+guotou_old = {}
+for i in idea:
+    guotou_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in guotou_old:
+    if i in idea:
+        guotou_old[i] = idea[i] + "  " + guotou_old[i]
+    else:
+        guotou_old[i] = ""
 anxin_idea = idea
 
 ###########################################光大开始
@@ -217,14 +235,9 @@ for l in lines:
         a4 = l.replace("\n", "")
         idea[prev] = a4
 
-guangda_old = {}
-for i in idea:
-    guangda_old[i] = idea[i][:]
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -284,7 +297,21 @@ if "国债" in idea:
     idea.pop("国债")
 if "股指" in idea:
     idea.pop("股指")
-print(idea)
+
+
+guangda_old = {}
+for i in idea:
+    guangda_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in guangda_old:
+    if i in idea:
+        guangda_old[i] = idea[i] + "  " + guangda_old[i]
+    else:
+        guangda_old[i] = ""
 guangda_idea = idea
 
 ###########################################上海中期期货
@@ -297,18 +324,12 @@ items = ["贵金属","铜(CU)","螺纹(RB)","热卷(HC)","铝(AL)","锌(ZN)","�
 next = False
 prev_item = ""
 for l in lines:
-    if "：" in l and len(l) <= 30:
+    if "：" in l and len(l) <= 50:
         idea[l.split('：')[0]] = l.split('：')[1]
-
-zhongqi_old = {}
-for i in idea:
-    zhongqi_old[i] = idea[i][:]
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "铜及国际铜":
         topop.append("铜及国际铜")
         toadd.append(["铜", idea[key]])
@@ -356,6 +377,20 @@ for i in topop:
 for i in toadd:
     idea[i[0]] = i[1]
 
+zhongqi_old = {}
+for i in idea:
+    zhongqi_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in zhongqi_old:
+    if i in idea:
+        zhongqi_old[i] = idea[i] + "  " + zhongqi_old[i]
+    else:
+        zhongqi_old[i] = ""
+
 zhongqi_idea = idea
 
 
@@ -386,15 +421,9 @@ for l in lines:
         else:
             idea[prev_item] = l.strip().strip('\n')
 
-wukuang_old = {}
-for i in idea:
-    wukuang_old[i] = idea[i][:]
-
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -427,6 +456,20 @@ for i in topop:
 for i in toadd:
     idea[i[0]] = i[1]
 
+wukuang_old = {}
+for i in idea:
+    wukuang_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in wukuang_old:
+    if i in idea:
+        wukuang_old[i] = idea[i] + "  " + wukuang_old[i]
+    else:
+        wukuang_old[i] = ""
+
 wukuang_idea = idea
 
 ###########################################倍特期货
@@ -454,15 +497,10 @@ for l in lines:
             idea[prev_item] += l.strip().strip('\n')
         else:
             idea[prev_item] = l.strip().strip('\n')
-beite_old = {}
-for i in idea:
-    beite_old[i] = idea[i][:]
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -496,13 +534,25 @@ for key in idea:
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
 
-
-
-
 for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+beite_old = {}
+for i in idea:
+    beite_old[i] = idea[i][:]
+
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in beite_old:
+    if i in idea:
+        beite_old[i] = idea[i] + "  " + beite_old[i]
+    else:
+        beite_old[i] = ""
 
 beite_idea = idea
 
@@ -530,15 +580,11 @@ for l in lines:
             idea[prev_item] += l.strip().strip('\n')
         else:
             idea[prev_item] = l.strip().strip('\n')
-yinhe_old = {}
-for i in idea:
-    yinhe_old[i] = idea[i][:]
+
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "焦煤焦炭":
         topop.append("焦煤焦炭")
         toadd.append(["焦煤", idea[key]])
@@ -571,6 +617,20 @@ for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+yinhe_old = {}
+for i in idea:
+    yinhe_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in yinhe_old:
+    if i in idea:
+        yinhe_old[i] = idea[i] + "  " + yinhe_old[i]
+    else:
+        yinhe_old[i] = ""
 
 yinhe_idea = idea
 
@@ -614,16 +674,11 @@ for l in lines:
             idea[prev_item.strip("：") ] += l.strip().strip('\n')
         else:
             idea[prev_item.strip("：") ] = l.strip().strip('\n')
-guangfa_old = {}
-for i in idea:
-    guangfa_old[i] = idea[i][:]
 
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -655,14 +710,28 @@ for key in idea:
     if key == "液化气":
         topop.append("液化气")
         toadd.append(["LPG", idea[key]])
-
-
-
+    if key == "铜 ":
+        topop.append("铜 ")
+        toadd.append(["铜", idea[key]])
 
 for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+guangfa_old = {}
+for i in idea:
+    guangfa_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in guangfa_old:
+    if i in idea:
+        guangfa_old[i] = idea[i] + "  " + guangfa_old[i]
+    else:
+        guangfa_old[i] = ""
 
 guangfa_idea = idea
 
@@ -679,15 +748,10 @@ for l in lines:
     if "：" in l and len(l) <= 30:
         idea[l.split('：')[0]] = l.split('：')[1]
 
-guangzhou_old = {}
-for i in idea:
-    guangzhou_old[i] = idea[i][:]
 
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
     if key == "郑棉":
         topop.append("郑棉")
         toadd.append(["棉花", idea[key]])
@@ -708,12 +772,29 @@ for key in idea:
     if key == "液化气":
         topop.append("液化气")
         toadd.append(["LPG", idea[key]])
+    if key == "铜 ":
+        topop.append("铜 ")
+        toadd.append(["铜", idea[key]])
 
 
 for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+guangzhou_old = {}
+for i in idea:
+    guangzhou_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+for i in guangzhou_old:
+    if i in idea:
+        guangzhou_old[i] = idea[i] + "  " + guangzhou_old[i]
+    else:
+        guangzhou_old[i] = ""
 
 guangzhou_idea = idea
 
