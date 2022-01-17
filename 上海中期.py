@@ -9,7 +9,7 @@ items = ["贵金属","铜(CU)","螺纹(RB)","热卷(HC)","铝(AL)","锌(ZN)","�
 next = False
 prev_item = ""
 for l in lines:
-    if "：" in l and len(l) <= 30:
+    if "：" in l and len(l) <= 50:
         idea[l.split('：')[0]] = l.split('：')[1]
 
 zhongqi_old = {}

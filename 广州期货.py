@@ -26,6 +26,19 @@ for key in idea:
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
+    if key == "钢材":
+        topop.append("钢材")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "猪":
+        topop.append("猪")
+        toadd.append(["生猪", idea[key]])
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
+    if key == "液化气":
+        topop.append("液化气")
+        toadd.append(["LPG", idea[key]])
 
 
 

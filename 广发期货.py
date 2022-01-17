@@ -63,6 +63,17 @@ for key in idea:
     if key == "尿素:":
         topop.append("尿素:")
         toadd.append(["尿素", idea[key]])
+    if key == "钢材":
+        topop.append("钢材")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "猪":
+        topop.append("猪")
+        toadd.append(["生猪", idea[key]])
+        toadd.append(["", idea[key]])
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
 
 
 
