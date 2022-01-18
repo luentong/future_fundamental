@@ -404,7 +404,7 @@ with open('五矿.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["油脂","蛋白粕","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅",
-         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青"]
+         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -561,7 +561,7 @@ beite_idea = idea
 with open('银河期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB"]
 next = False
 prev_item = ""
 for l in lines:
@@ -605,7 +605,6 @@ for key in idea:
     if key == "EB":
         topop.append("EB")
         toadd.append(["苯乙烯", idea[key]])
-        toadd.append(["热卷", idea[key]])
     if key == "钢材":
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
@@ -643,7 +642,7 @@ with open('广发期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["贵金属：","铜 ：","锌：","铝：","镍：","不锈钢：","锡：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：","油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：",
-         "原油：","沥青：","PTA：","乙二醇：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","甲醇：","纯碱：","玻璃：","橡胶："]
+         "原油：","沥青：","PTA：","乙二醇：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","甲醇：","纯碱：","玻璃：","橡胶：","纸浆："]
 next = False
 prev_item = ""
 for l in lines:
@@ -655,19 +654,18 @@ for l in lines:
             idea["纯碱"] += stripped
         else:
             idea["纯碱"] = stripped
+        prev_item = "纯碱："
         continue
     if "玻璃：" in stripped:
         if "玻璃" in idea:
             idea["玻璃"] += stripped
         else:
             idea["玻璃"] = stripped
+        prev_item = "玻璃："
         continue
     if stripped in items:
         next = True
         prev_item = stripped
-        continue
-    if l.startswith('银河期货') and stripped not in items:
-        next = False
         continue
     if next:
         if prev_item.strip("：") in idea:

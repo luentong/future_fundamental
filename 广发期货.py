@@ -16,19 +16,18 @@ for l in lines:
             idea["纯碱"] += stripped
         else:
             idea["纯碱"] = stripped
+        prev_item = "纯碱："
         continue
     if "玻璃：" in stripped:
         if "玻璃" in idea:
             idea["玻璃"] += stripped
         else:
             idea["玻璃"] = stripped
+        prev_item = "玻璃："
         continue
     if stripped in items:
         next = True
         prev_item = stripped
-        continue
-    if l.startswith('银河期货') and stripped not in items:
-        next = False
         continue
     if next:
         if prev_item.strip("：") in idea:

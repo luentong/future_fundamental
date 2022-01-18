@@ -3,7 +3,7 @@ import keywords
 with open('银河期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB"]
 next = False
 prev_item = ""
 for l in lines:
