@@ -59,6 +59,7 @@ for key in idea:
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
     if key == "尿素:":
         topop.append("尿素:")
         toadd.append(["尿素", idea[key]])
@@ -80,3 +81,7 @@ for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+for key in idea:
+    print(key)
+    print(idea[key])
