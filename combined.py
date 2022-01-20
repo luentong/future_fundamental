@@ -180,7 +180,7 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "-0.3"])
+        toadd.append(["菜粕", "0"])
         toadd.append(["菜油", "-0.8"])
     # # 玻璃纯碱自己改
     # if key == "纯碱":
@@ -214,7 +214,7 @@ for key in idea:
 
 for i in guotou_old:
     if i in idea:
-        guotou_old[i] = idea[i] + "  " + guotou_old[i]
+        guotou_old[i] = idea[i] + " 国投 " + guotou_old[i]
     else:
         guotou_old[i] = ""
 anxin_idea = idea
@@ -821,13 +821,11 @@ with open('详细观点.txt', 'w') as f:
     for i in idea_combined:
         f.write(i + '\n')
         for j in idea_combined[i]:
-            # try:
-            if "广州" in j:
-                print(j)
-            f.write(j + '\n')
-            # except UnicodeEncodeError:
-            #     print("UnicodeEncodeError")
-            #     continue
+            if j.strip():
+                for i in range(len(j)//100+1):
+                    if i != 0:
+                        f.write("       ")
+                    f.write(j[i*100:(i+1)*100].strip('\n') + '\n')
         f.write('\n')
 
 combined = {}
@@ -837,28 +835,36 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
             combined[j].append(float(i[j]))
         else:
             combined[j] = [float(i[j])]
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
 # 自己加比如东证，华泰，宝城的
 
 with open('其他.txt', encoding='utf-8') as f:
     lines = f.readlines()
 for l in lines:
-    if len(l.strip('\n').split(" ")) == 2:
-        name = l.strip('\n').split(" ")[0]
-        score = l.strip('\n').split(" ")[1]
-        if not score.isdecimal():
-            score = keywords.simplify_sent(score)
-        for i in combined:
-            if i == name:
-                combined[i].append(float(score))
-    elif len(l.strip('\n').split(" ")) > 2:
-        name = l.strip('\n').split(" ")[:-1]
-        score = l.strip('\n').split(" ")[-1]
-        if not score.isdecimal():
-            score = keywords.simplify_sent(score)
-        for i in combined:
-            for j in name:
-                if i == j:
+    if is_number(l.strip('\n').split(" ")[-1]):
+        if len(l.strip('\n').split(" ")) == 2:
+            name = l.strip('\n').split(" ")[0]
+            score = l.strip('\n').split(" ")[1]
+            if not is_number(score):
+                score = keywords.simplify_sent(score)
+            for i in combined:
+                if i == name:
                     combined[i].append(float(score))
+        elif len(l.strip('\n').split(" ")) > 2:
+            name = l.strip('\n').split(" ")[:-1]
+            score = l.strip('\n').split(" ")[-1]
+            if not is_number(score):
+                score = keywords.simplify_sent(score)
+            for i in combined:
+                for j in name:
+                    if i == j:
+                        combined[i].append(float(score))
 
 for i in combined:
     print(i + " " + str(sum(combined[i])) + " " + str(len(combined[i])))
