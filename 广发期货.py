@@ -16,19 +16,18 @@ for l in lines:
             idea["纯碱"] += stripped
         else:
             idea["纯碱"] = stripped
+        prev_item = "纯碱："
         continue
     if "玻璃：" in stripped:
         if "玻璃" in idea:
             idea["玻璃"] += stripped
         else:
             idea["玻璃"] = stripped
+        prev_item = "玻璃："
         continue
     if stripped in items:
         next = True
         prev_item = stripped
-        continue
-    if l.startswith('银河期货') and stripped not in items:
-        next = False
         continue
     if next:
         if prev_item.strip("：") in idea:
@@ -60,6 +59,7 @@ for key in idea:
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
     if key == "尿素:":
         topop.append("尿素:")
         toadd.append(["尿素", idea[key]])
@@ -81,3 +81,7 @@ for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
+
+for key in idea:
+    print(key)
+    print(idea[key])

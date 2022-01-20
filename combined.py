@@ -68,7 +68,7 @@ for key in idea:
 
 for i in zhongxin_old:
     if i in idea:
-        zhongxin_old[i] = idea[i] + "  " + zhongxin_old[i]
+        zhongxin_old[i] = idea[i] + " 中信 " + zhongxin_old[i]
     else:
         zhongxin_old[i] = ""
 citrix_idea = idea
@@ -125,7 +125,7 @@ for key in idea:
 
 for i in guotai_old:
     if i in idea:
-        guotai_old[i] = idea[i] + "  " + guotai_old[i]
+        guotai_old[i] = idea[i] + " 国泰  " + guotai_old[i]
     else:
         guotai_old[i] = ""
 guotai_idea = idea
@@ -180,7 +180,7 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "-0.8"])
+        toadd.append(["菜粕", "-0.3"])
         toadd.append(["菜油", "-0.8"])
     # # 玻璃纯碱自己改
     # if key == "纯碱":
@@ -309,7 +309,7 @@ for key in idea:
 
 for i in guangda_old:
     if i in idea:
-        guangda_old[i] = idea[i] + "  " + guangda_old[i]
+        guangda_old[i] = idea[i] + " 光大 " + guangda_old[i]
     else:
         guangda_old[i] = ""
 guangda_idea = idea
@@ -387,7 +387,7 @@ for key in idea:
 
 for i in zhongqi_old:
     if i in idea:
-        zhongqi_old[i] = idea[i] + "  " + zhongqi_old[i]
+        zhongqi_old[i] = idea[i] + " 中期 " + zhongqi_old[i]
     else:
         zhongqi_old[i] = ""
 
@@ -404,7 +404,7 @@ with open('五矿.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["油脂","蛋白粕","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅",
-         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青"]
+         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -466,7 +466,7 @@ for key in idea:
 
 for i in wukuang_old:
     if i in idea:
-        wukuang_old[i] = idea[i] + "  " + wukuang_old[i]
+        wukuang_old[i] = idea[i] + " 五矿 " + wukuang_old[i]
     else:
         wukuang_old[i] = ""
 
@@ -550,7 +550,7 @@ for key in idea:
 
 for i in beite_old:
     if i in idea:
-        beite_old[i] = idea[i] + "  " + beite_old[i]
+        beite_old[i] = idea[i] + " 倍特 " + beite_old[i]
     else:
         beite_old[i] = ""
 
@@ -561,7 +561,7 @@ beite_idea = idea
 with open('银河期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB"]
 next = False
 prev_item = ""
 for l in lines:
@@ -605,7 +605,6 @@ for key in idea:
     if key == "EB":
         topop.append("EB")
         toadd.append(["苯乙烯", idea[key]])
-        toadd.append(["热卷", idea[key]])
     if key == "钢材":
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
@@ -628,7 +627,7 @@ for key in idea:
 
 for i in yinhe_old:
     if i in idea:
-        yinhe_old[i] = idea[i] + "  " + yinhe_old[i]
+        yinhe_old[i] = idea[i] + " 银河 " + yinhe_old[i]
     else:
         yinhe_old[i] = ""
 
@@ -643,7 +642,7 @@ with open('广发期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["贵金属：","铜 ：","锌：","铝：","镍：","不锈钢：","锡：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：","油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：",
-         "原油：","沥青：","PTA：","乙二醇：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","甲醇：","纯碱：","玻璃：","橡胶："]
+         "原油：","沥青：","PTA：","乙二醇：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","甲醇：","纯碱：","玻璃：","橡胶：","纸浆："]
 next = False
 prev_item = ""
 for l in lines:
@@ -655,19 +654,18 @@ for l in lines:
             idea["纯碱"] += stripped
         else:
             idea["纯碱"] = stripped
+        prev_item = "纯碱："
         continue
     if "玻璃：" in stripped:
         if "玻璃" in idea:
             idea["玻璃"] += stripped
         else:
             idea["玻璃"] = stripped
+        prev_item = "玻璃："
         continue
     if stripped in items:
         next = True
         prev_item = stripped
-        continue
-    if l.startswith('银河期货') and stripped not in items:
-        next = False
         continue
     if next:
         if prev_item.strip("：") in idea:
@@ -694,6 +692,7 @@ for key in idea:
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
     if key == "尿素:":
         topop.append("尿素:")
         toadd.append(["尿素", idea[key]])
@@ -729,7 +728,7 @@ for key in idea:
 
 for i in guangfa_old:
     if i in idea:
-        guangfa_old[i] = idea[i] + "  " + guangfa_old[i]
+        guangfa_old[i] = idea[i] + " 广发 " + guangfa_old[i]
     else:
         guangfa_old[i] = ""
 
@@ -741,12 +740,15 @@ guangfa_idea = idea
 with open('广州期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕"]
+items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
 next = False
 prev_item = ""
 for l in lines:
-    if "：" in l and len(l) <= 30:
+    if "：" in l and len(l) <= 30 and l.split('：')[0] in items:
         idea[l.split('：')[0]] = l.split('：')[1]
+    else:
+        if ":" in l and len(l) <= 30 and l.split(':')[0] in items:
+            idea[l.split(':')[0]] = l.split(':')[1]
 
 
 topop = []
@@ -772,9 +774,17 @@ for key in idea:
     if key == "液化气":
         topop.append("液化气")
         toadd.append(["LPG", idea[key]])
-    if key == "铜 ":
-        topop.append("铜 ")
-        toadd.append(["铜", idea[key]])
+    if key == "RU":
+        topop.append("RU")
+        toadd.append(["橡胶", idea[key]])
+    if key == "聚烯烃":
+        topop.append("聚烯烃")
+        toadd.append(["PP", idea[key]])
+        toadd.append(["塑料", idea[key]])
+    if key == "聚酯":
+        topop.append("聚酯")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["MEG", idea[key]])
 
 
 for i in topop:
@@ -792,7 +802,7 @@ for key in idea:
 
 for i in guangzhou_old:
     if i in idea:
-        guangzhou_old[i] = idea[i] + "  " + guangzhou_old[i]
+        guangzhou_old[i] = idea[i] + " 广州 " + guangzhou_old[i]
     else:
         guangzhou_old[i] = ""
 
@@ -811,10 +821,13 @@ with open('详细观点.txt', 'w') as f:
     for i in idea_combined:
         f.write(i + '\n')
         for j in idea_combined[i]:
-            try:
-                f.write(j + '\n')
-            except UnicodeEncodeError:
-                continue
+            # try:
+            if "广州" in j:
+                print(j)
+            f.write(j + '\n')
+            # except UnicodeEncodeError:
+            #     print("UnicodeEncodeError")
+            #     continue
         f.write('\n')
 
 combined = {}
