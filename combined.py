@@ -177,10 +177,14 @@ for key in idea:
     if key == "乙二醇":
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
+    if key == "聚丙烯&纯碱":
+        topop.append("聚丙烯&纯碱")
+        toadd.append(["PP", idea[key]])
+        toadd.append(["纯碱", idea[key]])
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "0"])
+        toadd.append(["菜粕", "0.8"])
         toadd.append(["菜油", "-0.8"])
     # # 玻璃纯碱自己改
     # if key == "纯碱":
@@ -831,6 +835,8 @@ with open('详细观点.txt', 'w') as f:
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea]:
     for j in i:
+        if j.strip() == "":
+            print(i)
         if j in combined:
             combined[j].append(float(i[j]))
         else:
