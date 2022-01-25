@@ -16,7 +16,8 @@ fluc = ["观望", "不宜", "离场", "上行承压", "上行乏力", "震荡对
         "空单谨慎","多单谨慎","短线多单参与","短线空单参与","买近抛远","comex金涨","comex金跌","多看少动","不做方向性预期","窄幅震荡","多EG","谨慎追涨","回调幅度有限","上涨驱动弱","暂时观望",
         "不宜追多","难言乐观","谨慎承压","短线炒作","短线震荡","支撑尚存","有回调可能","压制期价上行","横盘整理","延续振荡","延续震荡表现","高位区间震荡","上方空间有限","上行驱动不足",
         "维持震荡走势","短空止盈","短多止盈","上行动力不足","仍难打破震荡形态","等待企稳","高位调整压力","偏涨看待","高抛低吸","价格承压","短线交易为主","维持偏空思路","建议暂观望","议做多裂解价差",
-        "加工差承压","开工下滑","整体震荡","难提振","多单逢高减仓","单边头寸谨慎","炒作未止","中期看空","单边观望","回落","回调","做空驱动不足","等待机会做空","价格震荡","偏强震荡"]
+        "加工差承压","开工下滑","整体震荡","难提振","多单逢高减仓","单边头寸谨慎","炒作未止","中期看空","单边观望","回落","回调","做空驱动不足","等待机会做空","价格震荡","偏强震荡",
+        "反弹行情阶段性结束","限制价格回落","上行压力加大","继续回调","上行动能不足","易涨难跌","有支撑","轻仓过节","减仓交易","高位反复","延续高位运行"]
 
 
 import jieba
@@ -48,29 +49,30 @@ def simplify_sent(c):
                 or "多看少动" in c or "不做方向性预期" in c or "窄幅震荡" in c or "上涨驱动弱" in c or "暂时观望" in c or "难言乐观" in c or "短线震荡" in c\
                 or "横盘整理" in c or "延续振荡" in c or "延续震荡表现" in c or "高位区间震荡" in c or "上行驱动不足" in c or "维持震荡走势" in c or "上行动力不足" in c\
                 or "仍难打破震荡形态" in c or "等待企稳" in c or "高抛低吸" in c or "短线交易为主" in c or "建议暂观望" in c or "整体震荡" in c or "多单逢高减仓" in c or "单边头寸谨慎"\
-                in c or "单边观望" in c or "做空驱动不足" in c or "价格震荡" in c:
+                in c or "单边观望" in c or "做空驱动不足" in c or "价格震荡" in c  or "反弹行情阶段性结束" in c or "轻仓过节" in c or "减仓交易" in c\
+                or "高位反复" in c:
             return "0"
         if "短期反弹,趋势偏弱" in c or "先扬后抑" in c or "近强远弱" in c or "底部价格已现" in c or "底部已现" in c or "短线持多" in c \
                 or "短多看待" in c or '多单轻仓持有' in c or "产生支撑" in c or "修复回补" in c or "小幅走强" in c or "需求回暖" in c \
-                or "小幅反弹" in c or "短线多单参与" in c:
+                or "小幅反弹" in c or "短线多单参与" in c or "限制价格回落" in c:
             return '0.8'
         if "布局多单" in c or "偏强震荡" in c:
             return "1"
-        if "短多止盈" in c or "高位调整压力" in c:
+        if "短多止盈" in c or "高位调整压力" in c or "上行压力加大" in c or "上行动能不足" in c:
             return "-0.3"
-        if "买近抛远" in c or "短空止盈" in c:
+        if "买近抛远" in c or "短空止盈" in c or "高位运行" in c or "有支撑" in c or "延续高位运行" in c:
             return "0.3"
         if "反弹难持续" in c or "布局空单" in c:
             return "-1"
         if "近弱远强" in c or "顶部价格已现" in c or "顶部已现" in c or "反弹后抛空" in c or "逢高抛空" in c or '空单轻仓持有' in c or "短线空单参与" in c or "维持偏空思路" in c:
             return "-0.8"
         if "下行驱动逐渐放缓" in c or "弱平衡" in c or "不过于追空" in c or "空单谨慎" in c or "谨慎承压" in c or "有回调可能" in c or "压制期价上行" in c or "价格承压" in c \
-                or "中期看空" in c or "等待机会做空" in c:
+                or "中期看空" in c or "等待机会做空" in c or "继续回调" in c:
             return '-0.5'
         if "正套" in c or "多单谨慎持有" in c or "低点支撑" in c or "涨势趋缓" in c or "空单止盈" in c or "仍较抗跌" in c or "反弹幅度有限" in c or "短多长空" in \
                 c or "不宜过分看多" in c or "不过于追多" in c or "被动涨势" in c or "反弹谨慎" in c or "反弹偏谨慎" in c or "谨慎乐观" in c or "多单谨慎" in c \
                 or "comex金涨" in c or "多EG" in c or "谨慎追涨" in c or "回调幅度有限" in c or "不宜追多" in c or "短线炒作" in c or "支撑尚存" in c or "上方空间有限" in c or "炒作未止"\
-                in c:
+                in c or "易涨难跌" in c:
             return '0.5'
         if "多头谨慎持有" in c or "偏涨看待" in c:
                 return '0.7'
