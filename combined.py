@@ -1062,6 +1062,8 @@ for l in lines:
             if not is_number(score):
                 score = keywords.simplify_sent(score)
             for i in combined:
+                if i == "MEG" and name == "乙二醇":
+                    combined[i].append(float(score))
                 if i == name:
                     combined[i].append(float(score))
         elif len(l.strip('\n').split(" ")) > 2:
@@ -1071,6 +1073,8 @@ for l in lines:
                 score = keywords.simplify_sent(score)
             for i in combined:
                 for j in name:
+                    if i == "MEG" and j == "乙二醇":
+                        combined[i].append(float(score))
                     if i == j:
                         combined[i].append(float(score))
 import xlwt
