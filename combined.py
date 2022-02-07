@@ -980,8 +980,8 @@ for key in idea:
         toadd.append(["热卷", idea[key]])
     if key == "玻璃纯碱":
         topop.append("玻璃纯碱")
-        toadd.append(["锰硅", idea[key]])
-        toadd.append(["硅铁", idea[key]])
+        toadd.append(["玻璃", idea[key]])
+        toadd.append(["纯碱", idea[key]])
     if key == "镍不锈钢":
         topop.append("镍不锈钢")
         toadd.append(["镍", idea[key]])
@@ -993,6 +993,14 @@ for key in idea:
         topop.append("玉米与淀粉")
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
+    if key == "油脂油料":
+        topop.append("油脂油料")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+
 
 for i in topop:
     idea.pop(i)
@@ -1105,7 +1113,7 @@ with open('详细观点分公司.txt', 'w') as f:
             if new:
                 f.write(i[j].split(" ")[1] + "\n\n")
                 new = False
-            f.write( j + " "+ i[j].split(" ")[0] + "  " + i[j].split(" ")[2] + '\n')
+            f.write( j + " "+ i[j].split(" ")[0] + "  " + "".join(i[j].split(" ")[2:]) + '\n')
         f.write('\n\n\n')
 
 try:
