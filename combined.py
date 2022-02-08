@@ -833,7 +833,7 @@ guangzhou_idea = idea
 with open('国信期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["贵金属","铜铝","锌","螺纹钢","铁合金","焦煤焦炭","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇"]
+items = ["贵金属","铜铝","锌","螺纹钢","铁合金","焦炭焦煤","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -857,7 +857,7 @@ topop = []
 toadd = []
 for key in idea:
     if key == "焦煤焦炭":
-        topop.append("焦煤焦炭")
+        topop.append("焦炭焦煤")
         toadd.append(["焦煤", idea[key]])
         toadd.append(["焦炭", idea[key]])
     if key == "燃料油":
@@ -867,6 +867,9 @@ for key in idea:
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
     if key == "铜铝":
         topop.append("铜铝")
         toadd.append(["铜", idea[key]])
@@ -920,7 +923,7 @@ guoxin_idea = idea
 with open('华泰期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","燃料油","沥青","PTA","甲醇","橡胶","贵金属","铜","镍不锈钢","锌铝","钢材","铁矿石","双焦","动力煤","玻璃纯碱","油脂油料","玉米与淀粉","鸡蛋","生猪","郑棉"]
+items = ["原油","燃料油","沥青","PTA","甲醇","橡胶","贵金属","铜","镍与不锈钢","镍不锈钢","锌铝","钢材","铁矿石","双焦","动力煤","玻璃纯碱","油脂油料","玉米与淀粉","鸡蛋","生猪","郑棉"]
 next = False
 prev_item = ""
 for l in lines:
@@ -982,6 +985,10 @@ for key in idea:
         topop.append("玻璃纯碱")
         toadd.append(["玻璃", idea[key]])
         toadd.append(["纯碱", idea[key]])
+    if key == "镍与不锈钢":
+        topop.append("镍与不锈钢")
+        toadd.append(["镍", idea[key]])
+        toadd.append(["不锈钢", idea[key]])
     if key == "镍不锈钢":
         topop.append("镍不锈钢")
         toadd.append(["镍", idea[key]])
@@ -989,6 +996,9 @@ for key in idea:
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
+    if key == "郑棉":
+        topop.append("郑棉")
+        toadd.append(["棉花", idea[key]])
     if key == "玉米与淀粉":
         topop.append("玉米与淀粉")
         toadd.append(["玉米", idea[key]])
