@@ -186,6 +186,10 @@ for key in idea:
         topop.append("聚丙烯&纯碱")
         toadd.append(["PP", idea[key]])
         toadd.append(["纯碱", idea[key]])
+    if key == "聚丙烯&纸浆":
+        topop.append("聚丙烯&纸浆")
+        toadd.append(["PP", idea[key]])
+        toadd.append(["纸浆", idea[key]])
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
@@ -856,7 +860,7 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
-    if key == "焦煤焦炭":
+    if key == "焦炭焦煤":
         topop.append("焦炭焦煤")
         toadd.append(["焦煤", idea[key]])
         toadd.append(["焦炭", idea[key]])
