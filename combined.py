@@ -16,7 +16,6 @@ else:
                34, 35, 37, 38, 39, 40, 41]
     idea = {}
     for l in lines:
-        print(l)
         if " "  in l:
             idea[l.split(" ")[0]] = l.split(" ")[1]
 
@@ -687,6 +686,11 @@ for l in lines:
             idea["玻璃"] = stripped
         prev_item = "玻璃："
         continue
+    if "橡胶：" in stripped:
+        idea["橡胶"] = stripped
+        prev_item = "橡胶："
+        next = True
+        continue
     if stripped in items:
         next = True
         prev_item = stripped
@@ -931,7 +935,6 @@ items = ["原油","燃料油","沥青","PTA","甲醇","橡胶","贵金属","铜"
 next = False
 prev_item = ""
 for l in lines:
-    print("华泰" + l)
     stripped = l.strip().strip('\n')
     if stripped == "":
         continue
@@ -1036,20 +1039,276 @@ for i in huatai_old:
     else:
         huatai_old[i] = ""
 
-for i in huatai_old:
-    print(i)
-    print(huatai_old[i])
 huatai_idea = idea
+
+##########################################永安开始
+
+with open('永安期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["钢 材","铁 矿 石","动 力 煤","焦煤焦炭","纸 浆","【原油】","【沥青】","橡胶","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip()
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n')
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "焦煤焦炭":
+        topop.append("焦煤焦炭")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+    if key == "钢 材":
+        topop.append("钢 材")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "动 力 煤":
+        topop.append("动 力 煤")
+        toadd.append(["动力煤", idea[key]])
+    if key == "纸 浆":
+        topop.append("纸 浆")
+        toadd.append(["纸浆", idea[key]])
+    if key == "铁 矿 石":
+        topop.append("铁 矿 石")
+        toadd.append(["铁矿", idea[key]])
+    if key == "【原油】":
+        topop.append("【原油】")
+        toadd.append(["原油", idea[key]])
+    if key == "【沥青】":
+        topop.append("【沥青】")
+        toadd.append(["沥青", idea[key]])
+    if key == "【LPG】":
+        topop.append("【LPG】")
+        toadd.append(["LPG", idea[key]])
+    if key == "尿 素":
+        topop.append("尿 素")
+        toadd.append(["尿素", idea[key]])
+    if key == "豆类油脂":
+        topop.append("豆类油脂")
+        toadd.append(["豆一", idea[key]])
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+    if key == "白 糖":
+        topop.append("白 糖")
+        toadd.append(["白糖", idea[key]])
+    if key == "生 猪":
+        topop.append("生 猪")
+        toadd.append(["生猪", idea[key]])
+
+
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+yongan_old = {}
+for i in idea:
+    yongan_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in yongan_old:
+    if i in idea:
+        yongan_old[i] = idea[i] + " 永安 " + yongan_old[i]
+    else:
+        yongan_old[i] = ""
+
+yongan_idea = idea
+
+##########################################海通开始
+
+
+with open('海通期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["铝","钢材铁矿","油脂","焦煤焦炭"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip()
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n')
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "焦煤焦炭":
+        topop.append("焦煤焦炭")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+    if key == "钢材铁矿":
+        topop.append("钢材铁矿")
+        toadd.append(["铁矿", idea[key]])
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "油脂":
+        topop.append("油脂")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+haitong_old = {}
+for i in idea:
+    haitong_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in haitong_old:
+    if i in idea:
+        haitong_old[i] = idea[i] + " 海通 " + haitong_old[i]
+    else:
+        haitong_old[i] = ""
+
+
+haitong_idea = idea
+
+###########################################国都开始
+
+
+with open('国都期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["图片豆粕","豆粕","PTA","涤纶短纤","橡胶","棉花","豆类","橡胶","油脂","白糖","玉米、淀粉","生猪"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip()
+    if stripped == "":
+        continue
+    if stripped == "国都期货研究所":
+        break
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n')
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "图片豆粕":
+        topop.append("图片豆粕")
+        toadd.append(["豆粕", idea[key]])
+    if key == "涤纶短纤":
+        topop.append("涤纶短纤")
+        toadd.append(["短纤", idea[key]])
+    if key == "油脂":
+        topop.append("油脂")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+    if key == "豆类":
+        topop.append("豆类")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+    if key == "玉米、淀粉":
+        topop.append("玉米、淀粉")
+        toadd.append(["玉米", idea[key]])
+        toadd.append(["淀粉", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+guodu_old = {}
+for i in idea:
+    guodu_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in guodu_old:
+    if i in idea:
+        guodu_old[i] = idea[i] + " 国都 " + guodu_old[i]
+    else:
+        guodu_old[i] = ""
+
+guodu_idea = idea
 
 ###########################################整合开始
 
 idea_combined = {}
-for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old]:
+for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
         else:
             idea_combined[j] = [i[j]]
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
+
+with open('其他.txt', encoding='utf-8') as f:
+    lines = f.readlines()
+for l in lines:
+    if is_number(l.strip('\n').split(" ")[-1]):
+        if len(l.strip('\n').split(" ")) == 2:
+            name = l.strip('\n').split(" ")[0]
+            score = l.strip('\n').split(" ")[1]
+            if not is_number(score):
+                score = keywords.simplify_sent(score)
+            for i in idea_combined:
+                if i == "MEG" and name == "乙二醇":
+                    idea_combined[i].append(score)
+                if i == name:
+                    idea_combined[i].append(score)
+        elif len(l.strip('\n').split(" ")) > 2:
+            name = l.strip('\n').split(" ")[:-1]
+            score = l.strip('\n').split(" ")[-1]
+            if not is_number(score):
+                score = keywords.simplify_sent(score)
+            for i in idea_combined:
+                for j in name:
+                    if i == "MEG" and j == "乙二醇":
+                        idea_combined[i].append(score)
+                    if i == j:
+                        idea_combined[i].append(score)
+
 with open('详细观点.txt', 'w') as f:
     for i in idea_combined:
         f.write(i + '\n')
@@ -1062,7 +1321,7 @@ with open('详细观点.txt', 'w') as f:
         f.write('\n')
 
 combined = {}
-for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea]:
+for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea, haitong_idea, guodu_idea]:
     for j in i:
         if j.strip() == "":
             print(i)
@@ -1071,12 +1330,6 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
         else:
             combined[j] = [float(i[j])]
 
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        pass
 # 自己加比如东证，华泰，宝城的
 
 with open('其他.txt', encoding='utf-8') as f:
@@ -1121,7 +1374,7 @@ except:
 
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
-              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old]:
+              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old]:
         new = True
         for j in i:
             if new:
@@ -1161,27 +1414,27 @@ import pandas as pd
 
 result = pd.DataFrame(combined.items(), columns=['Name', 'Value'])
 final = result.sort_values(by='Value', ascending=False)
-#print(final)
-with open('之前的数据.txt', encoding='utf-8') as f:
-    lines = f.readlines()
-before = []
-for l in lines:
-    if l != "\n":
-        name = l.strip('\n').split()[0]
-        score = l.strip('\n').split()[1]
-        before.append([name,score])
+# #print(final)
+# with open('之前的数据.txt', encoding='utf-8') as f:
+#     lines = f.readlines()
+# before = []
+# for l in lines:
+#     if l != "\n":
+#         name = l.strip('\n').split()[0]
+#         score = l.strip('\n').split()[1]
+#         before.append([name,score])
 
 for index, row in final.iterrows():
     same = []
-    for i in before:
-        if i[0] == row["Name"]:
-            same.append(i[1])
-    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","股指","花生","国际铜","低硫燃油","棉纱","国债","低硫燃料油"]:
+    # for i in before:
+    #     if i[0] == row["Name"]:
+    #         same.append(i[1])
+    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","股指","花生","国际铜","低硫燃油","棉纱","国债","低硫燃料油","宏观"]:
         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
-for index, row in final.iterrows():
-    same = []
-    for i in before:
-        if i[0] == row["Name"]:
-            same.append(i[1])
-    if row["Name"] not in ["20号胶", "能源：", "金融:", "股指期权", "股指", "花生", "国际铜", "低硫燃油", "棉纱", "国债", "低硫燃料油"]:
-        print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"],6))) + " " + " ".join(same))
+# for index, row in final.iterrows():
+#     same = []
+#     # for i in before:
+#     #     if i[0] == row["Name"]:
+#     #         same.append(i[1])
+#     if row["Name"] not in ["20号胶", "能源：", "金融:", "股指期权", "股指", "花生", "国际铜", "低硫燃油", "棉纱", "国债", "低硫燃料油","宏观"]:
+#         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"],6))) + " " + " ".join(same))
