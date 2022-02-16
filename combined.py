@@ -1317,7 +1317,10 @@ with open('详细观点.txt', 'w') as f:
                 for i in range(len(j)//100+1):
                     if i != 0:
                         f.write("       ")
-                    f.write(j[i*100:(i+1)*100].strip('\n') + '\n')
+                    try:
+                        f.write(j[i*100:(i+1)*100].strip('\n') + '\n')
+                    except Exception:
+                        a = 1
         f.write('\n')
 
 combined = {}
@@ -1332,6 +1335,10 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
 
 # 自己加比如东证，华泰，宝城的
 
+
+
+
+############## 详细观点
 with open('其他.txt', encoding='utf-8') as f:
     lines = f.readlines()
 for l in lines:
@@ -1373,6 +1380,7 @@ try:
 except:
     raise
 
+############## 详细观点分公司
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
               beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old]:
@@ -1381,7 +1389,10 @@ with open('详细观点分公司.txt', 'w') as f:
             if new:
                 f.write(i[j].split(" ")[1] + "\n\n")
                 new = False
-            f.write( j + " "+ i[j].split(" ")[0] + "  " + "".join(i[j].split(" ")[2:]) + '\n')
+            try:
+                f.write( j + " "+ i[j].split(" ")[0] + "  " + "".join(i[j].split(" ")[2:]) + '\n')
+            except Exception:
+                a = 1
         f.write('\n\n\n')
 
 try:
@@ -1415,27 +1426,8 @@ import pandas as pd
 
 result = pd.DataFrame(combined.items(), columns=['Name', 'Value'])
 final = result.sort_values(by='Value', ascending=False)
-# #print(final)
-# with open('之前的数据.txt', encoding='utf-8') as f:
-#     lines = f.readlines()
-# before = []
-# for l in lines:
-#     if l != "\n":
-#         name = l.strip('\n').split()[0]
-#         score = l.strip('\n').split()[1]
-#         before.append([name,score])
 
 for index, row in final.iterrows():
     same = []
-    # for i in before:
-    #     if i[0] == row["Name"]:
-    #         same.append(i[1])
     if row["Name"] not in ["20号胶","能源：","金融:","股指期权","股指","花生","国际铜","低硫燃油","棉纱","国债","低硫燃料油","宏观"]:
         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
-# for index, row in final.iterrows():
-#     same = []
-#     # for i in before:
-#     #     if i[0] == row["Name"]:
-#     #         same.append(i[1])
-#     if row["Name"] not in ["20号胶", "能源：", "金融:", "股指期权", "股指", "花生", "国际铜", "低硫燃油", "棉纱", "国债", "低硫燃料油","宏观"]:
-#         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"],6))) + " " + " ".join(same))
