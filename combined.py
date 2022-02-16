@@ -1357,6 +1357,7 @@ for l in lines:
                         combined[i].append(float(score))
                     if i == j:
                         combined[i].append(float(score))
+
 import xlwt
 try:
     f = open("详细观点.txt")
