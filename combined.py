@@ -58,7 +58,7 @@ else:
     for i in toadd:
         idea[i[0]] = i[1]
 
-    idea.pop("低硫燃油")
+
 
 
     zhongxin_old = {}
