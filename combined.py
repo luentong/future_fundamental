@@ -1029,6 +1029,10 @@ for i in idea:
     huatai_old[i] = idea[i][:]
 
 for key in idea:
+    print(key)
+    print(idea[key])
+
+for key in idea:
     if not idea[key].isdecimal():
         idea[key] = keywords.simplify_sent(idea[key])
 
