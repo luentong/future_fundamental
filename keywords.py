@@ -20,7 +20,7 @@ fluc = ["观望", "不宜", "上行承压", "上行乏力", "震荡对待", "先
         "反弹行情阶段性结束","限制价格回落","上行压力加大","继续回调","上行动能不足","易涨难跌","有支撑","轻仓过节","减仓交易","高位反复","延续高位运行","仍偏强","多单轻仓","空仓","仍有上冲基础",
         "震荡行情将延续","结构性反弹","中长期多头配置","保持强势运行","谨慎追多","FU偏强","跟随原油为主","震荡思路操作","形成托底","偏空对待","逢高止盈","空头持有","偏弱震荡","有一定反复","跟随油价震荡",
         "回归整理区间","贵金属波动加大","滚动操作","油价压力","多单少量参与","油粕比空单","支撑盘面","利多","下跌之后反弹","基差回落","多单滚动操作","短多交易为主","持有前期多单","空单可部分止盈",
-        "短线操作为宜","重归反弹","未透露更多鹰派信号","短线交易","逢低做多","震荡走势","跟随油价波动"]
+        "短线操作为宜","重归反弹","未透露更多鹰派信号","短线交易","逢低做多","震荡走势","跟随油价波动","继续向上","向上突破","轻多尝试","反弹强度不及","短线操作", "难有向上驱动"]
 
 
 import jieba
@@ -56,7 +56,7 @@ def simplify_sent(c):
                 or "仍难打破震荡形态" in c or "等待企稳" in c or "高抛低吸" in c or "短线交易为主" in c or "建议暂观望" in c or "整体震荡" in c or "多单逢高减仓" in c or "单边头寸谨慎"\
                 in c or "单边观望" in c or "做空驱动不足" in c or "价格震荡" in c  or "反弹行情阶段性结束" in c or "轻仓过节" in c or "减仓交易" in c\
                 or "高位反复" in c or "空仓" in c or "震荡行情将延续" in c or "跟随原油为主" in c or "震荡思路操作" in c or "逢高止盈" in c or "有一定反复" in c or "跟随油价震荡" in c\
-                or "回归整理区间" in c or "贵金属波动加大" in c or "空单可部分止盈" in c or "短线操作为宜" in c or "短线交易" in c or "震荡走势" in c or "跟随油价波动" in c:
+                or "回归整理区间" in c or "贵金属波动加大" in c or "空单可部分止盈" in c or "短线操作为宜" in c or "短线交易" in c or "震荡走势" in c or "跟随油价波动" in c or "短线操作" in c:
             return "0"
         if "滚动操作" in c and "多单滚动操作" not in c and "空单滚动操作" not in c:
             return "0"
@@ -64,9 +64,9 @@ def simplify_sent(c):
                 or "短多看待" in c or '多单轻仓持有' in c or "产生支撑" in c or "修复回补" in c or "小幅走强" in c or "需求回暖" in c \
                 or "小幅反弹" in c or "短线多单参与" in c or "限制价格回落" in c or "仍有上冲基础" in c or "结构性反弹" in c or "保持强势运行" in c or "利多" in c:
             return '0.8'
-        if "布局多单" in c or "偏强震荡" in c or "重归反弹" in c:
+        if "布局多单" in c or "偏强震荡" in c or "重归反弹" in c or "继续向上" in c or "向上突破" in c:
             return "1"
-        if "短多止盈" in c or "高位调整压力" in c or "上行压力加大" in c or "上行动能不足" in c:
+        if "短多止盈" in c or "高位调整压力" in c or "上行压力加大" in c or "上行动能不足" in c or "难有向上驱动" in c:
             return "-0.3"
         if "买近抛远" in c or "短空止盈" in c or "高位运行" in c or "有支撑" in c or "延续高位运行" in c or "下跌之后反弹" in c:
             return "0.3"
@@ -79,13 +79,14 @@ def simplify_sent(c):
             return '-0.5'
         if "多单谨慎持有" in c or "低点支撑" in c or "涨势趋缓" in c or "空单止盈" in c or "仍较抗跌" in c or "反弹幅度有限" in c or "短多长空" in \
                 c or "不宜过分看多" in c or "不过于追多" in c or "被动涨势" in c or "反弹谨慎" in c or "反弹偏谨慎" in c or "谨慎乐观" in c or "多单谨慎" in c \
-                or "comex金涨" in c or "多EG" in c or "谨慎追涨" in c or "回调幅度有限" in c or "不宜追多" in c or "短线炒作" in c or "支撑尚存" in c or "上方空间有限" in c or "炒作未止"\
-                in c or "易涨难跌" in c or "仍偏强" in c or "多单轻仓" in c or "谨慎追多" in c or "形成托底" in c or "多单少量参与" in c or "支撑盘面" in c or "多单滚动操作" in c or "持有前期多单" in c:
+                or "多EG" in c or "谨慎追涨" in c or "回调幅度有限" in c or "不宜追多" in c or "短线炒作" in c or "支撑尚存" in c or "上方空间有限" in c or "炒作未止"\
+                in c or "易涨难跌" in c or "仍偏强" in c or "多单轻仓" in c or "谨慎追多" in c or "形成托底" in c or "多单少量参与" in c or "支撑盘面" in c or "多单滚动操作" in c or \
+                "持有前期多单" in c or "轻多尝试" in c or "反弹强度不及" in c:
             return '0.5'
         if "多头谨慎持有" in c or "偏涨看待" in c or "中长期多头配置" in c or "短多交易为主" in c or "逢低做多" in c:
                 return '0.7'
         if "空单谨慎持有" in c or "多单止盈" in c or "不宜过分看跌" in c or "限制价格回升" in c or "短空长多" in c or "谨慎悲观" in c \
-                or "comex金跌" in c or "贴水继续走弱" in c:
+                or "贴水继续走弱" in c:
             return '-0.5'
         if "回落" in c or "回调" in c:
             return '-0.7'
