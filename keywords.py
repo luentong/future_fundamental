@@ -38,7 +38,6 @@ def simplify_sent(c):
     for i in cut:
         cut_list.append(i)
     cut_list.reverse()
-    print(cut_list)
     for c in cut_list:
         if "才可能企稳回升" in c or "才可能企稳" in c or "议做多裂解价差" in c or "加工差承压" in c or "开工下滑" in c or "难提振" in c or "FU偏强" in c or "油价压力" in c\
                 or "油粕比空单" in c or "基差回落" in c or "未透露更多鹰派信号" in c or "风险" == c:

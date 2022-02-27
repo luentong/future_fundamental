@@ -198,19 +198,6 @@ for key in idea:
         topop.append("菜粕&菜油")
         toadd.append(["菜粕", "1"])
         toadd.append(["菜油", "1"])
-    # # 玻璃纯碱自己改
-    # if key == "纯碱":
-    #     topop.append("纯碱")
-    #     toadd.append(["纯碱", "1"])
-    # if key == "玻璃":
-    #     topop.append("玻璃")
-    #     toadd.append(["玻璃", "0"])
-    # if key == "塑料":
-    #     topop.append("塑料")
-    #     toadd.append(["塑料", "0"])
-    # if key == "PP":
-    #     topop.append("PP")
-    #     toadd.append(["PP", "-0.7"])
 
 for i in topop:
     idea.pop(i)
@@ -1274,10 +1261,89 @@ for i in guodu_old:
 
 guodu_idea = idea
 
+###########################################鲁证期货
+
+
+with open('鲁证期货.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","橡胶","甲醇","纯碱","PVC","聚酯产业链","纸浆","尿素","铜","铝","镍","不锈钢","贵金属","螺矿","煤焦","铁合金"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip()
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n')
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "油脂油料":
+        topop.append("油脂油料")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+    if key == "玉米系":
+        topop.append("玉米系")
+        toadd.append(["玉米", idea[key]])
+        toadd.append(["淀粉", idea[key]])
+    if key == "聚酯产业链":
+        topop.append("聚酯产业链")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
+    if key == "贵金属":
+        topop.append("贵金属")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
+    if key == "螺矿":
+        topop.append("螺矿")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+        toadd.append(["铁矿", idea[key]])
+    if key == "铁合金":
+        topop.append("铁合金")
+        toadd.append(["锰硅", idea[key]])
+        toadd.append(["硅铁", idea[key]])
+    if key == "煤焦":
+        topop.append("煤焦")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+luzheng_old = {}
+for i in idea:
+    luzheng_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in luzheng_old:
+    if i in idea:
+        luzheng_old[i] = idea[i] + " 鲁证 " +luzheng_old[i]
+    else:
+        luzheng_old[i] = ""
+
+luzheng_idea = idea
+
+
 ###########################################整合开始
 
 idea_combined = {}
-for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old]:
+for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old, luzheng_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -1332,7 +1398,7 @@ with open('详细观点.txt', 'w') as f:
         f.write('\n')
 
 combined = {}
-for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea, haitong_idea, guodu_idea]:
+for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea, yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea, haitong_idea, guodu_idea, luzheng_idea]:
     for j in i:
         if j.strip() == "":
             print(i)
@@ -1391,7 +1457,7 @@ except:
 ############## 详细观点分公司
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
-              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old]:
+              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old, guodu_old, luzheng_old]:
         new = True
         for j in i:
             if new:
