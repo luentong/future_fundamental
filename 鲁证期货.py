@@ -70,3 +70,7 @@ for i in toadd:
     idea[i[0]] = i[1]
 
 guodu_idea = idea
+
+for i in idea:
+    print(i)
+    print(idea[i])
