@@ -105,3 +105,6 @@ for i in huatai_old:
 
 
 huatai_idea = idea
+for key in idea:
+    print(key)
+    print(idea[key])
