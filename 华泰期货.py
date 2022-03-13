@@ -41,7 +41,7 @@ huatai_old = {}
 for i in idea:
     huatai_old[i] = idea[i][:]
 
-print("??x?")
+
 for i in huatai_old:
     print(i)
     print(huatai_old[i])

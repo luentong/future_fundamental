@@ -4,7 +4,7 @@ with open('光大期货.txt', encoding='utf-8') as f:
 idea = {}
 prev = ""
 for l in lines:
-    if len(l) < 20 and l.strip("\n") != "":
+    if len(l) < 20 and l.strip().strip("\n") != "":
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
         a3 = a2.replace("\n", "")
@@ -59,6 +59,7 @@ for key in idea:
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
     if key == "油脂油料":
+        print("???")
         topop.append("油脂油料")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
