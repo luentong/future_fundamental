@@ -22,7 +22,8 @@ fluc = ["观望", "不宜", "上行承压", "上行乏力", "震荡对待", "先
         "回归整理区间","贵金属波动加大","滚动操作","油价压力","多单少量参与","油粕比空单","支撑盘面","利多","下跌之后反弹","基差回落","多单滚动操作","短多交易为主","持有前期多单","空单可部分止盈",
         "短线操作为宜","重归反弹","未透露更多鹰派信号","短线交易","逢低做多","震荡走势","跟随油价波动","继续向上","向上突破","轻多尝试","反弹强度不及","短线操作", "难有向上驱动","建议观望为主","等待价格企稳",
         "产量回升","价差有望走强","向上空间或有限","短线多单","逢高轻仓试空","缺乏基本面驱动","宽幅运行","长线偏空","谨慎操作", "不建议虚盘操作","防范价格下跌风险","价格中枢上移"
-        ,"短期中性","继续破新高","不宜过度追高","尚未出现短缺","建议轻仓操作","高点很难预估","回调买入"]
+        ,"短期中性","继续破新高","不宜过度追高","尚未出现短缺","建议轻仓操作","高点很难预估","回调买入","下行空间或有限","压制上行空间","中性为主","价差有望走强","难以大幅走高"
+        ,"维持震荡趋势","震荡思路对待","谨慎对待","短期压力加剧","多单离场","逢低试多","定投方式参与","利润向上修复","持续震荡","回调的风险","两难境地"]
 
 
 
@@ -44,7 +45,7 @@ def simplify_sent(c):
     for c in cut_list:
         if "才可能企稳回升" in c or "才可能企稳" in c or "议做多裂解价差" in c or "加工差承压" in c or "开工下滑" in c or "难提振" in c or "FU偏强" in c or "油价压力" in c\
                 or "油粕比空单" in c or "基差回落" in c or "未透露更多鹰派信号" in c or "风险" == c or "等待价格企稳" in c or "产量回升" in c or "价差有望走强" in c\
-                or "防范价格下跌风险" in c:
+                or "防范价格下跌风险" in c or "价差有望走强" in c or "难以大幅走高" in c or "短线的回落" in c or "回调的风险" in c:
                 continue
         if "震荡对待" in c or "上行空间受限" in c or "下行空间受限" in c or "波动风险加大" in c \
                 or "震荡为主" in c or "高位震荡" in c or "盘面震荡" in c or "反弹空间有限" in c or "反弹幅度已经较高" in c \
@@ -61,18 +62,22 @@ def simplify_sent(c):
                 or "高位反复" in c or "空仓" in c or "震荡行情将延续" in c or "跟随原油为主" in c or "震荡思路操作" in c or "逢高止盈" in c or "有一定反复" in c or "跟随油价震荡" in c\
                 or "回归整理区间" in c or "贵金属波动加大" in c or "空单可部分止盈" in c or "短线操作为宜" in c or "短线交易" in c or "震荡走势" in c or "跟随油价波动" in c or "短线操作" in c\
                 or "建议观望为主" in c or "向上空间或有限" in c or "缺乏基本面驱动" in c or "宽幅运行" in c or "谨慎操作" in c or "不建议虚盘操作" in c or "短期中性" in c\
-                or "尚未出现短缺" in c or "建议轻仓操作" in c or "高点很难预估" in c:
+                or "尚未出现短缺" in c or "建议轻仓操作" in c or "高点很难预估" in c or "下行空间或有限" in c or "中性为主" in c or "维持震荡趋势" in c or "震荡思路对待" in c\
+                or "谨慎对待" in c or "定投方式参与" in c or "两难境地" in c:
             return "0"
         if "滚动操作" in c and "多单滚动操作" not in c and "空单滚动操作" not in c:
+            return "0"
+        if "持续震荡" in c and "持续震荡偏弱" not in c and "持续震荡偏强" not in c:
             return "0"
         if "短期反弹,趋势偏弱" in c or "先扬后抑" in c or "近强远弱" in c or "底部价格已现" in c or "底部已现" in c or "短线持多" in c \
                 or "短多看待" in c or '多单轻仓持有' in c or "产生支撑" in c or "修复回补" in c or "小幅走强" in c or "需求回暖" in c \
                 or "小幅反弹" in c or "短线多单参与" in c or "限制价格回落" in c or "仍有上冲基础" in c or "结构性反弹" in c or "保持强势运行" in c \
-                or "利多" in c or "短线多单" in c or "价格中枢上移" in c:
+                or "利多" in c or "短线多单" in c or "价格中枢上移" in c or "利润向上修复" in c:
             return '0.8'
         if "布局多单" in c or "偏强震荡" in c or "重归反弹" in c or "继续向上" in c or "向上突破" in c or "破新高" in c:
             return "1"
-        if "短多止盈" in c or "高位调整压力" in c or "上行压力加大" in c or "上行动能不足" in c or "难有向上驱动" in c or "多单止盈" in c:
+        if "短多止盈" in c or "高位调整压力" in c or "上行压力加大" in c or "上行动能不足" in c or "难有向上驱动" in c\
+                or "多单止盈" in c or "压制上行空间" in c or "多单离场" in c:
             return "-0.3"
         if "买近抛远" in c or "短空止盈" in c or "高位运行" in c or "有支撑" in c or "延续高位运行" in c or "下跌之后反弹" in c\
                 or "空单止盈" in c or "不宜过度追高" in c:
@@ -91,12 +96,12 @@ def simplify_sent(c):
                 in c or "易涨难跌" in c or "仍偏强" in c or "多单轻仓" in c or "谨慎追多" in c or "形成托底" in c or "多单少量参与" in c or "支撑盘面" in c or "多单滚动操作" in c or \
                 "持有前期多单" in c or "轻多尝试" in c or "反弹强度不及" in c or "回调买入" in c:
             return '0.5'
-        if "多头谨慎持有" in c or "偏涨看待" in c or "中长期多头配置" in c or "短多交易为主" in c or "逢低做多" in c:
+        if "多头谨慎持有" in c or "偏涨看待" in c or "中长期多头配置" in c or "短多交易为主" in c or "逢低做多" in c or "逢低试多" in c:
                 return '0.7'
         if "空单谨慎持有" in c or "不宜过分看跌" in c or "限制价格回升" in c or "短空长多" in c or "谨慎悲观" in c \
                 or "贴水继续走弱" in c:
             return '-0.5'
-        if "回落" in c or "回调" in c:
+        if "回落" in c or "回调" in c or "短期压力加剧" in c:
             return '-0.7'
         if "反弹难持续" in c:
             for i in low:
