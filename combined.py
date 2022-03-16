@@ -1462,7 +1462,7 @@ nanhua_idea = idea
 # for l in lines:
 #     total += l
 idea = {}
-# items = ["贵金属（黄金）","黑色金属（焦煤/焦炭）","黑色金属（螺纹钢/热轧卷板）","有色金属（镍）","有色金属（铝）","农产品（棉花）","农产品（豆粕）","航运指数（集装箱运价）"]
+# items = ["黑色金属（焦煤/焦炭）","黑色金属（螺纹钢/热轧卷板）","有色金属（镍）","有色金属（铝）","农产品（棉花）","农产品（豆粕）","航运指数（集装箱运价）"]
 # index = 0
 # for i in items[:-1]:
 #     after = total.split(i)[1]
@@ -1472,9 +1472,9 @@ idea = {}
 #     index += 1
 #     total = after
 #
-dongzheng_old = {}
-for i in idea:
-    dongzheng_old[i] = idea[i][:]
+# dongzheng_old = {}
+# for i in idea:
+#     dongzheng_old[i] = idea[i][:]
 #
 # topop = []
 # toadd = []
@@ -1494,9 +1494,9 @@ for i in idea:
 # for i in topop:
 #     idea.pop(i)
 # for i in toadd:
-#     idea[i[0]] = i[1]
-#
-# dongzheng_old = {}
+#    idea[i[0]] = i[1]
+
+dongzheng_old = {}
 # for i in idea:
 #     dongzheng_old[i] = idea[i][:]
 #
@@ -1509,8 +1509,8 @@ for i in idea:
 #     if i in idea:
 #         dongzheng_old[i] = idea[i] + " 东证 " +dongzheng_old[i]
 #     else:
-#         dongzheng_old[i] = ""
-#
+#        dongzheng_old[i] = ""
+
 dongzheng_idea = idea
 
 ###########################################整合开始
