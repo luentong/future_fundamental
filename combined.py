@@ -198,14 +198,19 @@ for key in idea:
         topop.append("聚丙烯&玻璃")
         toadd.append(["PP", idea[key]])
         toadd.append(["玻璃", idea[key]])
+    if key == "棕榈油&豆油":
+        topop.append("棕榈油&豆油")
+        toadd.append(["棕榈油", idea[key]])
+        toadd.append(["豆油", idea[key]])
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "-0.8"])
-        toadd.append(["菜油", "-0.8"])
+        toadd.append(["菜粕", "1"])
+        toadd.append(["菜油", "0"])
 
 for i in topop:
-    idea.pop(i)
+    if i in idea:
+        idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
 
@@ -1371,7 +1376,7 @@ luzheng_idea = idea
 with open('南华.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["螺纹","热卷","铁矿","焦煤","动力煤","纯碱","玻璃","白糖","棉花","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
+items = ["螺纹","热卷","铁矿","焦煤","焦炭","动力煤","纯碱","玻璃","白糖","棉花","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
          "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃"]
 next = False
 prev_item = ""
@@ -1382,6 +1387,11 @@ for l in lines:
     if "：" in stripped and stripped.split("：")[0] in items:
         next = True
         prev_item = stripped.split("：")[0]
+        idea[prev_item] = stripped.split("：")[1]
+        continue
+    if "：" in stripped and stripped.split("早评")[0] in items:
+        next = True
+        prev_item = stripped.split("早评")[0]
         idea[prev_item] = stripped.split("：")[1]
         continue
     if ":" in stripped and stripped.split(":")[0] in items:
