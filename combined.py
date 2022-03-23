@@ -16,7 +16,7 @@ else:
                34, 35, 37, 38, 39, 40, 41]
     idea = {}
     for l in lines:
-        if " "  in l:
+        if " "  in l and len(l.split(" ")[0]) < 7:
             idea[l.split(" ")[0]] = l.split(" ")[1]
 
     topop = []
@@ -1298,7 +1298,7 @@ guodu_idea = idea
 with open('鲁证期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","橡胶","甲醇","纯碱","PVC","聚酯产业链","纸浆","尿素","铜","铝","镍","不锈钢","贵金属","螺矿","煤焦","铁合金","苯乙烯"]
+items = ["棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇","纯碱","PVC","聚酯产业链","纸浆","尿素","铜","铝","镍","不锈钢","贵金属","螺矿","煤焦","铁合金","苯乙烯"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1528,7 +1528,7 @@ dongzheng_idea = idea
 idea_combined = {}
 for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old,
           yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old,
-          guodu_old, luzheng_old, nanhua_old, dongzheng_old]:
+          guodu_old, luzheng_old, nanhua_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -1585,7 +1585,7 @@ with open('详细观点.txt', 'w') as f:
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
           yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea,
-          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongzheng_idea]:
+          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea]:
     for j in i:
         if j.strip() == "":
             print(i)
@@ -1608,7 +1608,7 @@ for l in lines:
             name = l.strip('\n').split(" ")[0]
             score = l.strip('\n').split(" ")[1]
             if not is_number(score):
-                score = keywords.simplify_sent(score)
+                continue
             for i in combined:
                 if i == "MEG" and name == "乙二醇":
                     combined[i].append(float(score))
@@ -1618,7 +1618,7 @@ for l in lines:
             name = l.strip('\n').split(" ")[:-1]
             score = l.strip('\n').split(" ")[-1]
             if not is_number(score):
-                score = keywords.simplify_sent(score)
+                continue
             for i in combined:
                 for j in name:
                     if i == "MEG" and j == "乙二醇":
@@ -1645,7 +1645,7 @@ except:
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
               beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old,
-              haitong_old, guodu_old, luzheng_old, nanhua_old, dongzheng_old]:
+              haitong_old, guodu_old, luzheng_old, nanhua_old]:
         new = True
         for j in i:
             if new:
