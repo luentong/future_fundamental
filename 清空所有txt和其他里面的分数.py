@@ -22,14 +22,14 @@ for l in lines:
             if not is_number(score):
                 cached.append(l.strip("\n"))
             else:
-                cached.append(" ".join(l.split(" ")[:-1]))
+                cached.append(" ".join(l.split(" ")[:-1]) + " ")
         elif len(l.strip('\n').split(" ")) > 2:
             name = l.strip('\n').split(" ")[:-1]
             score = l.strip('\n').split(" ")[-1]
             if not is_number(score):
                 cached.append(l.strip("\n"))
             else:
-                cached.append(" ".join(l.split(" ")[:-1]))
+                cached.append(" ".join(l.split(" ")[:-1]) + " ")
     else:
         cached.append(l.strip("\n"))
 
