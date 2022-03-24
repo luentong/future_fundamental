@@ -1542,7 +1542,7 @@ def is_number(s):
     except ValueError:
         pass
 
-with open('其他.txt', encoding='utf-8') as f:
+with open('其他.txt', encoding='gbk') as f:
     lines = f.readlines()
 for l in lines:
     if is_number(l.strip('\n').split(" ")[-1]):
@@ -1600,7 +1600,7 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
 
 
 ############## 详细观点
-with open('其他.txt', encoding='utf-8') as f:
+with open('其他.txt', encoding='gbk') as f:
     lines = f.readlines()
 for l in lines:
     if is_number(l.strip('\n').split(" ")[-1]):
