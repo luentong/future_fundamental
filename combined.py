@@ -1153,7 +1153,7 @@ yongan_idea = idea
 with open('海通期货.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铝","钢材铁矿","油脂","焦煤焦炭","粕类","油脂油料"]
+items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料","豆粕"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1163,6 +1163,16 @@ for l in lines:
     if stripped in items:
         next = True
         prev_item = stripped
+        continue
+    elif "铁矿" in stripped:
+        next = True
+        prev_item = "铁矿"
+        idea[prev_item.strip()] = l.strip().strip('\n')
+        continue
+    elif "钢材" in stripped:
+        next = True
+        prev_item = "钢材"
+        idea[prev_item.strip()] = l.strip().strip('\n')
         continue
     if next:
         if prev_item.strip("：") in idea:
@@ -1177,9 +1187,8 @@ for key in idea:
         topop.append("焦煤焦炭")
         toadd.append(["焦煤", idea[key]])
         toadd.append(["焦炭", idea[key]])
-    if key == "钢材铁矿":
-        topop.append("钢材铁矿")
-        toadd.append(["铁矿", idea[key]])
+    if key == "钢材":
+        topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
     if key == "油脂":
