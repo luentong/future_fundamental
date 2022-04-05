@@ -58,9 +58,6 @@ else:
     for i in toadd:
         idea[i[0]] = i[1]
 
-
-
-
     zhongxin_old = {}
     for i in idea:
         zhongxin_old[i] = idea[i][:]
@@ -216,8 +213,6 @@ for i in topop:
         idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
-
-
 
 
 guotou_old = {}
