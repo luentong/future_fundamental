@@ -7,7 +7,7 @@ def is_number(s):
     except ValueError:
         pass
 print('您已删除所有公司的txt文件内容!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-for i in ["上海中期.txt","中信.txt","五矿.txt","倍特.txt","南华.txt","光大.txt","鲁证.txt","华泰.txt","国信.txt","国投.txt","国泰君安.txt","广发.txt","海通.txt","广州.txt","东证.txt","银河.txt","永安.txt","国都.txt"]:
+for i in ["上海中期.txt","中信.txt","五矿.txt","倍特.txt","南华.txt","光大.txt","鲁证.txt","华泰.txt","国信.txt","国投安信.txt","国泰君安.txt","广发.txt","海通.txt","广州.txt","东证.txt","银河.txt","永安.txt","国都.txt"]:
     file = open(i,"w")
     file.close()
 
