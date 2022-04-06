@@ -932,7 +932,7 @@ guoxin_idea = idea
 with open('华泰.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","燃料油","沥青","PTA","甲醇","橡胶","贵金属","铜","镍与不锈钢","镍不锈钢","锌铝","钢材","铁矿石","双焦","动力煤","玻璃纯碱","油脂油料","玉米与淀粉","鸡蛋","生猪","郑棉","液化石油气"]
+items = ["原油","燃料油","沥青","PTA","甲醇","玻璃方面","纯碱方面","橡胶","贵金属","铜","镍与不锈钢","镍不锈钢","锌铝","钢材","铁矿石","双焦","动力煤","玻璃纯碱","油脂油料","玉米与淀粉","鸡蛋","生猪","郑棉","液化石油气"]
 next = False
 prev_item = ""
 for l in lines:
@@ -992,6 +992,12 @@ for key in idea:
     if key == "玻璃纯碱":
         topop.append("玻璃纯碱")
         toadd.append(["玻璃", idea[key]])
+        toadd.append(["纯碱", idea[key]])
+    if key == "玻璃方面":
+        topop.append("玻璃方面")
+        toadd.append(["玻璃", idea[key]])
+    if key == "纯碱方面":
+        topop.append("纯碱方面")
         toadd.append(["纯碱", idea[key]])
     if key == "镍与不锈钢":
         topop.append("镍与不锈钢")
@@ -1304,10 +1310,14 @@ guodu_idea = idea
 with open('鲁证.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇","纯碱","PVC","聚酯产业链","纸浆","尿素","铜","铝","镍","不锈钢","贵金属","螺矿","煤焦","铁合金","苯乙烯"]
+items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇",
+         "纯碱","PVC","聚酯产业链","纸浆","尿素","铜","铝","镍","不锈钢","贵金属","螺矿","煤焦","铁合金","苯乙烯","液化石油气"]
 next = False
 prev_item = ""
 for l in lines:
+    if "投资咨询资格号：" in l:
+        l = l.split("投资咨询资格号")[0]
+        next = False
     stripped = l.strip()
     if stripped == "":
         continue
@@ -1342,6 +1352,9 @@ for key in idea:
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
+    if key == "液化石油气":
+        topop.append("液化石油气")
+        toadd.append(["LPG", idea[key]])
     if key == "螺矿":
         topop.append("螺矿")
         toadd.append(["螺纹", idea[key]])
@@ -1609,7 +1622,6 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
         else:
             combined[j] = [float(i[j])]
 
-# 自己加比如东证，华泰，宝城的
 
 
 
