@@ -1056,7 +1056,7 @@ huatai_idea = idea
 with open('永安.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指期货","钢 材","铁 矿 石","动 力 煤","焦煤焦炭","纸 浆","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
+items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1084,6 +1084,9 @@ for key in idea:
         topop.append("钢 材")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
+    if key == "ENERGY":
+        topop.append("ENERGY")
+        toadd.append(["原油", idea[key]])
     if key == "动 力 煤":
         topop.append("动 力 煤")
         toadd.append(["动力煤", idea[key]])
@@ -1315,10 +1318,9 @@ items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋"
 next = False
 prev_item = ""
 for l in lines:
-    if "投资咨询资格号：" in l:
-        l = l.split("投资咨询资格号")[0]
-        next = False
     stripped = l.strip()
+    if "中泰期货股份有限公司" in l:
+        break
     if stripped == "":
         continue
     if stripped in items:
