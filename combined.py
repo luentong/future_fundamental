@@ -94,6 +94,12 @@ for key in idea:
     if key == "螺纹钢":
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
+    if key == "期指":
+        topop.append("期指")
+        toadd.append(["股指", idea[key]])
+    if key == "期债":
+        topop.append("期债")
+        toadd.append(["国债", idea[key]])
     if key == "热轧卷板":
         topop.append("热轧卷板")
         toadd.append(["热卷", idea[key]])
@@ -167,6 +173,9 @@ for key in idea:
     if key == "聚丙烯&塑料":
         topop.append("聚丙烯&塑料")
         toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
+    if key == "聚丙烯":
+        topop.append("聚丙烯")
         toadd.append(["PP", idea[key]])
     if key == "天然橡胶":
         topop.append("天然橡胶")
@@ -570,7 +579,7 @@ beite_idea = idea
 with open('银河.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","贵金属"]
 next = False
 prev_item = ""
 for l in lines:
@@ -613,6 +622,10 @@ for key in idea:
         topop.append("焦煤焦炭")
         toadd.append(["焦煤", idea[key]])
         toadd.append(["焦炭", idea[key]])
+    if key == "贵金属":
+        topop.append("贵金属")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
     if key == "镍及不锈钢":
         topop.append("镍及不锈钢")
         toadd.append(["镍", idea[key]])
@@ -1056,7 +1069,7 @@ huatai_idea = idea
 with open('永安.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
+items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1087,6 +1100,9 @@ for key in idea:
     if key == "ENERGY":
         topop.append("ENERGY")
         toadd.append(["原油", idea[key]])
+    if key == "PULP":
+        topop.append("PULP")
+        toadd.append(["纸浆", idea[key]])
     if key == "动 力 煤":
         topop.append("动 力 煤")
         toadd.append(["动力煤", idea[key]])
