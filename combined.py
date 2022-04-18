@@ -1592,12 +1592,70 @@ dongzheng_old = {}
 
 dongzheng_idea = idea
 
+###########################################东兴开始
+
+with open('东兴.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["期指","期债","动力煤","铜","PTA","PVC","天然橡胶","生猪","玉米"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip()
+    if stripped == "":
+        continue
+    if stripped.split("：")[0] in items:
+        next = True
+        prev_item = stripped.split("：")[0]
+        continue
+    if next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n')
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n')
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "期指":
+        topop.append("期指")
+        toadd.append(["股指", idea[key]])
+    if key == "期债":
+        topop.append("期债")
+        toadd.append(["国债", idea[key]])
+    if key == "天然橡胶":
+        topop.append("天然橡胶")
+        toadd.append(["橡胶", idea[key]])
+
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+dongxing_old = {}
+for i in idea:
+    dongxing_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in dongxing_old:
+    if i in idea:
+        dongxing_old[i] = idea[i] + " 东兴 " + dongxing_old[i]
+    else:
+        dongxing_old[i] = ""
+
+dongxing_idea = idea
+
 ###########################################整合开始
 
 idea_combined = {}
 for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old,
           yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old,
-          guodu_old, luzheng_old, nanhua_old]:
+          guodu_old, luzheng_old, nanhua_old, dongxing_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -1654,7 +1712,7 @@ with open('详细观点.txt', 'w') as f:
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
           yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea,
-          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea]:
+          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea]:
     for j in i:
         if j.strip() == "":
             print(i)
@@ -1713,7 +1771,7 @@ except:
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
               beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old,
-              haitong_old, guodu_old, luzheng_old, nanhua_old]:
+              haitong_old, guodu_old, luzheng_old, nanhua_old, dongxing_old]:
         new = True
         for j in i:
             if new:
