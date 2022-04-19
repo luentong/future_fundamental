@@ -1597,7 +1597,7 @@ dongzheng_idea = idea
 with open('东兴.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["期指","期债","动力煤","铜","PTA","PVC","天然橡胶","生猪","玉米"]
+items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1626,7 +1626,9 @@ for key in idea:
     if key == "天然橡胶":
         topop.append("天然橡胶")
         toadd.append(["橡胶", idea[key]])
-
+    if key == "TA":
+        topop.append("TA")
+        toadd.append(["PTA", idea[key]])
 
 for i in topop:
     idea.pop(i)
