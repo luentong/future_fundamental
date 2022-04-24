@@ -372,7 +372,6 @@ for key in idea:
     if key == "棉花及棉纱":
         topop.append("棉花及棉纱")
         toadd.append(["棉花", idea[key]])
-        #toadd.append(["棉纱", idea[key]])
     if key == "玉米及玉米淀粉":
         topop.append("玉米及玉米淀粉")
         toadd.append(["玉米", idea[key]])
@@ -599,9 +598,14 @@ for l in lines:
             idea[prev_item] += l.strip().strip('\n').split("套利：")[0]
             continue
         if prev_item == "焦煤焦炭":
+            if "长期看" in l:
+                idea[prev_item] = l.strip().strip('\n').split("长期看")[0]
+                next = False
+                continue
             if "驱动角度看" in l:
                 next = False
                 idea[prev_item] = l.strip().strip('\n').split("驱动角度看")[0]
+                next = False
                 continue
         if prev_item in idea:
             if "【交易策略】" in l:
@@ -911,7 +915,6 @@ for key in idea:
         toadd.append(["硅铁", idea[key]])
     if key == "豆类":
         topop.append("豆类")
-        toadd.append(["豆一", idea[key]])
         toadd.append(["豆粕", idea[key]])
     if key == "油脂":
         topop.append("油脂")
@@ -943,138 +946,6 @@ for i in guoxin_old:
         guoxin_old[i] = ""
 
 guoxin_idea = idea
-
-###########################################华泰开始
-
-with open('华泰.txt',encoding='utf-8') as f:
-    lines = f.readlines()
-idea = {}
-items = ["原油","燃料油","沥青","PTA","甲醇","玻璃方面","纯碱方面","橡胶","贵金属","铜","镍与不锈钢","镍不锈钢","锌铝",
-         "钢材","铁矿石","双焦","动力煤","玻璃纯碱","油脂油料","玉米与淀粉","鸡蛋","生猪","郑棉","液化石油气","棉花","豆类","玉米、淀粉"]
-next = False
-prev_item = ""
-for l in lines:
-    stripped = l.strip().strip('\n')
-    if stripped == "":
-        continue
-    if stripped.split("：")[0] in items:
-        next = True
-        prev_item = stripped.split("：")[0]
-        continue
-    if "策略：" in l and len(l) < 5 and "期权策略" not in l:
-        next = False
-    if next:
-        if prev_item in idea:
-            if "策略：" in l and "期权策略" not in l:
-                if "套利：" in l:
-                    idea[prev_item] = l.strip().strip('\n').split("套利：")[0]
-                    next = False
-                else:
-                    idea[prev_item] = l.strip().strip('\n')
-                    next = False
-            else:
-                idea[prev_item] += l.strip().strip('\n')
-        else:
-            if "策略：" in l and "期权策略" not in l:
-                if "套利：" in l:
-                    idea[prev_item] = l.strip().strip('\n').split("套利：")[0]
-                    next = False
-                else:
-                    idea[prev_item] = l.strip().strip('\n')
-                    next = False
-            else:
-                idea[prev_item] = l.strip().strip('\n')
-
-topop = []
-toadd = []
-for key in idea:
-    if key == "双焦":
-        topop.append("双焦")
-        toadd.append(["焦煤", idea[key]])
-        toadd.append(["焦炭", idea[key]])
-    if key == "豆类":
-        topop.append("豆类")
-        toadd.append(["豆粕", idea[key]])
-    if key == "燃料油":
-        topop.append("燃料油")
-        toadd.append(["燃油", idea[key]])
-    if key == "贵金属":
-        topop.append("贵金属")
-        toadd.append(["黄金", idea[key]])
-        toadd.append(["白银", idea[key]])
-    if key == "锌铝":
-        topop.append("锌铝")
-        toadd.append(["锌", idea[key]])
-        toadd.append(["铝", idea[key]])
-    if key == "钢材":
-        topop.append("钢材")
-        toadd.append(["螺纹", idea[key]])
-        toadd.append(["热卷", idea[key]])
-    if key == "玻璃纯碱":
-        topop.append("玻璃纯碱")
-        toadd.append(["玻璃", idea[key]])
-        toadd.append(["纯碱", idea[key]])
-    if key == "玻璃方面":
-        topop.append("玻璃方面")
-        toadd.append(["玻璃", idea[key]])
-    if key == "纯碱方面":
-        topop.append("纯碱方面")
-        toadd.append(["纯碱", idea[key]])
-    if key == "镍与不锈钢":
-        topop.append("镍与不锈钢")
-        toadd.append(["镍", idea[key]])
-        toadd.append(["不锈钢", idea[key]])
-    if key == "镍不锈钢":
-        topop.append("镍不锈钢")
-        toadd.append(["镍", idea[key]])
-        toadd.append(["不锈钢", idea[key]])
-    if key == "铁矿石":
-        topop.append("铁矿石")
-        toadd.append(["铁矿", idea[key]])
-    if key == "郑棉":
-        topop.append("郑棉")
-        toadd.append(["棉花", idea[key]])
-    if key == "液化石油气":
-        topop.append("液化石油气")
-        toadd.append(["LPG", idea[key]])
-    if key == "玉米、淀粉":
-        topop.append("玉米、淀粉")
-        toadd.append(["玉米", idea[key]])
-        toadd.append(["淀粉", idea[key]])
-    if key == "玉米与淀粉":
-        topop.append("玉米与淀粉")
-        toadd.append(["玉米", idea[key]])
-        toadd.append(["淀粉", idea[key]])
-    if key == "油脂油料":
-        topop.append("油脂油料")
-        toadd.append(["豆油", idea[key]])
-        toadd.append(["菜油", idea[key]])
-        toadd.append(["棕榈油", idea[key]])
-        toadd.append(["豆粕", idea[key]])
-        toadd.append(["菜粕", idea[key]])
-
-
-for i in topop:
-    idea.pop(i)
-for i in toadd:
-    idea[i[0]] = i[1]
-
-huatai_old = {}
-for i in idea:
-    huatai_old[i] = idea[i][:]
-
-for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
-
-
-for i in huatai_old:
-    if i in idea:
-        huatai_old[i] = idea[i] + " 华泰 " + huatai_old[i]
-    else:
-        huatai_old[i] = ""
-
-huatai_idea = idea
 
 ##########################################永安开始
 
@@ -1149,7 +1020,6 @@ for key in idea:
         toadd.append(["尿素", idea[key]])
     if key == "豆类油脂":
         topop.append("豆类油脂")
-        toadd.append(["豆一", idea[key]])
         toadd.append(["豆油", idea[key]])
         toadd.append(["菜油", idea[key]])
         toadd.append(["棕榈油", idea[key]])
@@ -1192,7 +1062,7 @@ yongan_idea = idea
 with open('海通.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料","豆粕"]
+items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料","豆粕","股指","国债","贵金属","铜","镍","锡","铁矿石","锰硅","硅铁","橡胶","玻璃","纯碱","原油","白糖","蛋白粕","油脂","苹果","生猪","苹果","生猪","鸡蛋"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1226,6 +1096,10 @@ for key in idea:
         topop.append("焦煤焦炭")
         toadd.append(["焦煤", idea[key]])
         toadd.append(["焦炭", idea[key]])
+    if key == "贵金属":
+        topop.append("贵金属")
+        toadd.append(["白银", idea[key]])
+        toadd.append(["黄金", idea[key]])
     if key == "钢材":
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
@@ -1246,6 +1120,13 @@ for key in idea:
         topop.append("粕类")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
+    if key == "蛋白粕":
+        topop.append("蛋白粕")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -1437,7 +1318,7 @@ with open('南华.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["国债日报","股指","螺纹","热卷","铁矿","焦煤","焦炭","动力煤","纯碱","玻璃","白糖","棉花","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
-         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石"]
+         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石","郑棉","豆粕","生猪","MA","SC","RU","EB","乙二醇"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1480,6 +1361,21 @@ for key in idea:
     if key == "燃料油":
         topop.append("燃料油")
         toadd.append(["燃油", idea[key]])
+    if key == "MA":
+        topop.append("MA")
+        toadd.append(["甲醇", idea[key]])
+    if key == "SC":
+        topop.append("SC")
+        toadd.append(["原油", idea[key]])
+    if key == "RU":
+        topop.append("RU")
+        toadd.append(["橡胶", idea[key]])
+    if key == "EB":
+        topop.append("EB")
+        toadd.append(["苯乙烯", idea[key]])
+    if key == "郑棉":
+        topop.append("郑棉")
+        toadd.append(["棉花", idea[key]])
     if key == "螺纹钢":
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
@@ -1504,6 +1400,9 @@ for key in idea:
         topop.append("镍不锈钢")
         toadd.append(["镍", idea[key]])
         toadd.append(["不锈钢", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
 
 if "聚酯" in idea:
     idea.pop("聚酯")
@@ -1656,7 +1555,7 @@ dongxing_idea = idea
 
 idea_combined = {}
 for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old,
-          yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old, haitong_old,
+          yinhe_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old, haitong_old,
           guodu_old, luzheng_old, nanhua_old, dongxing_old]:
     for j in i:
         if j in idea_combined:
@@ -1696,11 +1595,42 @@ for l in lines:
                         idea_combined[i].append(score)
                     if i == j:
                         idea_combined[i].append(score)
+order = ["金融","股指","股指期权","国债","黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
+ "原油","燃油","低硫燃油","LPG","沥青","甲醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花",
+ "苹果","花生","红枣","生猪"]
+idea_combined_sorted = {}
+total = 0
+count = 0
+prev_type = ""
+for i in order:
+    if i not in idea_combined and i in ["金融","黑色金属","有色金属","贵金属","能源化工","农产品"]:
+        if count != 0 and prev_type != "":
+            idea_combined_sorted[prev_type] = total / count
+        total = 0.0
+        count = 0.0
+        prev_type = i
+        idea_combined_sorted[i] = 999.99
+    elif i in idea_combined:
+        count_sub = 0.0
+        total_sub = 0.0
+        for j in idea_combined[i]:
+            count += 1
+            total += float(j.split(" ")[0])
+            count_sub += 1
+            total_sub += float(j.split(" ")[0])
+            print(total, "total")
+            print(count, "count")
+        idea_combined_sorted[i + " " + str('{0:.4}'.format(round(total_sub / count_sub, 4)))] = idea_combined[i]
 
 with open('详细观点.txt', 'w') as f:
-    for i in idea_combined:
+    for i in idea_combined_sorted:
         f.write(i + '\n')
-        for j in idea_combined[i]:
+        if type(idea_combined_sorted[i]) == float:
+            f.write(i + " " + str('{0:.6}'.format(round(idea_combined_sorted[i], 4))))
+            f.write('\n')
+            f.write('\n')
+            continue
+        for j in idea_combined_sorted[i]:
             if j.strip():
                 for i in range(len(j)//100+1):
                     if i != 0:
@@ -1713,7 +1643,7 @@ with open('详细观点.txt', 'w') as f:
 
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
-          yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, huatai_idea, yongan_idea,
+          yinhe_idea, guangfa_idea, guangzhou_idea, guoxin_idea, yongan_idea,
           haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea]:
     for j in i:
         if j.strip() == "":
@@ -1772,7 +1702,7 @@ except:
 ############## 详细观点分公司
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
-              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, huatai_old, yongan_old,
+              beite_old, yinhe_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old,
               haitong_old, guodu_old, luzheng_old, nanhua_old, dongxing_old]:
         new = True
         for j in i:
