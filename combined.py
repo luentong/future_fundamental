@@ -1621,6 +1621,7 @@ for i in order:
             print(total, "total")
             print(count, "count")
         idea_combined_sorted[i + " " + str('{0:.4}'.format(round(total_sub / count_sub, 4)))] = idea_combined[i]
+idea_combined_sorted[prev_type] = total / count
 
 with open('详细观点.txt', 'w') as f:
     for i in idea_combined_sorted:
