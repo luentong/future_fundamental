@@ -214,8 +214,8 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "0"])
-        toadd.append(["菜油", "0"])
+        toadd.append(["菜粕", "1"])
+        toadd.append(["菜油", "1"])
 
 for i in topop:
     if i in idea:
@@ -1621,7 +1621,8 @@ for i in order:
             print(total, "total")
             print(count, "count")
         idea_combined_sorted[i + " " + str('{0:.4}'.format(round(total_sub / count_sub, 4)))] = idea_combined[i]
-idea_combined_sorted[prev_type] = total / count
+if count != 0:
+    idea_combined_sorted[prev_type] = total / count
 
 with open('详细观点.txt', 'w') as f:
     for i in idea_combined_sorted:
