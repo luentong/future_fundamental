@@ -214,8 +214,8 @@ for key in idea:
     # 菜粕菜油自己改
     if key == "菜粕&菜油":
         topop.append("菜粕&菜油")
-        toadd.append(["菜粕", "-0.5"])
-        toadd.append(["菜油", "-0.5"])
+        toadd.append(["菜粕", idea[key]])
+        toadd.append(["菜油", idea[key]])
 
 for i in topop:
     if i in idea:
@@ -864,7 +864,7 @@ guangzhou_idea = idea
 with open('国信.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","贵金属","铜铝","锌","螺纹钢","铁合金","焦炭焦煤","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
+items = ["股指","国债","贵金属","铜铝","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
