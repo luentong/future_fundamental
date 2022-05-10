@@ -1602,6 +1602,8 @@ idea_combined_sorted = {}
 total = 0
 count = 0
 prev_type = ""
+total_all = 0.0
+count_all = 0.0
 for i in order:
     if i not in idea_combined and i in ["金融","黑色金属","有色金属","贵金属","能源化工","农产品"]:
         if count != 0 and prev_type != "":
@@ -1618,6 +1620,8 @@ for i in order:
             total += float(j.split(" ")[0])
             count_sub += 1
             total_sub += float(j.split(" ")[0])
+            count_all += 1
+            total_all += float(j.split(" ")[0])
             print(total, "total")
             print(count, "count")
         idea_combined_sorted[i + " " + str('{0:.4}'.format(round(total_sub / count_sub, 4)))] = idea_combined[i]
@@ -1625,12 +1629,16 @@ if count != 0:
     idea_combined_sorted[prev_type] = total / count
 
 with open('详细观点.txt', 'w') as f:
+    last = []
+    last_spec = []
     for i in idea_combined_sorted:
         f.write(i + '\n')
+        last_spec.append(i + '\n')
         if type(idea_combined_sorted[i]) == float:
             f.write(i + " " + str('{0:.6}'.format(round(idea_combined_sorted[i], 4))))
             f.write('\n')
             f.write('\n')
+            last.append(i + " " + str('{0:.6}'.format(round(idea_combined_sorted[i], 4)) + '\n'))
             continue
         for j in idea_combined_sorted[i]:
             if j.strip():
@@ -1642,6 +1650,14 @@ with open('详细观点.txt', 'w') as f:
                     except Exception:
                         a = 1
         f.write('\n')
+    f.write("分数总结:\n")
+    for i in last_spec:
+        f.write(i)
+    f.write('\n')
+    f.write("类别总结:\n")
+    f.write("全市场：" + str('{0:.6}'.format(round(total_all/count_all, 4)) + '\n'))
+    for i in last:
+        f.write(i)
 
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
