@@ -1,7 +1,7 @@
 import keywords
 ###########################################中信开始
 
-with open('中信.txt') as f:
+with open('中信.txt',encoding='utf-8') as f:
     lines = f.readlines()
 if not lines:
     zhongxin_old = {}
@@ -76,7 +76,7 @@ else:
 
 ###########################################国泰开始
 
-with open('国泰君安.txt') as f:
+with open('国泰君安.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 for l in lines:
