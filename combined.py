@@ -864,7 +864,7 @@ guangzhou_idea = idea
 with open('国信.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","贵金属","铜铝","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
+items = ["股指","国债","贵金属","铜铝","锌镍","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -905,6 +905,10 @@ for key in idea:
         topop.append("铜铝")
         toadd.append(["铜", idea[key]])
         toadd.append(["铝", idea[key]])
+    if key == "锌镍":
+        topop.append("锌镍")
+        toadd.append(["锌", idea[key]])
+        toadd.append(["镍", idea[key]])
     if key == "螺纹钢":
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
