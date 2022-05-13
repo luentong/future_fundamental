@@ -1,6 +1,6 @@
 import keywords
 
-with open('海通期货.txt',encoding='utf-8') as f:
+with open('海通.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铝","钢材铁矿","油脂","焦煤焦炭","纸 浆","【原油】","【沥青】","橡胶","【LPG】","尿 素","豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
