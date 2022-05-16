@@ -344,7 +344,7 @@ next = False
 prev_item = ""
 for l in lines:
     if "：" in l and len(l) <= 50:
-        idea[l.split('：')[0]] = l.split('：')[1]
+        idea[l.split('：')[0].strip()] = l.split('：')[1].strip()
 
 topop = []
 toadd = []
@@ -1329,6 +1329,12 @@ for l in lines:
     stripped = l.strip()
     if stripped == "":
         continue
+    if "以上评论由分析师" in stripped:
+        stripped = stripped.split("以上评论由分析师")[0]
+        next = False
+    if "重要申明：本报告" in stripped:
+        stripped = stripped.split("重要申明：本报告")[0]
+        next = False
     if "：" in stripped and stripped.split("：")[0] in items:
         next = True
         prev_item = stripped.split("：")[0]
@@ -1346,9 +1352,9 @@ for l in lines:
         continue
     if next:
         if prev_item in idea:
-            idea[prev_item] += l.strip().strip('\n')
+            idea[prev_item] += stripped.strip('\n')
         else:
-            idea[prev_item] = l.strip().strip('\n')
+            idea[prev_item] = stripped.strip('\n')
 
 topop = []
 toadd = []
@@ -1500,7 +1506,7 @@ dongzheng_idea = idea
 with open('东兴.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米"]
+items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1626,8 +1632,6 @@ for i in order:
             total_sub += float(j.split(" ")[0])
             count_all += 1
             total_all += float(j.split(" ")[0])
-            print(total, "total")
-            print(count, "count")
         idea_combined_sorted[i + " " + str('{0:.4}'.format(round(total_sub / count_sub, 4)))] = idea_combined[i]
 if count != 0:
     idea_combined_sorted[prev_type] = total / count
@@ -1669,7 +1673,7 @@ for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukua
           haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea]:
     for j in i:
         if j.strip() == "":
-            print(i)
+            abc = 1
         if j in combined:
             combined[j].append(float(i[j]))
         else:
