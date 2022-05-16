@@ -334,7 +334,7 @@ for i in guangda_old:
 guangda_idea = idea
 
 ###########################################上海中期期货
-with open('上海中期.txt',encoding='utf-8') as f:
+with open('上海中期.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["贵金属","铜(CU)","螺纹(RB)","热卷(HC)","铝(AL)","锌(ZN)","铅(PB)","镍(NI)","不锈钢(SS)","铁矿石(I)",
@@ -575,7 +575,7 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt',encoding='utf-8') as f:
+with open('银河.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","贵金属"]
@@ -788,7 +788,7 @@ guangfa_idea = idea
 
 ############################################广州开始
 
-with open('广州.txt',encoding='utf-8') as f:
+with open('广州.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯"]
@@ -861,7 +861,7 @@ guangzhou_idea = idea
 
 ###########################################国信开始
 
-with open('国信.txt',encoding='utf-8') as f:
+with open('国信.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","贵金属","铜铝","锌镍","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
