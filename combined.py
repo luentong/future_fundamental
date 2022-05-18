@@ -953,7 +953,7 @@ guoxin_idea = idea
 
 ##########################################永安开始
 
-with open('永安.txt',encoding='utf-8') as f:
+with open('永安.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素",
@@ -1228,7 +1228,7 @@ guodu_idea = idea
 ###########################################鲁证期货
 
 
-with open('鲁证.txt',encoding='utf-8') as f:
+with open('鲁证.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇",
