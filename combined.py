@@ -506,6 +506,11 @@ for l in lines:
         next = True
         prev_item = stripped
         continue
+    if next and prev_item == "金银" and "AU" in l and "AG" in l:
+        idea["黄金"] = l.split("AU")[1].split("AG")[0]
+        idea["白银"] = l.split("AG")[1]
+        next = False
+        continue
     if l.startswith('【') and stripped not in items:
         next = False
         continue
