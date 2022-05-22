@@ -26,6 +26,14 @@ else:
             topop.append("黄金/白银")
             toadd.append(["黄金", idea[key]])
             toadd.append(["白银", idea[key]])
+        if key == "焦煤":
+            topop.append("焦煤")
+        if key == "短纤":
+            topop.append("短纤")
+        if key == "锡":
+            topop.append("锡")
+        if key == "焦炭":
+            topop.append("焦炭")
         if key == "钢材":
             topop.append("钢材")
             toadd.append(["热卷", idea[key]])
@@ -90,7 +98,10 @@ toadd = []
 for key in idea:
     if key == "铁矿石":
         topop.append("铁矿石")
-        toadd.append(["铁矿", idea[key]])
+    if key == "铁矿":
+        topop.append("铁矿")
+    if key == "纸浆":
+        topop.append("纸浆")
     if key == "螺纹钢":
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
@@ -103,6 +114,10 @@ for key in idea:
     if key == "热轧卷板":
         topop.append("热轧卷板")
         toadd.append(["热卷", idea[key]])
+    if key == "焦煤":
+        topop.append("焦煤")
+    if key == "焦炭":
+        topop.append("焦炭")
     if key == "玉米":
         toadd.append(["淀粉", idea[key]])
     if key == "LLDPE":
@@ -387,6 +402,10 @@ for key in idea:
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
+    if key == "焦煤":
+        topop.append("焦煤")
+    if key == "焦炭":
+        topop.append("焦炭")
 
 
 
@@ -465,6 +484,8 @@ for key in idea:
         topop.append("蛋白粕")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
+    if key == "尿素":
+        topop.append("尿素")
 
 
 
@@ -531,6 +552,8 @@ for key in idea:
         topop.append("金银")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
+    if key == "尿素":
+        topop.append("尿素")
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
@@ -1289,6 +1312,10 @@ for key in idea:
         topop.append("铁合金")
         toadd.append(["锰硅", idea[key]])
         toadd.append(["硅铁", idea[key]])
+    if key == "尿素":
+        topop.append("尿素")
+    if key == "纸浆":
+        topop.append("纸浆")
     if key == "煤焦":
         topop.append("煤焦")
         toadd.append(["焦煤", idea[key]])
@@ -1407,6 +1434,8 @@ for key in idea:
     if key == "PF":
         topop.append("PF")
         toadd.append(["短纤", idea[key]])
+    if key == "纸浆":
+        topop.append("纸浆")
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["白银", idea[key]])
