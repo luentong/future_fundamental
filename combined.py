@@ -34,6 +34,8 @@ else:
             topop.append("锡")
         if key == "焦炭":
             topop.append("焦炭")
+        if key == "铜":
+            topop.append("铜")
         if key == "钢材":
             topop.append("钢材")
             toadd.append(["热卷", idea[key]])
