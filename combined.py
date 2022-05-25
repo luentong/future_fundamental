@@ -1555,6 +1555,10 @@ items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","�
 next = False
 prev_item = ""
 for l in lines:
+    print(l)
+    if "免责声明" in l:
+        l = l.split("免责声明")[0]
+        next = False
     stripped = l.strip()
     if stripped == "":
         continue
