@@ -246,11 +246,14 @@ with open('光大.txt',) as f:
 idea = {}
 prev = ""
 for l in lines:
+    print(l)
     if "完整报告请联系" in l:
         break
     if "风险：" in l:
         prev = ""
         continue
+    if "免责声明" in l:
+        break
     if len(l) < 15 and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l:
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
@@ -717,6 +720,12 @@ for l in lines:
         next = True
         prev_item = stripped
         continue
+    else:
+        for i in items:
+            if i in stripped:
+                next = True
+                prev_item = i.strip("：")
+                break
     if next:
         if prev_item.strip("：") in idea:
             idea[prev_item.strip("：") ] += l.strip().strip('\n').split("【")[0].split("[")[0]
@@ -1605,7 +1614,7 @@ for l in lines:
                         idea_combined[i].append(score)
                     if i == j:
                         idea_combined[i].append(score)
-order = ["金融","股指","股指期权","国债","黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
+order = ["黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
  "原油","燃油","低硫燃油","LPG","沥青","甲醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花",
  "苹果","花生","红枣","生猪"]
 idea_combined_sorted = {}
@@ -1615,7 +1624,7 @@ prev_type = ""
 total_all = 0.0
 count_all = 0.0
 for i in order:
-    if i not in idea_combined and i in ["金融","黑色金属","有色金属","贵金属","能源化工","农产品"]:
+    if i not in idea_combined and i in ["黑色金属","有色金属","贵金属","能源化工","农产品"]:
         if count != 0 and prev_type != "":
             idea_combined_sorted[prev_type] = total / count
         total = 0.0
@@ -1775,5 +1784,5 @@ final = result.sort_values(by='Value', ascending=False)
 
 for index, row in final.iterrows():
     same = []
-    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","期权","花生","国际铜","低硫燃油","棉纱","低硫燃料油","宏观"]:
+    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","期权","花生","国际铜","低硫燃油","棉纱","低硫燃料油","宏观","金融","股指","股指期权","国债"]:
         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
