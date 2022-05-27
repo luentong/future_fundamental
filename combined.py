@@ -138,7 +138,7 @@ for i in guotai_old:
 guotai_idea = idea
 
 ###########################################国投安信开始
-with open('国投安信.txt', encoding='utf-8') as f:
+with open('国投安信.txt', ) as f:
     lines = f.readlines()
 idea = {}
 prev = ""
@@ -241,7 +241,7 @@ anxin_idea = idea
 
 ###########################################光大开始
 
-with open('光大.txt', encoding='utf-8') as f:
+with open('光大.txt',) as f:
     lines = f.readlines()
 idea = {}
 prev = ""
@@ -414,7 +414,7 @@ zhongqi_idea = idea
 
 ###########################################五矿开始
 
-with open('五矿.txt',encoding='utf-8') as f:
+with open('五矿.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","油脂","蛋白粕","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅","原油",
@@ -683,7 +683,7 @@ yinhe_idea = idea
 
 import keywords
 
-with open('广发.txt',encoding='utf-8') as f:
+with open('广发.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["国债期货：","贵金属：","铜：","锌：","铝：","镍：","不锈钢：","锡：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：","油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：",
@@ -953,7 +953,7 @@ guoxin_idea = idea
 
 ##########################################永安开始
 
-with open('永安.txt',encoding='utf-8') as f:
+with open('永安.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素",
@@ -1063,7 +1063,7 @@ yongan_idea = idea
 ##########################################海通开始
 
 
-with open('海通.txt',encoding='utf-8') as f:
+with open('海通.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料","豆粕","股指","国债","贵金属","铜","镍","锡","铁矿石","锰硅","硅铁","橡胶","玻璃","纯碱","原油","白糖","蛋白粕","油脂","苹果","生猪","苹果","生猪","鸡蛋"]
@@ -1158,7 +1158,7 @@ haitong_idea = idea
 ###########################################国都开始
 
 
-with open('国都.txt',encoding='utf-8') as f:
+with open('国都.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["图片豆粕","豆粕","PTA","涤纶短纤","橡胶","棉花","豆类","橡胶","油脂","白糖","玉米、淀粉","生猪"]
@@ -1228,7 +1228,7 @@ guodu_idea = idea
 ###########################################鲁证期货
 
 
-with open('鲁证.txt',encoding='utf-8') as f:
+with open('鲁证.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇",
@@ -1318,7 +1318,7 @@ luzheng_idea = idea
 
 ############################################南华期市早餐开始
 
-with open('南华.txt',encoding='utf-8') as f:
+with open('南华.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["国债日报","股指","螺纹","热卷","铁矿","焦煤","焦炭","锰硅","硅铁","动力煤","纯碱","玻璃","白糖","棉花","苹果","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
@@ -1503,7 +1503,7 @@ dongzheng_idea = idea
 
 ###########################################东兴开始
 
-with open('东兴.txt',encoding='utf-8') as f:
+with open('东兴.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶"]
