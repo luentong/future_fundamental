@@ -1003,6 +1003,8 @@ for key in idea:
     if key == "豆类":
         topop.append("豆类")
         toadd.append(["豆粕", idea[key]])
+    if key == "花生":
+        topop.append("花生")
     if key == "油脂":
         topop.append("油脂")
         toadd.append(["豆油", idea[key]])
@@ -1374,6 +1376,8 @@ for key in idea:
     if key == "股指期货":
         topop.append("股指期货")
         toadd.append(["股指", idea[key]])
+    if key == "花生":
+        topop.append("花生")
     if key == "国债期货":
         topop.append("国债期货")
         toadd.append(["股指", idea[key]])
