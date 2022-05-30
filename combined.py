@@ -495,7 +495,7 @@ wukuang_idea = idea
 ###########################################倍特期货
 
 
-with open('倍特.txt',encoding='utf-8') as f:
+with open('倍特.txt',) as f:
     lines = f.readlines()
 idea = {}
 items = ["金银","铜","尿素","橡胶","苹果","豆粕","螺纹钢","鸡蛋","油脂","花生","原油"]
@@ -1788,7 +1788,7 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
-    if "关于商品研究提升的三点结论" in stripped:aa
+    if "关于商品研究提升的三点结论" in stripped:
         break
     if stripped in items:
         next = True
