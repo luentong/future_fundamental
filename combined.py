@@ -108,6 +108,9 @@ for key in idea:
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
+    if key == "低硫燃料油":
+        topop.append("低硫燃料油")
+        toadd.append(["低硫燃油", idea[key]])
     if key == "燃料油":
         topop.append("燃料油")
         toadd.append(["燃油", idea[key]])
@@ -177,6 +180,9 @@ for key in idea:
     if key == "聚丙烯":
         topop.append("聚丙烯")
         toadd.append(["PP", idea[key]])
+    if key == "20号胶&天然橡胶":
+        topop.append("20号胶&天然橡胶")
+        toadd.append(["橡胶", idea[key]])
     if key == "天然橡胶":
         topop.append("天然橡胶")
         toadd.append(["橡胶", idea[key]])
@@ -216,6 +222,12 @@ for key in idea:
         topop.append("菜粕&菜油")
         toadd.append(["菜粕", idea[key]])
         toadd.append(["菜油", idea[key]])
+
+if "分析师团队" in idea:
+    idea.pop("分析师团队")
+
+if " " in idea:
+    idea.pop(" ")
 
 for i in topop:
     if i in idea:
@@ -469,7 +481,11 @@ for key in idea:
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
 
+if "分析师团队" in idea:
+    idea.pop("分析师团队")
 
+if " " in idea:
+    idea.pop(" ")
 
 for i in topop:
     idea.pop(i)
@@ -1408,8 +1424,8 @@ luzheng_idea = idea
 with open('南华.txt',) as f:
     lines = f.readlines()
 idea = {}
-items = ["国债日报","股指","螺纹","热卷","铁矿","焦煤","焦炭","锰硅","硅铁","动力煤","纯碱","玻璃","白糖","棉花","苹果","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
-         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石","郑棉","豆粕","生猪","MA","SC","RU","EB","乙二醇","苯乙烯"]
+items = ["国债日报","股指","螺纹","热卷","铁矿","焦煤","焦炭","锰硅","硅锰","硅铁","动力煤","纯碱","玻璃","白糖","棉花","苹果","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
+         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石","郑棉","豆粕","生猪","MA","SC","RU","EB","乙二醇","苯乙烯","PTA&PF"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1479,6 +1495,9 @@ for key in idea:
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
+    if key == "硅锰":
+        topop.append("硅锰")
+        toadd.append(["锰硅", idea[key]])
     if key == "国债日报":
         topop.append("国债日报")
         toadd.append(["国债", idea[key]])
@@ -1486,6 +1505,10 @@ for key in idea:
         topop.append("聚烯烃")
         toadd.append(["PP", idea[key]])
         toadd.append(["塑料", idea[key]])
+    if key == "PTA&PF":
+        topop.append("PTA&PF")
+        toadd.append(["短纤", idea[key]])
+        toadd.append(["PTA", idea[key]])
     if key == "PF":
         topop.append("PF")
         toadd.append(["短纤", idea[key]])
@@ -1836,6 +1859,8 @@ for key in idea:
     if key == "纸  浆":
         topop.append("纸  浆")
         toadd.append(["纸浆", idea[key]])
+if "鸡肉" in idea:
+    idea.pop('鸡肉')
 
 for i in topop:
     idea.pop(i)
@@ -2073,5 +2098,5 @@ final = result.sort_values(by='Value', ascending=False)
 
 for index, row in final.iterrows():
     same = []
-    if row["Name"] not in ["20号胶","能源：","金融:","股指期权","期权","花生","国际铜","低硫燃油","棉纱","低硫燃料油","宏观","金融","股指","股指期权","国债"]:
+    if row["Name"] not in ["能源：","金融:","股指期权","期权","宏观","金融","股指","股指期权","国债"]:
         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
