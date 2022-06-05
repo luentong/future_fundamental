@@ -1997,10 +1997,105 @@ hongye_idea = idea
 
 ###########################################整合开始
 
+with open('东吴.txt',encoding='utf-8') as f:
+    lines = f.readlines()
+idea = {}
+items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶",
+         "沪铜","沪铝","沪锌","沪铅","油脂","豆粕/菜粕","玉米","白糖","鸡蛋",
+         "生猪","苹果","红枣","花生"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip().strip('\n').strip('【').strip('】').strip("：")
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if l.startswith('银河期货') and stripped not in items:
+        next = False
+        continue
+    if next:
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
+        else:
+            idea[prev_item] = l.strip().strip('\n')
+dongwu_old = {}
+for i in idea:
+    dongwu_old[i] = idea[i][:]
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "螺卷":
+        topop.append("螺卷")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "双焦":
+        topop.append("双焦")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+    if key == "双硅":
+        topop.append("双硅")
+        toadd.append(["硅铁", idea[key]])
+        toadd.append(["锰硅", idea[key]])
+    if key == "天然橡胶":
+        topop.append("天然橡胶")
+        toadd.append(["橡胶", idea[key]])
+
+    if key == "沪铜":
+        topop.append("沪铜")
+        toadd.append(["铜", idea[key]])
+    if key == "沪铝":
+        topop.append("沪铝")
+        toadd.append(["铝", idea[key]])
+    if key == "沪锌":
+        topop.append("沪锌")
+        toadd.append(["锌", idea[key]])
+    if key == "沪铅":
+        topop.append("沪铅")
+        toadd.append(["铅", idea[key]])
+    if key == "油脂":
+        topop.append("油脂")
+        toadd.append(["棕榈油", idea[key]])
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+
+    if key == "豆粕/菜粕":
+        topop.append("豆粕/菜粕")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+dongwu_old = {}
+for i in idea:
+    dongwu_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in dongwu_old:
+    if i in idea:
+        dongwu_old[i] = idea[i] + " 东吴 " + dongwu_old[i]
+    else:
+        dongwu_old[i] = ""
+
+dongwu_idea = idea
+
+###########################################整合开始
+
 idea_combined = {}
 for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old,
           yinhe_old, yinhenong_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old, haitong_old,
-          guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old, hundunneng_old, hundunagri_old, hongye_old]:
+          guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old, hundunneng_old, hundunagri_old,
+          hongye_old, dongwu_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -2104,7 +2199,8 @@ with open('详细观点.txt', 'w') as f:
 combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
           yinhe_idea, yinhenong_idea, guangfa_idea, guangzhou_idea, guoxin_idea, yongan_idea,
-          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea, hundungong_idea, hundunneng_idea, hundunagri_idea, hongye_idea]:
+          haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea, hundungong_idea,
+          hundunneng_idea, hundunagri_idea, hongye_idea, dongwu_idea]:
     for j in i:
         if j.strip() == "":
             abc = 1
@@ -2163,7 +2259,8 @@ except:
 with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
               beite_old, yinhe_old, yinhenong_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old,
-              haitong_old, guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old, hundunneng_old, hundunagri_old, hongye_old]:
+              haitong_old, guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old,
+              hundunneng_old, hundunagri_old, hongye_old, dongwu_old]:
         new = True
         for j in i:
             if new:
