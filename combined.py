@@ -257,6 +257,8 @@ with open('光大.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 prev = ""
+topop = []
+toadd = []
 for l in lines:
     print(l)
     if "完整报告请联系" in l:
@@ -266,6 +268,9 @@ for l in lines:
         continue
     if "免责声明" in l:
         break
+    if "PTA来看" in l.strip():
+        toadd.append(["PTA", l.strip()])
+        continue
     if len(l) < 15 and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l:
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
@@ -275,8 +280,7 @@ for l in lines:
         a4 = l.replace("\n", "")
         idea[prev] = a4
 
-topop = []
-toadd = []
+
 for key in idea:
     if key == "贵金属":
         topop.append("贵金属")
@@ -299,7 +303,7 @@ for key in idea:
         toadd.append(["热卷", idea[key]])
     if key == "PTA&MEG":
         topop.append("PTA&MEG")
-        toadd.append(["PTA", idea[key]])
+        #toadd.append(["PTA", idea[key]])
         toadd.append(["MEG", idea[key]])
     if key == "乙二醇":
         topop.append("乙二醇")
@@ -326,6 +330,9 @@ for key in idea:
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
+
+if "" in idea:
+    idea.pop("")
 
 for i in topop:
     idea.pop(i)
