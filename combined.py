@@ -960,7 +960,7 @@ guangzhou_idea = idea
 
 ###########################################国信开始
 
-with open('国信.txt',) as f:
+with open('国信.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","贵金属","铜铝","锌镍","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
@@ -1052,7 +1052,7 @@ guoxin_idea = idea
 
 ##########################################永安开始
 
-with open('永安.txt',) as f:
+with open('永安.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","钢 材","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素",
@@ -1257,7 +1257,7 @@ haitong_idea = idea
 ###########################################国都开始
 
 
-with open('国都.txt',) as f:
+with open('国都.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["图片豆粕","豆粕","PTA","涤纶短纤","橡胶","棉花","豆类","橡胶","油脂","白糖","玉米、淀粉","生猪"]
@@ -1882,7 +1882,7 @@ hundunagri_idea = idea
 
 ###########################################弘业开始
 
-with open('弘业.txt',encoding='gbk') as f:
+with open('弘业.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
