@@ -1169,7 +1169,7 @@ yongan_idea = idea
 ##########################################海通开始
 
 
-with open('海通.txt',) as f:
+with open('海通.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料","豆粕","股指","国债","贵金属","铜","镍","锡","铁矿石","锰硅","硅铁","橡胶","玻璃","纯碱","原油","白糖","蛋白粕","油脂","苹果","生猪","苹果","生猪","鸡蛋"]
@@ -1675,7 +1675,7 @@ for i in dongxing_old:
 dongxing_idea = idea
 
 ###########################################混沌天成工业品开始
-with open('混沌天成工业品.txt',encoding='gbk') as f:
+with open('混沌天成工业品.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["钢材","铁矿石","焦煤","焦炭","铜","铝","锌","镍","不锈钢"]
@@ -1736,7 +1736,7 @@ hundungong_idea = idea
 
 ###########################################混沌天成能化开始
 
-with open('混沌天成能化.txt',encoding='gbk') as f:
+with open('混沌天成能化.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","PTA日评","原油","PP日评："]
@@ -1808,7 +1808,7 @@ hundunneng_idea = idea
 
 ###########################################混沌天成农产品开始
 
-with open('混沌天成农产品.txt',encoding='gbk') as f:
+with open('混沌天成农产品.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["油脂油料","棉花","玉  米","豆  粕","鸡  蛋","生  猪","苹  果","纸  浆"]
