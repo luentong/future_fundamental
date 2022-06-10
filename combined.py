@@ -17,7 +17,7 @@ else:
     idea = {}
     for l in lines:
         if " "  in l and len(l.split(" ")[0]) < 7:
-            idea[l.split(" ")[0]] = l.split(" ")[1]
+            idea[l.split(" ")[0]] = "".join(l.split(" ")[1:])
 
     topop = []
     toadd = []
@@ -1927,6 +1927,9 @@ for key in idea:
         topop.append("玉米&淀粉")
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
     if key == "油料":
         topop.append("油料")
         toadd.append(["豆粕", idea[key]])
@@ -2142,7 +2145,7 @@ for l in lines:
                     if i == j:
                         idea_combined[i].append(score)
 order = ["黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
- "原油","燃油","低硫燃油","LPG","沥青","甲醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
+ "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
  "苹果","花生","红枣","生猪"]
 idea_combined_sorted = {}
 total = 0
