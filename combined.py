@@ -783,7 +783,7 @@ yinhenong_idea = idea
 
 import keywords
 
-with open('广发.txt',) as f:
+with open('广发.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["国债期货：","贵金属：","铜：","锌：","铝：","镍：","不锈钢：","锡：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：","油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：",
