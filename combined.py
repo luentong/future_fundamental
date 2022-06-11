@@ -260,7 +260,6 @@ prev = ""
 topop = []
 toadd = []
 for l in lines:
-    print(l)
     if "完整报告请联系" in l:
         break
     if "风险：" in l:
@@ -611,6 +610,21 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
+
+    if ("以上观点仅供参" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("以上观点仅供参")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("以上观点仅供参")[0]
+        next = False
+        continue
+    if ("相关价格" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("相关价格")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("相关价格")[0]
+        next = False
+        continue
     if stripped in items:
         next = True
         prev_item = stripped
@@ -720,6 +734,20 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
+    if ("套利:" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item] += l.strip().strip('\n').split("套利:")[0]
+        else:
+            idea[prev_item] = l.strip().strip('\n').split("套利:")[0]
+        next = False
+        continue
+    if ("点击“阅读原文”" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("：") ] += l.strip().strip('\n').split("点击“阅读原文”")[0]
+        else:
+            idea[prev_item.strip("：") ] = l.strip().strip('\n').split("点击“阅读原文”")[0]
+        next = False
+        continue
     if stripped in items:
         next = True
         prev_item = stripped
@@ -793,6 +821,20 @@ prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
+        continue
+    if ("免责声明" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("：") ] += l.strip().strip('\n').split("免责声明")[0]
+        else:
+            idea[prev_item.strip("：") ] = l.strip().strip('\n').split("免责声明")[0]
+        next = False
+        continue
+    if ("国际方面：" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("：") ] += l.strip().strip('\n').split("国际方面：")[0]
+        else:
+            idea[prev_item.strip("：") ] = l.strip().strip('\n').split("国际方面：")[0]
+        next = False
         continue
     if "纯碱：" in stripped:
         if "纯碱" in idea:
@@ -970,7 +1012,7 @@ guangzhou_idea = idea
 with open('国信.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","贵金属","铜铝","锌镍","锌","螺纹钢","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
+items = ["股指","国债","贵金属","铜铝","锌镍","锌","螺纹钢","锰硅：","硅铁：","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -980,6 +1022,14 @@ for l in lines:
     if stripped in items:
         next = True
         prev_item = stripped
+        continue
+    if "锰硅：" in stripped:
+        next = False
+        idea["锰硅"] = l.strip().strip('\n')
+        continue
+    if "硅铁：" in stripped:
+        next = False
+        idea["硅铁"] = l.strip().strip('\n')
         continue
     if l.isnumeric():
         next = False
@@ -1019,9 +1069,11 @@ for key in idea:
         topop.append("螺纹钢")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
-    if key == "铁合金":
-        topop.append("铁合金")
+    if key == "锰硅：":
+        topop.append("锰硅：")
         toadd.append(["锰硅", idea[key]])
+    if key == "硅铁：":
+        topop.append("硅铁：")
         toadd.append(["硅铁", idea[key]])
     if key == "豆类":
         topop.append("豆类")
@@ -1069,6 +1121,13 @@ prev_item = ""
 for l in lines:
     stripped = l.strip()
     if stripped == "":
+        continue
+    if ("永安期货知识产权" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("：") ] += l.strip().strip('\n').split("永安期货知识产权")[0]
+        else:
+            idea[prev_item.strip("：") ] = l.strip().strip('\n').split("永安期货知识产权")[0]
+        next = False
         continue
     if stripped in items:
         next = True
@@ -1176,9 +1235,17 @@ items = ["铝","钢材","油脂","焦煤焦炭","粕类","铁矿","油脂油料"
 next = False
 prev_item = ""
 for l in lines:
+    if ("国内价格指数" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("国内价格指数图片")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("国内价格指数图片")[0]
+        next = False
+        continue
     stripped = l.strip()
     if stripped == "":
         continue
+
     if stripped in items:
         next = True
         prev_item = stripped
@@ -1346,6 +1413,20 @@ for l in lines:
     if "中泰期货股份有限公司" in l:
         break
     if stripped == "":
+        continue
+    if ("中泰期货分析师团队" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("中泰期货分析师团队")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("投中泰期货分析师团队")[0]
+        next = False
+        continue
+    if ("套利上" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("套利上")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("套利上")[0]
+        next = False
         continue
     if stripped in items:
         next = True
@@ -1626,6 +1707,13 @@ for l in lines:
     stripped = l.strip()
     if stripped == "":
         continue
+    if ("免责声明" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip("") ] += l.strip().strip('\n').split("免责声明")[0]
+        else:
+            idea[prev_item.strip("") ] = l.strip().strip('\n').split("免责声明")[0]
+        next = False
+        continue
     if stripped.split("：")[0] in items:
         next = True
         prev_item = stripped.split("：")[0]
@@ -1684,6 +1772,27 @@ prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
+        continue
+    if ("消息及数据" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("消息及数据")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("消息及数据")[0]
+        next = False
+        continue
+    if ("消息与数据" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("消息与数据")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("消息与数据")[0]
+        next = False
+        continue
+    if ("行业信息" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("行业信息")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("行业信息")[0]
+        next = False
         continue
     if stripped in items:
         next = True
@@ -1893,12 +2002,28 @@ with open('弘业.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
-         "螺纹&热卷","铁矿石","焦煤&焦炭","动力煤","铁合金","油脂","油料","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣"]
+         "螺纹&热卷","铁矿石","焦煤&焦炭","动力煤","油脂","油料","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指"]
 next = False
 prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
+    print(stripped, "海通")
     if stripped == "":
+        continue
+    if ("从业资格证号" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item] += l.strip().strip('\n').split("从业资格证号")[0]
+        else:
+            idea[prev_item] = l.strip().strip('\n').split("从业资格证号")[0]
+        next = False
+        continue
+    if "锰硅方面" in stripped:
+        next = False
+        idea["锰硅"] = stripped
+        continue
+    if "硅铁方面" in stripped:
+        next = False
+        idea["硅铁"] = stripped
         continue
     if stripped in items:
         next = True
@@ -2121,6 +2246,7 @@ def is_number(s):
 
 with open('其他.txt', encoding='gbk') as f:
     lines = f.readlines()
+company = ""
 for l in lines:
     if is_number(l.strip('\n').split(" ")[-1]):
         if len(l.strip('\n').split(" ")) == 2:
@@ -2130,9 +2256,9 @@ for l in lines:
                 score = keywords.simplify_sent(score)
             for i in idea_combined:
                 if i == "MEG" and name == "乙二醇":
-                    idea_combined[i].append(score)
+                    idea_combined[i].append(str(score) + " " + company)
                 if i == name:
-                    idea_combined[i].append(score)
+                    idea_combined[i].append(str(score) + " " + company)
         elif len(l.strip('\n').split(" ")) > 2:
             name = l.strip('\n').split(" ")[:-1]
             score = l.strip('\n').split(" ")[-1]
@@ -2141,9 +2267,11 @@ for l in lines:
             for i in idea_combined:
                 for j in name:
                     if i == "MEG" and j == "乙二醇":
-                        idea_combined[i].append(score)
+                        idea_combined[i].append(str(score) + " " + company)
                     if i == j:
-                        idea_combined[i].append(score)
+                        idea_combined[i].append(str(score) + " " + company)
+    else:
+        company = l.strip('\n').strip("#")
 order = ["黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
  "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
  "苹果","花生","红枣","生猪"]
