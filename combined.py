@@ -69,7 +69,10 @@ else:
 
     for i in zhongxin_old:
         if i in idea:
-            zhongxin_old[i] = idea[i] + " 中信 " + zhongxin_old[i]
+            if i == "白糖":
+                zhongxin_old[i] = idea[i] + " ！！中信跟风！！ " + zhongxin_old[i]
+            else:
+                zhongxin_old[i] = idea[i] + " 中信 " + zhongxin_old[i]
         else:
             zhongxin_old[i] = ""
     citrix_idea = idea
@@ -246,7 +249,10 @@ for key in idea:
 
 for i in guotou_old:
     if i in idea:
-        guotou_old[i] = idea[i] + " 国投 " + guotou_old[i]
+        if i == "白糖":
+            guotou_old[i] = idea[i] + " ！！国投跟风！！ " + guotou_old[i]
+        else:
+            guotou_old[i] = idea[i] + " 国投 " + guotou_old[i]
     else:
         guotou_old[i] = ""
 anxin_idea = idea
@@ -592,7 +598,10 @@ for key in idea:
 
 for i in beite_old:
     if i in idea:
-        beite_old[i] = idea[i] + " 倍特 " + beite_old[i]
+        if i == "橡胶":
+            beite_old[i] = idea[i] + " !!倍特跟风!! " + beite_old[i]
+        else:
+            beite_old[i] = idea[i] + " 倍特 " + beite_old[i]
     else:
         beite_old[i] = ""
 
@@ -712,7 +721,10 @@ for key in idea:
 
 for i in yinhe_old:
     if i in idea:
-        yinhe_old[i] = idea[i] + " 银河 " + yinhe_old[i]
+        if i == "橡胶":
+            yinhe_old[i] = idea[i] + " !!银河跟风!! " + yinhe_old[i]
+        else:
+            yinhe_old[i] = idea[i] + " 银河 " + yinhe_old[i]
     else:
         yinhe_old[i] = ""
 
@@ -928,7 +940,10 @@ for key in idea:
 
 for i in guangfa_old:
     if i in idea:
-        guangfa_old[i] = idea[i] + " 广发 " + guangfa_old[i]
+        if i == "锡":
+            guangfa_old[i] = idea[i] + "！！广发跟风！！" + guangfa_old[i]
+        else:
+            guangfa_old[i] = idea[i] + " 广发 " + guangfa_old[i]
     else:
         guangfa_old[i] = ""
 
@@ -1103,7 +1118,10 @@ for key in idea:
 
 for i in guoxin_old:
     if i in idea:
-        guoxin_old[i] = idea[i] + " 国信 " + guoxin_old[i]
+        if i == "花生":
+            guoxin_old[i] = idea[i] + " ！！国信跟风！！ " + guoxin_old[i]
+        else:
+            guoxin_old[i] = idea[i] + " 国信 " + guoxin_old[i]
     else:
         guoxin_old[i] = ""
 
@@ -1321,7 +1339,10 @@ for key in idea:
 
 for i in haitong_old:
     if i in idea:
-        haitong_old[i] = idea[i] + " 海通 " + haitong_old[i]
+        if i == "铝":
+            haitong_old[i] = idea[i] + " ！！海通跟风！！ " + haitong_old[i]
+        else:
+            haitong_old[i] = idea[i] + " 海通 " + haitong_old[i]
     else:
         haitong_old[i] = ""
 
@@ -2218,7 +2239,10 @@ for key in idea:
 
 for i in dongwu_old:
     if i in idea:
-        dongwu_old[i] = idea[i] + " 东吴 " + dongwu_old[i]
+        if i == "橡胶":
+            dongwu_old[i] = idea[i] + " !!东吴跟风!! " + dongwu_old[i]
+        else:
+            dongwu_old[i] = idea[i] + " 东吴 " + dongwu_old[i]
     else:
         dongwu_old[i] = ""
 
@@ -2270,7 +2294,7 @@ for l in lines:
                         idea_combined[i].append(str(score) + " " + company)
                     if i == j:
                         idea_combined[i].append(str(score) + " " + company)
-    else:
+    elif "##" in l.strip('\n'):
         company = l.strip('\n').strip("#")
 order = ["黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
  "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
