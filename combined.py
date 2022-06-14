@@ -1542,7 +1542,7 @@ for i in luzheng_old:
     if i in idea:
         if i == "花生":
             luzheng_old[i] = idea[i] + " ！！鲁证跟风！！ " + luzheng_old[i]
-        elif i == "MEG" or i == "PTA" or i =="不锈钢" or i == "螺纹" or i == "热卷"::
+        elif i == "MEG" or i == "PTA" or i =="不锈钢" or i == "螺纹" or i == "热卷":
             luzheng_old[i] = idea[i] + " ！！鲁证很准！！ " + luzheng_old[i]
         else:
             luzheng_old[i] = idea[i] + " 鲁证 " +luzheng_old[i]
@@ -2186,7 +2186,7 @@ for i in hongye_old:
     if i in idea:
         if i == "花生":
             hongye_old[i] = idea[i] + " ！！弘业跟风！！ " + hongye_old[i]
-        elif i == "PTA" or i == "螺纹" or i == "热卷"::
+        elif i == "PTA" or i == "螺纹" or i == "热卷":
             hongye_old[i] = idea[i] + " ！！弘业很准！！ " + hongye_old[i]
         else:
             hongye_old[i] = idea[i] + " 弘业 " + hongye_old[i]
