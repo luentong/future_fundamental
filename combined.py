@@ -71,7 +71,7 @@ else:
         if i in idea:
             if i == "白糖":
                 zhongxin_old[i] = idea[i] + " ！！中信跟风！！ " + zhongxin_old[i]
-            elif i == "PP" or i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "玻璃":
+            elif i == "PP"  or i =="不锈钢" or i == "玻璃" or i == "沥青" or i == "锡":
                 zhongxin_old[i] = idea[i] + " ！！中信很准！！ " + zhongxin_old[i]
             else:
                 zhongxin_old[i] = idea[i] + " 中信 " + zhongxin_old[i]
@@ -140,7 +140,8 @@ for key in idea:
 
 for i in guotai_old:
     if i in idea:
-        if i == "PTA" or i == "PP" or i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "螺纹" or i == "热卷" or i == "玻璃":
+        if i == "PTA" or i == "PP" or i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "螺纹" or i == "热卷" or i == "玻璃" or i == "沥青" or i == "玻璃"\
+                or i == "塑料" or i == "PP" or i == "锡":
             guotai_old[i] = idea[i] + " ！！国泰很准！！ " + guotai_old[i]
         else:
             guotai_old[i] = idea[i] + " 国泰  " + guotai_old[i]
@@ -256,7 +257,7 @@ for i in guotou_old:
     if i in idea:
         if i == "白糖":
             guotou_old[i] = idea[i] + " ！！国投跟风！！ " + guotou_old[i]
-        if i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "玻璃":
+        if i =="不锈钢" or i == "玻璃":
             guotou_old[i] = idea[i] + " ！！国投很准！！ " + guotou_old[i]
         else:
             guotou_old[i] = idea[i] + " 国投 " + guotou_old[i]
@@ -521,7 +522,7 @@ for key in idea:
 
 for i in wukuang_old:
     if i in idea:
-        if i == "螺纹" or i == "热卷":
+        if i == "螺纹" or i == "热卷" or i == '橡胶' or i == "锡":
             wukuang_old[i] = idea[i] + " ！！五矿很准！！ " + wukuang_old[i]
         else:
             wukuang_old[i] = idea[i] + " 五矿 " + wukuang_old[i]
@@ -1542,7 +1543,7 @@ for i in luzheng_old:
     if i in idea:
         if i == "花生":
             luzheng_old[i] = idea[i] + " ！！鲁证跟风！！ " + luzheng_old[i]
-        elif i == "MEG" or i == "PTA" or i =="不锈钢" or i == "螺纹" or i == "热卷":
+        elif i == "MEG" or i == "PTA" or i =="不锈钢" or i == "螺纹" or i == "热卷" or i == "红枣" or i == "塑料" or i == "PP" or i == '橡胶' or i == "尿素":
             luzheng_old[i] = idea[i] + " ！！鲁证很准！！ " + luzheng_old[i]
         else:
             luzheng_old[i] = idea[i] + " 鲁证 " +luzheng_old[i]
@@ -1678,7 +1679,7 @@ for key in idea:
 
 for i in nanhua_old:
     if i in idea:
-        if i == "燃油" or i == "PP" or i == "玻璃":
+        if i == "燃油" or i == "PP" or i == "玻璃" or i == "焦煤" or i == "塑料" or i == "PP" or i == '橡胶' or i == "玻璃":
             nanhua_old[i] = idea[i] + " ！！南华很准！！ " + nanhua_old[i]
         else:
             nanhua_old[i] = idea[i] + " 南华 " +nanhua_old[i]
@@ -1891,7 +1892,7 @@ for key in idea:
 
 for i in hundungong_old:
     if i in idea:
-        if i =="不锈钢":
+        if i =="不锈钢" or i == "焦煤":
             hundungong_old[i] = idea[i] + " ！！混沌工业很准！！ " + hundungong_old[i]
         else:
             hundungong_old[i] = idea[i] + " 混沌工业 " + hundungong_old[i]
@@ -2050,7 +2051,10 @@ for key in idea:
 
 for i in hundunagri_old:
     if i in idea:
-        hundunagri_old[i] = idea[i] + " 混沌农产品 " + hundunagri_old[i]
+        if i == "棕榈油" or i == "豆油" or i == "菜油":
+            hundunagri_old[i] = idea[i] + " ！！混沌农产品很准！！ " + hundunagri_old[i]
+        else:
+            hundunagri_old[i] = idea[i] + " 混沌农产品 " + hundunagri_old[i]
     else:
         hundunagri_old[i] = ""
 
@@ -2186,7 +2190,7 @@ for i in hongye_old:
     if i in idea:
         if i == "花生":
             hongye_old[i] = idea[i] + " ！！弘业跟风！！ " + hongye_old[i]
-        elif i == "PTA" or i == "螺纹" or i == "热卷":
+        elif i == "PTA" or i == "螺纹" or i == "热卷" or i == "塑料" or i == "PP":
             hongye_old[i] = idea[i] + " ！！弘业很准！！ " + hongye_old[i]
         else:
             hongye_old[i] = idea[i] + " 弘业 " + hongye_old[i]
@@ -2285,6 +2289,8 @@ for i in dongwu_old:
     if i in idea:
         if i == "橡胶" or i == "花生":
             dongwu_old[i] = idea[i] + " !!东吴跟风!! " + dongwu_old[i]
+        elif i == "红枣":
+            dongwu_old[i] = idea[i] + " !!东吴很准!! " + dongwu_old[i]
         else:
             dongwu_old[i] = idea[i] + " 东吴 " + dongwu_old[i]
     else:
