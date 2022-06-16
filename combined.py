@@ -956,7 +956,7 @@ for key in idea:
 for i in guangfa_old:
     if i in idea:
         if i == "锡":
-            guangfa_old[i] = idea[i] + "！！广发跟风！！" + guangfa_old[i]
+            guangfa_old[i] = idea[i] + " ！！广发跟风！！ " + guangfa_old[i]
         else:
             guangfa_old[i] = idea[i] + " 广发 " + guangfa_old[i]
     else:
