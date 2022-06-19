@@ -1472,6 +1472,13 @@ for l in lines:
             idea[prev_item.strip()] = l.strip().strip('\n').split("套利上")[0]
         next = False
         continue
+    if ("套利方面" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("套利方面")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("套利方面")[0]
+        next = False
+        continue
     if stripped in items:
         next = True
         prev_item = stripped
