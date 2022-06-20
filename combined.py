@@ -140,7 +140,7 @@ for key in idea:
 
 for i in guotai_old:
     if i in idea:
-        if i == "PTA" or i == "PP" or i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "螺纹" or i == "热卷" or i == "玻璃" or i == "沥青" or i == "玻璃"\
+        if i == "PTA" or i == "PP" or i =="豆油" or i =="棕榈油" or i =="菜油" or i =="不锈钢" or i == "螺纹" or i == "热卷" or i == "玻璃" or i == "沥青"\
                 or i == "塑料" or i == "PP" or i == "锡" or i == "白糖":
             guotai_old[i] = idea[i] + " ！！国泰很准！！ " + guotai_old[i]
         else:
@@ -257,7 +257,7 @@ for i in guotou_old:
     if i in idea:
         if i == "":
             guotou_old[i] = idea[i] + " ！！国投跟风！！ " + guotou_old[i]
-        if i =="不锈钢" or i == "玻璃" or i == "白糖":
+        if i =="不锈钢" or i == "白糖":
             guotou_old[i] = idea[i] + " ！！国投很准！！ " + guotou_old[i]
         else:
             guotou_old[i] = idea[i] + " 国投 " + guotou_old[i]
@@ -1033,6 +1033,8 @@ for i in guangzhou_old:
     if i in idea:
         if i == "螺纹" or i == "热卷":
             guangzhou_old[i] = idea[i] + " ！！广州很准！！ " + guangzhou_old[i]
+        elif i == "纯碱":
+            guangzhou_old[i] = idea[i] + " ！！广州傻逼！！ " + guangzhou_old[i]
         else:
             guangzhou_old[i] = idea[i] + " 广州 " + guangzhou_old[i]
     else:
@@ -1479,6 +1481,13 @@ for l in lines:
             idea[prev_item.strip()] = l.strip().strip('\n').split("套利方面")[0]
         next = False
         continue
+    if ("技术上看" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("技术上看")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("技术上看")[0]
+        next = False
+        continue
     if stripped in items:
         next = True
         prev_item = stripped
@@ -1686,7 +1695,7 @@ for key in idea:
 
 for i in nanhua_old:
     if i in idea:
-        if i == "燃油" or i == "PP" or i == "玻璃" or i == "焦煤" or i == "塑料" or i == "PP" or i == '橡胶' or i == "玻璃":
+        if i == "燃油" or i == "PP" or i == "玻璃" or i == "焦煤" or i == "塑料" or i == "PP" or i == '橡胶':
             nanhua_old[i] = idea[i] + " ！！南华很准！！ " + nanhua_old[i]
         else:
             nanhua_old[i] = idea[i] + " 南华 " +nanhua_old[i]
@@ -2197,6 +2206,8 @@ for i in hongye_old:
     if i in idea:
         if i == "花生":
             hongye_old[i] = idea[i] + " ！！弘业跟风！！ " + hongye_old[i]
+        elif i == "MEG":
+            hongye_old[i] = idea[i] + " ！！弘业傻逼！！ " + hongye_old[i]
         elif i == "PTA" or i == "螺纹" or i == "热卷" or i == "塑料" or i == "PP":
             hongye_old[i] = idea[i] + " ！！弘业很准！！ " + hongye_old[i]
         else:
