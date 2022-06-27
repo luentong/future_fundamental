@@ -1569,7 +1569,7 @@ for i in luzheng_old:
     if i in idea:
         if i == "花生":
             luzheng_old[i] = idea[i] + " ！！鲁证跟风！！ " + luzheng_old[i]
-        elif i == "MEG" or i == "PTA" or i == "螺纹" or i == "热卷" or i == "红枣" or i == "塑料" or i == "PP" or i == '橡胶' or i == "尿素" or i == "白糖":
+        elif i == "MEG" or i == "PTA" or i == "螺纹" or i == "热卷" or i == "红枣" or i == "塑料" or i == "PP" or i == '橡胶' or i == "尿素" or i == "白糖" or i == "纸浆":
             luzheng_old[i] = idea[i] + " ！！鲁证很准！！ " + luzheng_old[i]
         else:
             luzheng_old[i] = idea[i] + " 鲁证 " + luzheng_old[i]
