@@ -1172,6 +1172,8 @@ for l in lines:
     stripped = l.strip()
     if stripped == "":
         continue
+    if "LPG早报" in stripped:
+        prev_item = "LPG"
     if ("永安期货知识产权" in stripped) and next:
         if prev_item.strip("：") in idea:
             idea[prev_item.strip("：") ] += l.strip().strip('\n').split("永安期货知识产权")[0]
