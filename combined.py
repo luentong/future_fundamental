@@ -2378,7 +2378,7 @@ for l in lines:
                         idea_combined[i].append(str(score) + " " + company)
     elif "##" in l.strip('\n'):
         company = l.strip('\n').strip("#")
-order = ["黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
+order = ["金融","股指","股指期权","国债","黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
  "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
  "苹果","花生","红枣","生猪"]
 idea_combined_sorted = {}
@@ -2388,7 +2388,7 @@ prev_type = ""
 total_all = 0.0
 count_all = 0.0
 for i in order:
-    if i not in idea_combined and i in ["黑色金属","有色金属","贵金属","能源化工","农产品"]:
+    if i not in idea_combined and i in ["金融","黑色金属","有色金属","贵金属","能源化工","农产品"]:
         if count != 0 and prev_type != "":
             idea_combined_sorted[prev_type] = total / count
         total = 0.0
@@ -2550,5 +2550,5 @@ final = result.sort_values(by='Value', ascending=False)
 
 for index, row in final.iterrows():
     same = []
-    if row["Name"] not in ["能源：","金融:","股指期权","期权","宏观","金融","股指","股指期权","国债"]:
+    if row["Name"] not in ["能源：","金融:","宏观","金融"]:
         print(row["Name"] + " " + str('{0:.6}'.format(round(row["Value"], 6))))
