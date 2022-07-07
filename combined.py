@@ -2101,7 +2101,6 @@ next = False
 prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
-    print(stripped, "海通")
     if stripped == "":
         continue
     if ("从业资格证号" in stripped) and next:
