@@ -1586,7 +1586,7 @@ with open('南华.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["国债日报","股指","螺纹","热卷","铁矿","焦煤","焦炭","锰硅","尿素","硅锰","硅铁","动力煤","纯碱","玻璃","白糖","棉花","苹果","红枣","油料","油脂","原油","油脂油料","甲醇","燃料油","PVC","聚酯","沥青",
-         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石","郑棉","豆粕","生猪","MA","SC","RU","EB","乙二醇","苯乙烯","PTA&PF"]
+         "PTA","MEG","PF","LPG","纸浆","橡胶","铜","铝","锌","镍不锈钢","锡","贵金属","聚烯烃","螺纹钢","铁矿石","郑棉","豆粕","生猪","MA","SC","RU","EB","乙二醇","苯乙烯","PTA&PF","硅锰观点"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1684,6 +1684,9 @@ for key in idea:
     if key == "乙二醇":
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
+    if key == "硅锰观点":
+        topop.append("硅锰观点")
+        toadd.append(["锰硅", idea[key]])
 
 if "聚酯" in idea:
     idea.pop("聚酯")
@@ -1782,7 +1785,7 @@ dongzheng_idea = idea
 with open('东兴.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
-items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶"]
+items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶","MA"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1799,7 +1802,6 @@ for l in lines:
     if stripped.split("：")[0] in items:
         next = True
         prev_item = stripped.split("：")[0]
-        continue
     if next:
         if prev_item.strip("：") in idea:
             idea[prev_item.strip()] += l.strip().strip('\n')
@@ -1821,6 +1823,10 @@ for key in idea:
     if key == "TA":
         topop.append("TA")
         toadd.append(["PTA", idea[key]])
+    if key == "MA":
+        topop.append("MA")
+        toadd.append(["甲醇", idea[key]])
+
 
 for i in topop:
     idea.pop(i)
@@ -2329,13 +2335,97 @@ for i in dongwu_old:
 
 dongwu_idea = idea
 
+###########################################华联开始
+
+
+with open('华联.txt') as f:
+    lines = f.readlines()
+idea = {}
+items = ["股指","国债","铜","铝","橡胶","液化气","原油","PVC","甲醇","聚烯烃","螺纹钢","玻璃","焦煤","铁矿石","白糖","鸡蛋","生猪","油脂","饲料"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip().strip('\n').strip('【').strip('】')
+    if stripped == "":
+        continue
+    if '】' in stripped:
+        stripped_first = l.strip().strip('\n').strip('【').split('】')[0]
+        if stripped_first in items:
+            next = True
+            prev_item = stripped_first
+    if next:
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
+        else:
+            idea[prev_item] = l.strip().strip('\n')
+hualian_old = {}
+for i in idea:
+    hualian_old[i] = idea[i][:]
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "液化气":
+        topop.append("液化气")
+        toadd.append(["LPG", idea[key]])
+    if key == "聚烯烃":
+        topop.append("聚烯烃")
+        toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
+    if key == "螺纹钢":
+        topop.append("螺纹钢")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+    if key == "油脂":
+        topop.append("油脂")
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
+        toadd.append(["豆油", idea[key]])
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
+    if key == "饲料":
+        topop.append("饲料")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
+
+
+
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+hualian_old = {}
+for i in idea:
+    hualian_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in hualian_old:
+    if i in idea:
+        if i == "":
+            hualian_old[i] = idea[i] + " !!华联跟风!! " + hualian_old[i]
+        elif i == "":
+            hualian_old[i] = idea[i] + " !!华联很准!! " + hualian_old[i]
+        else:
+            hualian_old[i] = idea[i] + " 华联 " + hualian_old[i]
+    else:
+        hualian_old[i] = ""
+
+hualian_idea = idea
+
 ###########################################整合开始
 
 idea_combined = {}
 for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old, beite_old,
           yinhe_old, yinhenong_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old, haitong_old,
           guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old, hundunneng_old, hundunagri_old,
-          hongye_old, dongwu_old]:
+          hongye_old, dongwu_old, hualian_old]:
     for j in i:
         if j in idea_combined:
             idea_combined[j].append(i[j])
@@ -2443,7 +2533,7 @@ combined = {}
 for i in [guotai_idea, anxin_idea, guangda_idea, citrix_idea,zhongqi_idea, wukuang_idea, beite_idea,
           yinhe_idea, yinhenong_idea, guangfa_idea, guangzhou_idea, guoxin_idea, yongan_idea,
           haitong_idea, guodu_idea, luzheng_idea, nanhua_idea, dongxing_idea, hundungong_idea,
-          hundunneng_idea, hundunagri_idea, hongye_idea, dongwu_idea]:
+          hundunneng_idea, hundunagri_idea, hongye_idea, dongwu_idea, hualian_idea]:
     for j in i:
         if j.strip() == "":
             abc = 1
@@ -2503,7 +2593,7 @@ with open('详细观点分公司.txt', 'w') as f:
     for i in [zhongxin_old, guotai_old, guotou_old, guangda_old, zhongqi_old, wukuang_old,
               beite_old, yinhe_old, yinhenong_old, guangfa_old, guangzhou_old, guoxin_old, yongan_old,
               haitong_old, guodu_old, luzheng_old, nanhua_old, dongxing_old, hundungong_old,
-              hundunneng_old, hundunagri_old, hongye_old, dongwu_old]:
+              hundunneng_old, hundunagri_old, hongye_old, dongwu_old, hualian_old]:
         new = True
         for j in i:
             if new:
