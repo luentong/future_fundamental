@@ -1522,6 +1522,8 @@ for key in idea:
         topop.append("玉米系")
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
+    if key == "塑料":
+        toadd.append(["PP", idea[key]])
     if key == "聚酯产业链":
         topop.append("聚酯产业链")
         toadd.append(["PTA", idea[key]])
@@ -1785,7 +1787,7 @@ dongzheng_idea = idea
 with open('东兴.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
-items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶","MA"]
+items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶","MA","煤焦"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1826,7 +1828,10 @@ for key in idea:
     if key == "MA":
         topop.append("MA")
         toadd.append(["甲醇", idea[key]])
-
+    if key == "煤焦":
+        topop.append("煤焦")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -2473,7 +2478,7 @@ for l in lines:
     elif "##" in l.strip('\n'):
         company = l.strip('\n').strip("#")
 order = ["金融","股指","股指期权","国债","黑色金属","铁矿","焦煤","焦炭","动力煤","螺纹","热卷","硅铁","锰硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
- "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花","棉纱",
+ "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","菜粕","豆一","玉米","淀粉","鸡蛋","白糖","棉花",
  "苹果","花生","红枣","生猪"]
 idea_combined_sorted = {}
 total = 0
