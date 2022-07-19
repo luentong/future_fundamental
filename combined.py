@@ -318,7 +318,8 @@ for key in idea:
         toadd.append(["热卷", idea[key]])
     if key == "PTA&MEG":
         topop.append("PTA&MEG")
-        #toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
+        toadd.append(["PTA", idea[key]])
         toadd.append(["MEG", idea[key]])
     if key == "乙二醇":
         topop.append("乙二醇")
@@ -461,7 +462,7 @@ with open('五矿.txt',encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","油脂","蛋白粕","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅","原油",
-         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青","动力煤"]
+         "铝","镍","锡","锰硅","硅铁","铁矿石","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青","动力煤","FU燃料油","LU低硫燃料油"]
 next = False
 prev_item = ""
 for l in lines:
@@ -508,6 +509,13 @@ for key in idea:
         topop.append("蛋白粕")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
+    if key == "FU燃料油":
+        topop.append("FU燃料油")
+        toadd.append(["燃油", idea[key]])
+    if key == "LU低硫燃料油":
+        topop.append("LU低硫燃料油")
+        toadd.append(["低硫燃油", idea[key]])
+
 
 if "分析师团队" in idea:
     idea.pop("分析师团队")
@@ -716,6 +724,8 @@ for key in idea:
     if key == "天然橡胶及20号胶":
         topop.append("天然橡胶及20号胶")
         toadd.append(["橡胶", idea[key]])
+    if key == "PTA":
+        toadd.append(["短纤", idea[key]])
     if key == "PF":
         topop.append("PF")
         toadd.append(["短纤", idea[key]])
@@ -1095,6 +1105,8 @@ for key in idea:
     if key == "燃料油":
         topop.append("燃料油")
         toadd.append(["燃油", idea[key]])
+    if key == "PTA":
+        toadd.append(["短纤", idea[key]])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -1825,6 +1837,7 @@ for key in idea:
     if key == "TA":
         topop.append("TA")
         toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
     if key == "MA":
         topop.append("MA")
         toadd.append(["甲醇", idea[key]])
@@ -2254,6 +2267,13 @@ prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】').strip("：")
     if stripped == "":
+        continue
+    if ("套利方面" in stripped) and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("套利方面")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("套利方面")[0]
+        next = False
         continue
     if stripped in items:
         next = True
