@@ -2236,7 +2236,6 @@ for key in idea:
         topop.append("聚烯烃")
         toadd.append(["PP", idea[key]])
         toadd.append(["塑料", idea[key]])
-        toadd.append(["PVC", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -2387,6 +2386,13 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
+    # if ("邓丹" in stripped) and next:
+    #     if prev_item.strip("：") in idea:
+    #         idea[prev_item.strip()] += l.strip().strip('\n').split("邓丹")[0]
+    #     else:
+    #         idea[prev_item.strip()] = l.strip().strip('\n').split("邓丹")[0]
+    #     next = False
+    #     continue
     if '】' in stripped:
         stripped_first = l.strip().strip('\n').strip('【').split('】')[0]
         if stripped_first in items:
