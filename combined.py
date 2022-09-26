@@ -108,8 +108,6 @@ for key in idea:
     if key == "热轧卷板":
         topop.append("热轧卷板")
         toadd.append(["热卷", idea[key]])
-    if key == "玉米":
-        toadd.append(["淀粉", idea[key]])
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
@@ -1874,6 +1872,8 @@ for key in idea:
     if key == "MA":
         topop.append("MA")
         toadd.append(["甲醇", idea[key]])
+    if key == "玉米":
+        toadd.append(["淀粉", idea[key]])
     if key == "煤焦":
         topop.append("煤焦")
         toadd.append(["焦煤", idea[key]])
@@ -2300,7 +2300,7 @@ hongye_idea = idea
 
 ###########################################整合开始
 
-with open('东吴.txt', encoding='utf8') as f:
+with open('东吴.txt') as f:
     lines = f.readlines()
 idea = {}
 items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶",
@@ -2504,7 +2504,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt', encoding='utf8') as f:
+with open('中洲.txt') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料"]
@@ -2598,8 +2598,8 @@ zhongzhou_idea = idea
 with open('一德.txt') as f:
     lines = f.readlines()
 idea = {}
-items = ["期指","期债","黄金/白银","螺纹/热卷","煤焦","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
-         "沪铅","苹果","红枣","鸡蛋","生猪","燃料油","白糖","甲醇","PVC","PTA","MEG","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油"]
+items = ["期指","期债","黄金/白银","螺纹/热卷","煤焦","郑糖","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
+         "沪铅","苹果","红枣","鸡蛋","生猪","外糖","燃料油","白糖","甲醇","PVC","PTA","MEG","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油"]
 
 next = False
 prev_item = ""
@@ -2641,6 +2641,11 @@ for key in idea:
     if key == "期债":
         topop.append("期债")
         toadd.append(["国债", idea[key]])
+    if key == "郑糖":
+        topop.append("郑糖")
+        toadd.append(["白糖", idea[key]])
+    if key == "外唐":
+        topop.append("外糖")
     if key == "黄金/白银":
         topop.append("黄金/白银")
         toadd.append(["黄金", idea[key]])
