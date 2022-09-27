@@ -2504,7 +2504,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt') as f:
+with open('中洲.txt', encoding='utf8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料"]
