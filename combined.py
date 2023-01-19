@@ -694,7 +694,7 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt', encoding='utf-8') as f:
+with open('银河.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","贵金属"]
@@ -1253,7 +1253,7 @@ with open('永安.txt') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","钢 材","【铝】","【铜】","【锌】","【镍】","【不锈钢】","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素",
-         "豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯","S T E E L","纯碱玻璃","SODA ASH & GLASS"]
+         "豆类油脂","棉花","白 糖","生 猪","生猪","豆粕","液化气","RU","聚烯烃","聚酯","S T E E L","纯碱玻璃","SODA ASH & GLASS","ALKALI-RICH GLASS"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1291,6 +1291,10 @@ for key in idea:
         toadd.append(["焦炭", idea[key]])
     if key == "SODA ASH & GLASS":
         topop.append("SODA ASH & GLASS")
+        toadd.append(["纯碱", idea[key]])
+        toadd.append(["玻璃", idea[key]])
+    if key == "ALKALI-RICH GLASS":
+        topop.append("ALKALI-RICH GLASS")
         toadd.append(["纯碱", idea[key]])
         toadd.append(["玻璃", idea[key]])
     if key == "钢 材":
@@ -2857,7 +2861,7 @@ for l in lines:
                     idea_combined[j] = [str(float(score)) + " " + company]
     elif "##" in l.strip('\n'):
         company = l.strip('\n').strip("#")
-order = ["金融","股指","股指期权","国债","黑色金属","螺纹钢","铁矿石","铁矿","焦煤","焦炭","螺纹","热卷","硅铁","锰硅","工业硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
+order = ["金融","股指","股指期权","国债","黑色金属","螺纹钢","纯碱玻璃","铁矿","焦煤","焦炭","螺纹","热卷","硅铁","锰硅","工业硅","有色金属","铝","铜","锌","锡","镍","不锈钢","铅","贵金属","黄金","白银","能源化工",
  "原油","燃油","低硫燃油","LPG","沥青","甲醇","乙二醇","MEG","PTA","短纤","苯乙烯","PVC","PP","塑料","尿素","橡胶","纯碱","玻璃","纸浆","农产品","棕榈油","豆油","菜油","豆粕","豆一","玉米","淀粉","鸡蛋","白糖",'糖',"棉花",
  "苹果","花生","红枣","生猪"]
 idea_combined_sorted = {}
