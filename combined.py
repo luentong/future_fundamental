@@ -694,7 +694,7 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt') as f:
+with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","贵金属"]
@@ -832,7 +832,7 @@ yinhe_idea = idea
 # -*- coding: utf-8 -*-
 import keywords
 
-with open('银河农产品.txt') as f:
+with open('银河农产品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类","鸡肉"]
@@ -2560,7 +2560,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt') as f:
+with open('中洲.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂"]

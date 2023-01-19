@@ -3,7 +3,7 @@
 import keywords
 
 with open('中洲.txt') as f:
-    lines = f.readlines()
+    lines = f.readlines(utf-8)
 idea = {}
 items = ["原油","钢材","铁矿","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪"]
 
