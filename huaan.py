@@ -29,7 +29,7 @@ def huaan_idea():
         elif category == 3:
             items = ["黑色金属"]
         elif category == 4:
-            items = ["PP","塑料","PVC"]
+            items = ["PP","塑料","PVC","PTA乙二醇"]
         elif category == 5:
             items = ["豆粕菜粕","油脂","淀粉玉米","棉花棉纱","生猪"]
 
@@ -37,8 +37,12 @@ def huaan_idea():
             if i in response:
                 res = "".join(response.split(i)[1:])
                 # print("temp",res)
-                res1 = res.split("市场分析】：")[1].split('<a')[0]
-                res2 = res.split("投资策略】：")[1].split('<a')[0]
+                res1 = ""
+                if "市场分析】：" in res:
+                    res1 = res.split("市场分析】：")[1].split('<a')[0]
+                res2 = ""
+                if "投资策略】：" in res:
+                    res2 = res.split("投资策略】：")[1].split('<a')[0]
                 # print(res1)
                 # print(res2)
                 result[i] = res1+res2

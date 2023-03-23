@@ -9,6 +9,11 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "PTA乙二醇":
+        topop.append("PTA乙二醇")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
+        toadd.append(["MEG", idea[key]])
     if key == "黑色金属":
         topop.append("黑色金属")
         toadd.append(["螺纹", idea[key]])
@@ -143,7 +148,7 @@ else:
 
 ###########################################国泰开始
 
-with open('国泰君安.txt') as f:
+with open('国泰君安.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 for l in lines:
@@ -208,11 +213,13 @@ for i in guotai_old:
 guotai_idea = idea
 
 ###########################################国投安信开始
-with open('国投安信.txt') as f:
+with open('国投安信.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 prev = ""
 for l in lines:
+    if l.strip("\n") == "Image" and prev != "":
+        break
     if "【" in l and len(l) < 20:
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
@@ -302,6 +309,10 @@ for key in idea:
         topop.append("燃料油&低硫燃料油")
         toadd.append(["燃油", idea[key]])
         toadd.append(["低硫燃油", idea[key]])
+    if key == "豆粕&大豆":
+        topop.append("豆粕&大豆")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["豆一", idea[key]])
 
 if "分析师团队" in idea:
     idea.pop("分析师团队")
@@ -338,7 +349,7 @@ guotou_idea = idea
 
 ###########################################光大开始
 
-with open('光大.txt') as f:
+with open('光大.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 prev = ""
@@ -434,6 +445,10 @@ for key in idea:
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
+    if key == "镍&不锈钢":
+        topop.append("镍&不锈钢")
+        toadd.append(["镍", idea[key]])
+        toadd.append(["不锈钢", idea[key]])
 
 if "" in idea:
     idea.pop("")
@@ -468,12 +483,24 @@ with open('上海中期.txt') as f:
 idea = {}
 items = ["贵金属","铜(CU)","螺纹(RB)","热卷(HC)","铝(AL)","锌(ZN)","铅(PB)","镍(NI)","不锈钢(SS)","铁矿石(I)",
          "天胶及20号胶","原油(SC)","燃油(FU)","乙二醇(EG)","PVC(V)","沥青(BU)","塑料(L)","聚丙烯(PP)","PTA(TA)","苯乙烯(EB)","焦炭(J)","焦煤(JM)","动力煤(TC)","甲醇(ME)","尿素(UR)",
-         "玻璃(FG)","白糖(SR)","大豆(A)","豆粕(M)","豆油(Y)","棕榈油(P)","菜籽类","鸡蛋(JD)","苹果(AP)","生猪(LH)","花生(PK)","棉花及棉纱","工业硅"]
+         "玻璃(FG)","白糖(SR)","大豆(A)","豆粕(M)","豆油(Y)","棕榈油(P)","菜籽类","鸡蛋(JD)","苹果(AP)","生猪(LH)","花生(PK)","棉花及棉纱","工业硅","燃油及低硫燃油",
+         "铜及国际铜","镍及不锈钢","PTA及短纤","天然橡胶","棉花及棉纱","玉米及玉米淀粉","原油","沥青","聚丙烯","塑料","PVC","甲醇","苯乙烯","纯碱","尿素","焦煤","焦炭",
+         "生猪","花生","白糖","鸡蛋","苹果","豆粕","棕榈油","豆油","大豆","股指","宏观","铝","铅","锌","螺纹","热卷","铁矿石","工业硅"]
 next = False
 prev_item = ""
 for l in lines:
-    if "：" in l and len(l) <= 50:
-        idea[l.split('：')[0].strip()] = l.split('：')[1].strip()
+    stripped = l.strip().strip('\n')
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped
+        continue
+    if next:
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
+        else:
+            idea[prev_item] = l.strip().strip('\n')
 
 topop = []
 toadd = []
@@ -553,7 +580,7 @@ zhongqi_idea = idea
 
 ###########################################五矿开始
 
-with open('五矿.txt') as f:
+with open('五矿.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","油脂","蛋白粕","焦炭：","焦煤：","焦煤焦炭","高、低硫燃料油","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅","原油",
@@ -1197,10 +1224,10 @@ guangzhou_idea = idea
 
 ###########################################国信开始
 
-with open('国信.txt') as f:
+with open('国信.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","贵金属","铜铝","玻璃","锌镍","锌","螺纹钢","锰硅：","硅铁：","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
+items = ["股指","国债","贵金属","铜铝","玻璃","锌镍","锌","螺纹钢","工业硅","锰硅：","硅铁：","铁合金","焦炭焦煤","镍","豆类","油脂","白糖","棉花","玉米","生猪","花生","苹果","PTA","聚烯烃","原油","橡胶","燃料油","沥青","甲醇","铁矿石","动力煤"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1926,7 +1953,7 @@ nanhua_idea = idea
 
 ###########################################东兴开始
 
-with open('东兴.txt') as f:
+with open('东兴.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["期指","期债","动力煤","铜","PTA","TA","PVC","天然橡胶","生猪","玉米","橡胶","MA","煤焦","油脂","棉花","化工","螺纹"]
@@ -2010,7 +2037,7 @@ for i in dongxing_old:
 dongxing_idea = idea
 
 ###########################################混沌天成工业品开始
-with open('混沌天成工业品.txt') as f:
+with open('混沌天成工业品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["钢材","铁矿石","焦煤","焦炭","铜","铝","锌","镍","不锈钢"]
@@ -2102,10 +2129,10 @@ hundungong_idea = idea
 
 ###########################################混沌天成能化开始
 
-with open('混沌天成能化.txt') as f:
+with open('混沌天成能化.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","MEG日评:","PTA日评：","PTA日评","原油","PP日评：","PTA/MEG"]
+items = ["纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","LPG","MEG日评:","PTA日评：","PTA日评","原油","PP日评：","PTA/MEG"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2194,7 +2221,7 @@ hundunneng_idea = idea
 
 ###########################################混沌天成农产品开始
 
-with open('混沌天成农产品.txt') as f:
+with open('混沌天成农产品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["油脂油料","棉花","玉  米","豆  粕","鸡  蛋","生  猪","苹  果","纸  浆"]
@@ -2285,7 +2312,7 @@ hundunagri_idea = idea
 
 ###########################################弘业开始
 
-with open('弘业.txt') as f:
+with open('弘业.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","铁合金","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
@@ -2428,7 +2455,7 @@ with open('东吴.txt') as f:
 idea = {}
 items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶",
          "沪铜","沪铝","沪锌","沪铅","油脂","豆粕/菜粕","玉米","白糖","鸡蛋","PTA",
-         "生猪","苹果","红枣","花生","MEG","铜","铝","锌","铅","工业硅","棉花棉纱"]
+         "生猪","苹果","红枣","花生","MEG","铜","铝","锌","铅","工业硅","棉花棉纱","玻璃纯碱"]
 group = ["黑色系板块","能源化工","有色金属","农产品"]
 next = False
 prev_item = ""
@@ -2482,6 +2509,10 @@ for key in idea:
         topop.append("双硅")
         toadd.append(["硅铁", idea[key]])
         toadd.append(["锰硅", idea[key]])
+    if key == "玻璃纯碱":
+        topop.append("玻璃纯碱")
+        toadd.append(["玻璃", idea[key]])
+        toadd.append(["纯碱", idea[key]])
     if key == "天然橡胶":
         topop.append("天然橡胶")
         toadd.append(["橡胶", idea[key]])
@@ -2537,7 +2568,7 @@ dongwu_idea = idea
 ###########################################华联开始
 
 
-with open('华联.txt') as f:
+with open('华联.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","铜","铝","橡胶","液化气","原油","锌","PVC","甲醇","工业硅","聚烯烃","螺纹钢","玻璃","焦煤","煤焦","铁矿石","白糖","鸡蛋","生猪","油脂","饲料"]
@@ -2632,10 +2663,10 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt') as f:
+with open('中洲.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂"]
+items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂","美豆&豆粕"]
 
 next = False
 prev_item = ""
@@ -2697,6 +2728,10 @@ for key in idea:
         topop.append("美豆、豆粕")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])
+    if key == "美豆&豆粕":
+        topop.append("美豆&豆粕")
+        toadd.append(["豆粕", idea[key]])
+        toadd.append(["菜粕", idea[key]])
     if key == "美豆":
         topop.append("美豆")
         toadd.append(["豆粕", idea[key]])
@@ -2736,11 +2771,11 @@ zhongzhou_idea = idea
 
 ###########################################一德开始
 
-with open('一德.txt') as f:
+with open('一德.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["期指","期债","黄金/白银","螺纹/热卷","煤焦","郑糖","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
-         "沪铅","苹果","红枣","鸡蛋","生猪","外糖","燃料油","白糖","甲醇","PVC","PTA","MEG","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油"]
+         "沪铅","苹果","红枣","鸡蛋","生猪","外糖","燃料油","白糖","甲醇","PVC","PTA","MEG","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油","工业硅","沪锡"]
 
 next = False
 prev_item = ""
@@ -2760,17 +2795,17 @@ for l in lines:
         if "（" in stripped_first:
             stripped_first = stripped_first.split("（")[0]
         print(stripped_first)
-        if stripped_first in items:
+        if stripped_first.strip("（2304）" )in items:
             next = True
-            prev_item = stripped_first
+            prev_item = stripped_first.strip("（2304）" )
     if ':' in stripped:
         stripped_first = l.strip().strip('\n').split(':')[0].strip(" ")
         if "（" in stripped_first:
             stripped_first = stripped_first.split("（")[0]
         print(stripped_first)
-        if stripped_first in items:
+        if stripped_first.strip("（2304）" ) in items:
             next = True
-            prev_item = stripped_first
+            prev_item = stripped_first.strip("（2304）" )
     if next:
         if prev_item in idea:
             idea[prev_item] += l.strip().strip('\n')
@@ -2783,6 +2818,9 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "沪锡":
+        topop.append("沪锡")
+        toadd.append(["锡", idea[key]])
     if key == "沪铜":
         topop.append("沪铜")
         toadd.append(["铜", idea[key]])
@@ -2895,7 +2933,7 @@ def is_number(s):
     except ValueError:
         pass
 
-with open('其他.txt', encoding='gbk') as f:
+with open('其他.txt', encoding='utf-8') as f:
     lines = f.readlines()
 company = ""
 for l in lines:
@@ -2928,7 +2966,7 @@ for l in lines:
                         found = True
                     if i == j:
                         idea_combined[i].append(str(score) + " " + company)
-                        found = Truess
+                        found = True
                 if not found:
                     idea_combined[j] = [str(float(score)) + " " + company]
     elif "##" in l.strip('\n'):
@@ -3015,7 +3053,7 @@ for i in [guangzhou_idea, hualian_idea, dongxing_idea, guotai_idea, yongan_idea,
 
 
 ############## 详细观点
-with open('其他.txt', encoding='gbk') as f:
+with open('其他.txt', encoding='utf-8') as f:
     lines = f.readlines()
 for l in lines:
     if is_number(l.strip('\n').split(" ")[-1]):

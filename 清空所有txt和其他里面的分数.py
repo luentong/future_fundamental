@@ -13,7 +13,7 @@ for i in ["上海中期.txt","中信.txt","五矿.txt","倍特.txt","南华.txt"
     file.close()
 
 cached = []
-with open('其他.txt', encoding='gbk') as f:
+with open('其他.txt', encoding='utf-8') as f:
     lines = f.readlines()
 for l in lines:
     if is_number(l.strip('\n').split(" ")[-1]):
@@ -37,6 +37,6 @@ for l in lines:
 for i in cached:
     print(i)
 
-with open('其他.txt', 'w+', encoding="gbk") as f:
+with open('其他.txt', 'w+', encoding="utf-8") as f:
     for i in cached:
         f.write(i + '\n')
