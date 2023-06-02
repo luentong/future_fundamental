@@ -25,7 +25,7 @@ def huaan_idea():
         if category == 1:
             items = ["股指","国债"]
         elif category == 2:
-            items = ["工业硅","铜","铝"]
+            items = ["工业硅","铜","铝","锡"]
         elif category == 3:
             items = ["黑色金属","不锈钢镍"]
         elif category == 4:

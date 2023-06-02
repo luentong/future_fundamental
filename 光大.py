@@ -59,7 +59,6 @@ for key in idea:
         toadd.append(["玉米", idea[key]])
         toadd.append(["淀粉", idea[key]])
     if key == "油脂油料":
-        print("???")
         topop.append("油脂油料")
         toadd.append(["豆粕", idea[key]])
         toadd.append(["菜粕", idea[key]])

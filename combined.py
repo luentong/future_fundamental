@@ -390,7 +390,8 @@ for l in lines:
             idea[prev.strip()] = l.strip().strip('\n').split("后期关注")[0]
         continue
     if len(l) < 15 and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "小结" not in l\
-            and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l:
+            and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l\
+            and "库存：" not in l and "供应：" not in l and "需求：" not in l and "策略观点：" not in l:
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
         a3 = a2.replace("\n", "")
@@ -404,6 +405,9 @@ for key in idea:
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
+    if key == "天胶":
+        topop.append("天胶")
+        toadd.append(["橡胶", idea[key]])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -2071,7 +2075,10 @@ dongxing_idea = idea
 with open('混沌天成工业品.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["钢材","铁矿石","焦煤","焦炭","铜","铝","锌","镍","不锈钢"]
+items = ["钢材","铁矿石","焦煤","焦炭","铜","铝","锌","镍","不锈钢","焦煤焦炭","美豆&豆粕","玉米",
+         "生猪","橡胶","纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","LPG","MEG日评:",
+         "PTA日评：","PTA日评","原油","PP日评：","PTA/MEG","PTA","短纤","乙二醇","聚烯烃","苯乙烯","液化石油气","沥青","纸浆",
+         "沪镍","工业硅","沪铝","沪铅","沪铜&国际铜","沪锌","螺纹&热卷","纯碱","玻璃", "黄金&白银","白糖","鸡蛋","红枣","国债","股指","苹果"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2125,6 +2132,25 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "沪镍":
+        topop.append("沪镍")
+        toadd.append(["镍", idea[key]])
+    if key == "沪铝":
+        topop.append("沪铝")
+        toadd.append(["铝", idea[key]])
+    if key == "沪铅":
+        topop.append("沪铅")
+        toadd.append(["铅", idea[key]])
+    if key == "沪锌":
+        topop.append("沪锌")
+        toadd.append(["锌", idea[key]])
+    if key == "沪铜&国际铜":
+        topop.append("沪铜&国际铜")
+        toadd.append(["铜", idea[key]])
+    if key == "螺纹&热卷":
+        topop.append("螺纹&热卷")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
     if key == "钢材":
         topop.append("钢材")
         toadd.append(["螺纹", idea[key]])
@@ -2132,6 +2158,55 @@ for key in idea:
     if key == "铁矿石":
         topop.append("铁矿石")
         toadd.append(["铁矿", idea[key]])
+    if key == "焦煤焦炭":
+        topop.append("焦煤焦炭")
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+    if key == "美豆&豆粕":
+        topop.append("美豆&豆粕")
+        toadd.append(["豆粕", idea[key]])
+    if key == "纯碱玻璃":
+        topop.append("纯碱玻璃")
+        toadd.append(["纯碱", idea[key]])
+        toadd.append(["玻璃", idea[key]])
+    if key == "LLDPE日评":
+        topop.append("LLDPE日评")
+        toadd.append(["塑料", idea[key]])
+    if key == "PTA/MEG":
+        topop.append("PTA/MEG")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["MEG", idea[key]])
+    if key == "PTA":
+        toadd.append(["短纤", idea[key]])
+    if key == "MEG日评：":
+        topop.append("MEG日评：")
+        toadd.append(["MEG", idea[key]])
+    if key == "MEG日评:":
+        topop.append("MEG日评:")
+        toadd.append(["MEG", idea[key]])
+    if key == "PTA日评":
+        topop.append("PTA日评")
+        toadd.append(["PTA", idea[key]])
+    if key == "PTA日评：":
+        topop.append("PTA日评：")
+        toadd.append(["PTA", idea[key]])
+    if key == "PP日评：":
+        topop.append("PP日评：")
+        toadd.append(["PP", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
+    if key == "聚烯烃":
+        topop.append("聚烯烃")
+        toadd.append(["PP", idea[key]])
+        toadd.append(["塑料", idea[key]])
+    if key == "液化石油气":
+        topop.append("液化石油气")
+        toadd.append(["LPG", idea[key]])
+    if key == "黄金&白银":
+        topop.append("黄金&白银")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -2163,7 +2238,9 @@ hundungong_idea = idea
 with open('混沌天成能化.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","LPG","MEG日评:","PTA日评：","PTA日评","原油","PP日评：","PTA/MEG"]
+items = ["纯碱玻璃","橡胶","PVC","LLDPE日评","尿素","甲醇","MEG日评：","LPG","MEG日评:",
+         "PTA日评：","PTA日评","原油","PP日评：","PTA/MEG","PTA","短纤","乙二醇","聚烯烃","苯乙烯","液化石油气","沥青", "纸浆",
+         "沪镍", "工业硅", "沪铝", "沪铅", "沪铜&国际铜", "沪锌", "螺纹&热卷","纯碱","玻璃","黄金&白银","白糖","鸡蛋","红枣","国债","股指","苹果"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2209,10 +2286,32 @@ for key in idea:
     if key == "LLDPE日评":
         topop.append("LLDPE日评")
         toadd.append(["塑料", idea[key]])
+    if key == "液化石油气":
+        topop.append("液化石油气")
+        toadd.append(["LPG", idea[key]])
     if key == "PTA/MEG":
         topop.append("PTA/MEG")
         toadd.append(["PTA", idea[key]])
         toadd.append(["MEG", idea[key]])
+    if key == "沪镍":
+        topop.append("沪镍")
+        toadd.append(["镍", idea[key]])
+    if key == "沪铝":
+        topop.append("沪铝")
+        toadd.append(["铝", idea[key]])
+    if key == "沪铅":
+        topop.append("沪铅")
+        toadd.append(["铅", idea[key]])
+    if key == "沪锌":
+        topop.append("沪锌")
+        toadd.append(["锌", idea[key]])
+    if key == "沪铜&国际铜":
+        topop.append("沪铜&国际铜")
+        toadd.append(["铜", idea[key]])
+    if key == "螺纹&热卷":
+        topop.append("螺纹&热卷")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
     if key == "PTA":
         toadd.append(["短纤", idea[key]])
     if key == "MEG日评：":
@@ -2230,6 +2329,17 @@ for key in idea:
     if key == "PP日评：":
         topop.append("PP日评：")
         toadd.append(["PP", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
+    if key == "聚烯烃":
+        topop.append("聚烯烃")
+        toadd.append(["PP", idea[key]])
+        toadd.append(["塑料", idea[key]])
+    if key == "黄金&白银":
+        topop.append("黄金&白银")
+        toadd.append(["黄金", idea[key]])
+        toadd.append(["白银", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -2356,7 +2466,7 @@ with open('弘业.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","铁合金","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
-         "螺纹&热卷","铁矿石","焦煤&焦炭","动力煤","PVC","油脂","豆一","油料","工业硅","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指"]
+         "螺纹&热卷","铁矿石","焦煤&焦炭","动力煤","PVC","油脂","豆一","油料","工业硅","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指","沪铜"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2437,6 +2547,9 @@ for key in idea:
         toadd.append(["镍", idea[key]])
     if key == "沪铜&国际铜":
         topop.append("沪铜&国际铜")
+        toadd.append(["铜", idea[key]])
+    if key == "沪铜":
+        topop.append("沪铜")
         toadd.append(["铜", idea[key]])
     if key == "沪铝":
         topop.append("沪铝")
