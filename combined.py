@@ -2626,6 +2626,13 @@ for l in lines:
         if stripped_first in items:
             next = True
             prev_item = stripped_first
+    if "（孙伟涛" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("（孙伟涛")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("（孙伟涛")[0]
+        next = False
+        continue
     if ("从业资格号" in stripped) and next:
         if prev_item.strip("：") in idea:
             idea[prev_item.strip()] += l.strip().strip('\n').split("从业资格号")[0]
