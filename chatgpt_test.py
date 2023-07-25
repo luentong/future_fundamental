@@ -63,10 +63,11 @@ def chatgpt(input):
             elif "，" in model_response.split("：")[1]:
                 if is_number(model_response.split("：")[1].split("，")[0]):
                     return model_response.split("：")[1].split("，")[0]
+        elif is_number(model_response):
+            return model_response
         else:
             return ""
-    elif is_number(model_response):
-        return model_response
+
     else:
         # print("Request failed with status code:", response.status_code)
         # print(response.json())
