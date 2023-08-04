@@ -47,5 +47,5 @@ def huaan_idea():
                 # print(res2)
                 result[i] = res1+res2
 
-    print(result)
+    #print(result)
     return result
