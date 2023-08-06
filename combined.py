@@ -1,5 +1,9 @@
 import keywords
 import huaan
+from datetime import date
+import pdf
+path = './所长早读' + str(date.today()) + '.pdf'
+path = './所长早读20230731.pdf'
 ############################################华安开始
 idea = huaan.huaan_idea()
 #idea = {}
@@ -157,44 +161,71 @@ else:
 
 ###########################################国泰开始
 
-with open('国泰君安.txt', encoding='gbk') as f:
-    lines = f.readlines()
 idea = {}
-for l in lines:
-    if ':' in l:
-        idea[l.split(":")[0]] = l.split(":")[1].strip('\n')
-    if '：' in l:
-        idea[l.split("：")[0]] = l.split("：")[1].strip('\n')
+try:
+    res = pdf.pdf_to_string(path)
+except:
+    res = ""
+items = ["白银","铜","氧化铝","锌","铅","不锈钢","锡","工业硅","铁矿石","热轧卷板","锰硅","焦煤","动力煤","玻璃","MEG","橡胶","沥青","LLDPE","PP","纸浆","甲醇","尿素","苯乙烯","纯碱","LPG","短纤",
+         "PVC","低硫燃料油","豆油","豆一","玉米","白糖","棉花","鸡蛋","生猪","花生"]
+
+res_string = ""
+for i in res:
+    res_string += str(res[i])
+
+res_string = res_string.split(".................................................................................................................................")[-1]
+
+for i in items:
+    if i+"：" in res_string:
+        sub = "".join(res_string.split(i+"：")[1:])
+        if "观点及建议" in sub:
+            to_add = sub.split("观点及建议")[1].split("商品研究")[0]
+            to_add = to_add.strip("").strip(" ")
+            if to_add.startswith("】，\', \'"):
+                to_add = to_add.split("】，\', \'")[1]
+            elif to_add.startswith("】\', \'"):
+                to_add = to_add.split("】\', \'")[1]
+            elif to_add.startswith("】\'][\'"):
+                to_add = to_add.split("】\'][\'")[1]
+            if to_add.endswith("\', \'【"):
+                to_add = "".join(to_add.split("\', \'【")[:-1])
+            if not to_add.startswith("请务必阅读") and len(to_add.split("期货研究")) >= 2:
+                to_add = "期货研究".join(to_add.split("期货研究")[0:1])
+            elif to_add.startswith("请务必阅读") and len(to_add.split("期货研究")) >= 2:
+                to_add = "期货研究".join(to_add.split("期货研究")[0:2])
+            idea[i] = to_add
 
 topop = []
 toadd = []
 for key in idea:
-    if key == "铁矿石":
-        topop.append("铁矿石")
-        toadd.append(["铁矿", idea[key]])
-    if key == "螺纹钢":
-        topop.append("螺纹钢")
-        toadd.append(["螺纹", idea[key]])
-    if key == "期指":
-        topop.append("期指")
-        toadd.append(["股指", idea[key]])
-    if key == "期债":
-        topop.append("期债")
-        toadd.append(["国债", idea[key]])
+    if key == "不锈钢":
+        toadd.append(["镍", idea[key]])
     if key == "热轧卷板":
         topop.append("热轧卷板")
+        toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
+    if key == "锰硅":
+        toadd.append(["硅铁", idea[key]])
+    if key == "豆油":
+        toadd.append(["棕榈油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+    if key == "白银":
+        toadd.append(["黄金", idea[key]])
+    if key == "MEG":
+        toadd.append(["PTA", idea[key]])
     if key == "LLDPE":
         topop.append("LLDPE")
         toadd.append(["塑料", idea[key]])
     if key == "低硫燃料油":
         topop.append("低硫燃料油")
         toadd.append(["低硫燃油", idea[key]])
-    if key == "燃料油":
-        topop.append("燃料油")
         toadd.append(["燃油", idea[key]])
-    if key == "豆粕":
-        toadd.append(["菜粕", idea[key]])
+    if key == "豆一":
+        toadd.append(["豆粕", idea[key]])
+    if key == "氧化铝":
+        toadd.append(["铝", idea[key]])
+    if key == "焦煤":
+        toadd.append(["焦炭", idea[key]])
 
 for i in topop:
     idea.pop(i)
@@ -649,7 +680,6 @@ for l in lines:
         if "期权" in l:
             l = l.split("期权")[0]
             next = False
-        stripped = stripped.split("基本面看")[0]
         if prev_item in idea:
             if prev_item == "甲醇":
                 idea[prev_item] += stripped.strip('\n').split("基本面看看")[0]
