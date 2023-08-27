@@ -73,7 +73,7 @@ def parsepdf(path_or_url, mode=1, url_params=None, proxies=None, save_as=None):
 		return pdf_text, pdf_tables
 
 def GetPdfData(path):
-	path = './所长早读20230731.pdf'
+	print("path???????",path)
 	lines = parsepdf(path, mode=1)
 	lines = lines.replace('\xa0','')
 	i = 0
