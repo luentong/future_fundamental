@@ -23,15 +23,15 @@ def huaan_idea():
 
         # print(response)
         if category == 1:
-            items = ["股指","国债"]
+            items = ["股指","国债","集运指数（欧线）"]
         elif category == 2:
-            items = ["工业硅","铜","铝","锡"]
+            items = ["工业硅","铜","铝","锡","碳酸锂"]
         elif category == 3:
             items = ["黑色金属","不锈钢镍","焦煤焦炭"]
         elif category == 4:
             items = ["PP","塑料","PVC","PTA乙二醇"]
         elif category == 5:
-            items = ["豆粕菜粕","油脂","淀粉玉米","棉花棉纱","生猪"]
+            items = ["豆粕菜粕","油脂","淀粉玉米","棉花棉纱","生猪","鸡蛋"]
 
         for i in items:
             if i in response:
