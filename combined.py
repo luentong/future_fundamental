@@ -606,7 +606,7 @@ for i in guangda_old:
 guangda_idea = idea
 
 ###########################################上海中期期货
-with open('上海中期.txt',encoding="gbk") as f:
+with open('上海中期.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["贵金属","铜(CU)","螺纹(RB)","热卷(HC)","铝(AL)","锌(ZN)","铅(PB)","镍(NI)","不锈钢(SS)","铁矿石(I)",
@@ -852,7 +852,7 @@ wukuang_idea = idea
 ###########################################倍特期货
 
 
-with open('倍特.txt',encoding='gbk') as f:
+with open('倍特.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["金银","铜","尿素","橡胶","苹果","豆粕","螺纹钢","鸡蛋","油脂","花生","原油","工业硅"]
@@ -940,7 +940,7 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt') as f:
+with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","PX","贵金属"]
@@ -1078,7 +1078,7 @@ yinhe_idea = idea
 # -*- coding: gbk -*-
 import keywords
 
-with open('银河农产品.txt') as f:
+with open('银河农产品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类"]
@@ -1165,7 +1165,7 @@ yinhenong_idea = idea
 
 import keywords
 
-with open('广发.txt') as f:
+with open('广发.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货：","国债期货：","贵金属：","铜：","锌：","铝：","镍：","不锈钢：","锡：","碳酸锂：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：",
@@ -1314,7 +1314,7 @@ guangfa_idea = idea
 
 ############################################广州开始
 
-with open('广州.txt') as f:
+with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅"]
@@ -1534,7 +1534,7 @@ guoxin_idea = idea
 
 ##########################################永安开始
 
-with open('永安.txt') as f:
+with open('永安.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","钢 材","【铝】","【铜】","【锌】","【镍】","【不锈钢】","铁 矿 石","动 力 煤","ENERGY","焦煤焦炭","白糖","纸 浆","PULP","【原油】","【沥青】","橡胶","【ＬＰＧ】","【LPG】","尿 素",
@@ -1676,7 +1676,7 @@ yongan_idea = idea
 ##########################################海通开始
 
 
-with open('海通.txt',encoding='gbk') as f:
+with open('海通.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铝","钢材","油脂","焦煤焦炭","螺纹钢、铁矿石","粕类","铁矿","油脂油料","豆粕","股指","国债","贵金属","铜","镍","锡","铁矿石","锰硅","硅铁","橡胶","玻璃","纯碱","原油","白糖","蛋白粕","油脂","苹果","生猪","苹果","生猪","鸡蛋"]
@@ -1793,7 +1793,7 @@ haitong_idea = idea
 ###########################################国都开始
 
 
-with open('国都.txt', encoding='gbk') as f:
+with open('国都.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["图片豆粕","豆粕","PTA","涤纶短纤","橡胶","棉花","豆类","橡胶","油脂","白糖","玉米、淀粉","生猪","铁矿石","螺纹钢","热卷"]
@@ -1870,7 +1870,7 @@ guodu_idea = idea
 ###########################################鲁证期货
 
 
-with open('鲁证.txt') as f:
+with open('鲁证.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","玉米系","红枣","花生","生猪","原油","塑料","沥青","橡胶","甲醇",
@@ -2703,7 +2703,7 @@ hongye_idea = idea
 
 ###########################################整合开始
 
-with open('东吴.txt') as f:
+with open('东吴.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶","PX","铝/氧化铝","镍/不锈钢",
@@ -2941,7 +2941,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt', encoding='gbk') as f:
+with open('中洲.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂","美豆&豆粕"]
@@ -3243,7 +3243,7 @@ yide_idea = idea
 
 ###########################################中泰开始#################################################################
 
-with open('中泰.txt') as f:
+with open('中泰.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","红枣","花生","生猪","原油","塑料","橡胶","甲醇","纯碱","沥青","PVC","苯乙烯","聚酯产业链","液化石油气","铝和氧化铝","镍",
