@@ -81,6 +81,8 @@ huaan_idea = idea
 
 with open('中信.txt') as f:
     lines = f.readlines()
+    lines = []
+
 if not lines:
     zhongxin_old = {}
     citrix_idea = {}
@@ -2701,7 +2703,7 @@ for i in hongye_old:
 
 hongye_idea = idea
 
-###########################################整合开始
+###########################################东吴开始
 
 with open('东吴.txt', encoding='utf-8') as f:
     lines = f.readlines()
