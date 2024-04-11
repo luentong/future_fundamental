@@ -946,7 +946,7 @@ beite_idea = idea
 with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","EB","PX","贵金属"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2706,7 +2706,7 @@ hongye_idea = idea
 
 ###########################################东吴开始
 
-with open('东吴.txt', encoding='utf-8') as f:
+with open('东吴.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶","PX","铝/氧化铝","镍/不锈钢",
