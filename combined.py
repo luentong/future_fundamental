@@ -1084,7 +1084,8 @@ import keywords
 with open('银河农产品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类"]
+items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类","瓦楞纸"]
+
 next = False
 prev_item = ""
 for l in lines:
@@ -1124,6 +1125,9 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "瓦楞纸":
+        topop.append("瓦楞纸")
+        toadd.append(["纸浆", idea[key]])
     if key == "棉花-棉纱":
         topop.append("棉花-棉纱")
         toadd.append(["棉花", idea[key]])
