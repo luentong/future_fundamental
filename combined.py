@@ -946,7 +946,7 @@ beite_idea = idea
 with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1024,6 +1024,9 @@ for key in idea:
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
+    if key == "航运板块":
+        topop.append("航运板块")
+        toadd.append(["集运", idea[key]])
     if key == "镍及不锈钢":
         topop.append("镍及不锈钢")
         toadd.append(["镍", idea[key]])
@@ -2562,7 +2565,7 @@ hundunagri_idea = idea
 with open('弘业.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","铁合金","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
+items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","集运指数欧线","铁合金","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
          "螺纹&热卷","铁矿石","焦煤&焦炭","碳酸锂","动力煤","烧碱","聚乙烯","PX","聚丙烯","钢材","PVC","油脂","豆一","油料","工业硅","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指"]
 next = False
 prev_item = ""
@@ -2604,6 +2607,9 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "集运指数欧线":
+        topop.append("集运指数欧线")
+        toadd.append(["集运", idea[key]])
     if key == "棉花&棉纱":
         topop.append("棉花&棉纱")
         toadd.append(["棉花", idea[key]])
