@@ -497,6 +497,10 @@ for key in idea:
         toadd.append(["PTA", idea[key]])
         toadd.append(["PX", idea[key]])
         toadd.append(["MEG", idea[key]])
+    if key == "纯碱玻璃":
+        topop.append("纯碱玻璃")
+        toadd.append(["玻璃", idea[key]])
+        toadd.append(["纯碱", idea[key]])
     if key == "纯碱&玻璃":
         topop.append("纯碱&玻璃")
         toadd.append(["玻璃", idea[key]])
@@ -741,13 +745,6 @@ for l in lines:
     if stripped in items:
         next = True
         prev_item = stripped
-        continue
-    if ("基本面看" in stripped) and next:
-        if prev_item.strip("：") in idea:
-            idea[prev_item.strip()] += l.strip().strip('\n').split("基本面看")[0]
-        else:
-            idea[prev_item.strip()] = l.strip().strip('\n').split("基本面看")[0]
-        next = False
         continue
     if next:
         if "期权" in l:
@@ -1239,9 +1236,9 @@ for l in lines:
                 break
     if next:
         if prev_item.strip("：") in idea:
-            idea[prev_item.strip("：") ] += l.strip().strip('\n').split("【")[0].split("[")[0]
+            idea[prev_item.strip("：") ] += l.strip().strip('\n')
         else:
-            idea[prev_item.strip("：") ] = l.strip().strip('\n').split("【")[0].split("[")[0]
+            idea[prev_item.strip("：") ] = l.strip().strip('\n')
 
 
 topop = []
@@ -1327,21 +1324,37 @@ guangfa_idea = idea
 with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅"]
+items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉",
+         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖"]
 next = False
 prev_item = ""
 for l in lines:
-    if "：" in l and len(l) <= 30 and l.split('：')[0] in items:
-        idea[l.split('：')[0]] = l.split('：')[1]
-    else:
-        if ":" in l and len(l) <= 30 and l.split(':')[0] in items:
-            idea[l.split(':')[0]] = l.split(':')[1]
+    if "：" in l and len(l) <= 40 and l.split('：')[0] in items:
+        idea[l.split('：')[0]] = l.split('：')[1].replace('\n',"")
+        prev_item = l.split('：')[0]
+        next = True
+    elif ":" in l and len(l) <= 40 and l.split(':')[0] in items:
+        idea[l.split(':')[0]] = l.split(':')[1].replace('\n',"")
+        prev_item = l.split(':')[0]
+        next = True
+    elif next:
+        idea[prev_item] += l.replace('\n',"")
+
+
+
 
 
 topop = []
 toadd = []
 for key in idea:
     ######不做了
+    if key == "畜禽养殖":
+        topop.append("畜禽养殖")
+        toadd.append(["生猪", idea[key]])
+        toadd.append(["鸡蛋", idea[key]])
+    if key == "集运指数":
+        topop.append("集运指数")
+        toadd.append(["集运", idea[key]])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -1373,6 +1386,10 @@ for key in idea:
         topop.append("聚烯烃")
         toadd.append(["PP", idea[key]])
         toadd.append(["塑料", idea[key]])
+    if key == "玉米与淀粉":
+        topop.append("玉米与淀粉")
+        toadd.append(["玉米", idea[key]])
+        toadd.append(["淀粉", idea[key]])
     if key == "聚酯":
         topop.append("聚酯")
         toadd.append(["PTA", idea[key]])
@@ -3067,7 +3084,7 @@ with open('一德.txt', encoding='gbk') as f:
 idea = {}
 items = ["期指","期债","黄金/白银","贵金属","螺纹/热卷","螺纹/热卷(RB2310/HC2310)","螺纹/热卷(RB2305/HC2305)","煤焦","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
          "沪铅","苹果","红枣","鸡蛋","PX","郑糖","外糖","烧碱","沥青","碳酸锂","生猪","燃料油","集运指数","锌","白糖","EC","硅","甲醇","PVC","PTA","MEG","集运指数",
-         "尿素","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油","工业硅","沪锡","锰硅/硅铁","钢矿","焦煤/焦炭"]
+         "尿素","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油","工业硅","沪锡","锰硅/硅铁","钢矿","焦煤/焦炭","合金"]
 
 
 next = False
@@ -3178,6 +3195,10 @@ for key in idea:
         toadd.append(["螺纹", idea[key]])
         toadd.append(["热卷", idea[key]])
         toadd.append(["铁矿", idea[key]])
+    if key == "合金":
+        topop.append("合金")
+        toadd.append(["锰硅", idea[key]])
+        toadd.append(["硅铁", idea[key]])
     if key == "锰硅/硅铁":
         topop.append("锰硅/硅铁")
         toadd.append(["锰硅", idea[key]])
