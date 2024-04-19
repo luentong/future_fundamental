@@ -5,7 +5,7 @@ import pdf
 path = './所长早读_' + str(date.today()) + '.pdf'
 print("path:", path)
 ############################################华安开始
-idea = huaan.huaan_idea()
+#idea = huaan.huaan_idea()
 idea = {}
 huaan_old = {}
 for i in idea:
