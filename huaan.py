@@ -11,6 +11,7 @@ def huaan_idea():
         url = "http://www.haqh.com/index.php?m=content&c=index&a=lists&catid=129&fenlei=" + str(category) + "&date=" + str(date_today)
         myParams = {"key":"", "username":""}
         response = requests.get(url=url, params=myParams).content.decode("utf-8")
+        print("response", response)
         response = re.sub('\xa0;\xa9\ufe0f', '',response)
         response = re.sub('\xa0', '',response)
         response = re.sub('\ufeff', '',response)

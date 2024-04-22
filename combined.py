@@ -2,6 +2,11 @@ import keywords
 import huaan
 from datetime import date
 import pdf
+
+import io
+import sys
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='gb18030')
 path = './所长早读_' + str(date.today()) + '.pdf'
 print("path:", path)
 ############################################华安开始
@@ -943,7 +948,7 @@ beite_idea = idea
 with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
-items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属"]
+items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","电解铝","氧化铝","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素","动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1013,6 +1018,9 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
+    if key == "电解铝":
+        topop.append("电解铝")
+        toadd.append(["铝", idea[key]])
     if key == "焦煤焦炭":
         topop.append("焦煤焦炭")
         toadd.append(["焦煤", idea[key]])
