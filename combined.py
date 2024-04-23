@@ -6,7 +6,7 @@ import pdf
 import io
 import sys
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='gb18030')
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='gb18030')
 path = './所长早读_' + str(date.today()) + '.pdf'
 print("path:", path)
 ############################################华安开始
