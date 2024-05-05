@@ -6,7 +6,7 @@ import pdf
 import io
 import sys
 
-# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='gb18030')
+#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 path = './所长早读_' + str(date.today()) + '.pdf'
 print("path:", path)
 ############################################华安开始
@@ -1333,7 +1333,7 @@ with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶",
-         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖"]
+         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂"]
 next = False
 prev_item = ""
 for l in lines:
