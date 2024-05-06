@@ -2744,7 +2744,7 @@ hongye_idea = idea
 
 ###########################################东吴开始
 
-with open('东吴.txt', encoding='utf-8') as f:
+with open('东吴.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["螺卷","铁矿","双焦","双硅","原油","沥青","LPG","甲醇","PVC","天然橡胶","PX","铝/氧化铝","镍/不锈钢",
