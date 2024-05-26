@@ -1,8 +1,10 @@
+#coding=gb2312
+
 import keywords
-with open('华泰.txt',encoding='utf-8') as f:
+with open('华泰.txt',encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指期货","航运","国债期货","原油","原油","燃料油","液化石油气","石油沥青","PX、PTA、PF","甲醇",
+items = ["股指期货","航运","国债期货","原油","燃料油","液化石油气","石油沥青","PX、PTA、PF","甲醇",
          "聚烯烃","EG","EB","尿素","天然橡胶与合成橡胶","氯碱","PVC","烧碱","贵金属",
          "铜","锌","镍不锈钢","铝","铅","工业硅","碳酸锂","钢材","铁矿","双焦","玻璃纯碱","双硅",
          "油脂","大豆观点","花生观点","粕类观点","玉米观点","生猪观点","鸡蛋观点","苹果观点","红枣观点","棉花观点","纸浆观点","白糖观点"]
@@ -12,9 +14,9 @@ for l in lines:
     stripped = l.strip().strip('\n')
     if stripped == "":
         continue
-    if stripped in items:
+    if "：" in stripped and stripped.split("：")[0] in items:
         next = True
-        prev_item = stripped
+        prev_item = stripped.split("：")[0]
         continue
     if l.startswith('银河期货') and stripped not in items:
         next = False
@@ -31,6 +33,23 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "PX、PTA、PF":
+        topop.append("PX、PTA、PF")
+        toadd.append(["PX", idea[key]])
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
+    if key == "石油沥青":
+        topop.append("石油沥青")
+        toadd.append(["沥青", idea[key]])
+    if key == "液化石油气":
+        topop.append("液化石油气")
+        toadd.append(["LPG", idea[key]])
+    if key == "燃料油":
+        topop.append("燃料油")
+        toadd.append(["燃油", idea[key]])
+    if key == "国债期货":
+        topop.append("国债期货")
+        toadd.append(["国债", idea[key]])
     if key == "股指期货":
         topop.append("股指期货")
         toadd.append(["股指", idea[key]])

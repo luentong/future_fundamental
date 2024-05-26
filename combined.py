@@ -302,6 +302,11 @@ for key in idea:
         topop.append("PVC&烧碱")
         toadd.append(["PVC", idea[key]])
         toadd.append(["烧碱", idea[key]])
+    if key == "PX&PTA&短纤":
+        topop.append("PX&PTA&短纤")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["PX", idea[key]])
+        toadd.append(["短纤", idea[key]])
     if key == "PTA&PX&乙二醇&短纤":
         topop.append("PTA&PX&乙二醇&短纤")
         toadd.append(["MEG", idea[key]])
@@ -495,7 +500,15 @@ for l in lines:
 
 
 for key in idea:
-
+    if key == "聚乙烯":
+        topop.append("聚乙烯")
+        toadd.append(["塑料", idea[key]])
+    if key == "聚氯乙烯":
+        topop.append("聚氯乙烯")
+        toadd.append(["PVC", idea[key]])
+    if key == "聚丙烯":
+        topop.append("聚丙烯")
+        toadd.append(["PP", idea[key]])
     if key == "PPX&PTA&MEG":
         topop.append("PPX&PTA&MEG")
         toadd.append(["短纤", idea[key]])
@@ -945,11 +958,11 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt', encoding='utf-8') as f:
+with open('银河.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","电解铝","氧化铝","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素",
-         "动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属","短纤","苯乙烯","乙二醇"]
+         "动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","贵金属","短纤","苯乙烯","乙二醇","液化气"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1019,6 +1032,9 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
+    if key == "液化气":
+        topop.append("液化气")
+        toadd.append(["LPG", idea[key]])
     if key == "电解铝":
         topop.append("电解铝")
         toadd.append(["铝", idea[key]])
@@ -1093,7 +1109,7 @@ yinhe_idea = idea
 # -*- coding: gbk -*-
 import keywords
 
-with open('银河农产品.txt', encoding='utf-8') as f:
+with open('银河农产品.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类","瓦楞纸"]
@@ -1219,18 +1235,18 @@ for l in lines:
             idea["纯碱"] += stripped
         else:
             idea["纯碱"] = stripped
-        prev_item = "纯碱："
+        prev_item = "纯碱"
         continue
     if "玻璃：" in stripped:
         if "玻璃" in idea:
             idea["玻璃"] += stripped
         else:
             idea["玻璃"] = stripped
-        prev_item = "玻璃："
+        prev_item = "玻璃"
         continue
     if "橡胶：" in stripped:
         idea["橡胶"] = stripped
-        prev_item = "橡胶："
+        prev_item = "橡胶"
         next = True
         continue
     if stripped in items:
@@ -1260,10 +1276,14 @@ for key in idea:
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
         toadd.append(["白银", idea[key]])
-    if key == "玻璃":
-        topop.append("玻璃")
-    if key == "纯碱":
-        topop.append("纯碱")
+    if key == "玻璃：":
+        topop.append("玻璃：")
+    if key == "纯碱：":
+        topop.append("纯碱：")
+    if key == "纯碱:":
+        topop.append("纯碱:")
+    if key == "玻璃:":
+        topop.append("玻璃:")
     if key == "油脂":
         topop.append("油脂")
         toadd.append(["豆油", idea[key]])
@@ -2537,7 +2557,9 @@ for key in idea:
     if key == "白  糖":
         topop.append("白  糖")
         toadd.append(["白糖", idea[key]])
-
+    if key == "棉  花":
+        topop.append("棉  花")
+        toadd.append(["棉花", idea[key]])
     if key == "油脂油料":
         topop.append("油脂油料")
         toadd.append(["豆油", idea[key]])
@@ -2599,7 +2621,7 @@ with open('弘业.txt', encoding='gbk') as f:
 idea = {}
 items = ["原油","PTA","乙二醇","短纤","聚烯烃","液化石油气","集运指数欧线","铁合金","沥青","甲醇","苯乙烯","橡胶","玻璃","纯碱","尿素","纸浆","黄金&白银","沪镍","沪铜&国际铜","沪铝","沪锌","沪铅",
          "螺纹&热卷","铁矿石","焦煤&焦炭","碳酸锂","动力煤","烧碱","聚乙烯","PX","聚丙烯","钢材","沪铜&国际铜 ",
-         "PVC","油脂","豆一","油料","工业硅","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指"]
+         "PVC","油脂","豆一","油料","工业硅","花生","玉米&淀粉","棉花&棉纱","生猪","鸡蛋","白糖","苹果","红枣","国债","股指","玉米、淀粉"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2640,6 +2662,10 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "玉米、淀粉":
+        topop.append("玉米、淀粉")
+        toadd.append(["玉米", idea[key]])
+        toadd.append(["淀粉", idea[key]])
     if key == "集运指数欧线":
         topop.append("集运指数欧线")
         toadd.append(["集运", idea[key]])
@@ -2752,7 +2778,7 @@ hongye_idea = idea
 
 ###########################################东吴开始
 
-with open('东吴.txt', encoding='utf-8') as f:
+with open('东吴.txt', encoding='gbk') as f:
 #with open('东吴.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
@@ -2991,7 +3017,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt', encoding='utf-8') as f:
+with open('中洲.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂","美豆&豆粕"]
@@ -3297,7 +3323,7 @@ yide_idea = idea
 
 ###########################################中泰开始#################################################################
 
-with open('中泰.txt', encoding='utf-8') as f:
+with open('中泰.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指期货","国债期货","棉花","白糖","油脂油料","鸡蛋","苹果","红枣","花生","生猪","原油","塑料","橡胶","甲醇","纯碱","沥青","PVC","苯乙烯","聚酯产业链","液化石油气","铝和氧化铝","镍",
