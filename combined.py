@@ -18,6 +18,7 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+
     if key == "集运指数（欧线）":
         topop.append("集运指数（欧线）")
         toadd.append(["集运", idea[key]])
@@ -1206,7 +1207,7 @@ idea = {}
 items = ["股指期货：","国债期货：","贵金属：","铜：","锌：","铝：","镍：","不锈钢：","锡：","碳酸锂：","钢材：","铁矿石：","焦炭：","焦煤：","动力煤：","豆粕：",
          "油脂：","生猪：","玉米：","白糖：","棉花：","鸡蛋：","花生：","红枣：","LLDPE:","PP:","氧化铝：","硅锰：",
          "原油：","沥青：","PTA：","PX：","乙二醇：","烧碱","燃料油：","LPG：","短纤：","苯乙烯：","LLDPE：","PP：","尿素:","PVC：","硅铁：","硅锰：","甲醇：",
-         "纯碱：","玻璃：","玻璃:","纯碱:","橡胶：","纸浆：","苹果：","工业硅","工业硅：","LPG:","粕类："]
+         "纯碱：","玻璃：","玻璃:","纯碱:","橡胶：","纸浆：","苹果：","工业硅","工业硅：","LPG:","粕类：","集运指数"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1272,6 +1273,9 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
+    if key == "集运指数":
+        topop.append("集运指数")
+        toadd.append(["集运", idea[key]])
     if key == "贵金属":
         topop.append("贵金属")
         toadd.append(["黄金", idea[key]])
@@ -3130,7 +3134,7 @@ with open('一德.txt', encoding='gbk') as f:
 idea = {}
 items = ["期指","期债","黄金/白银","贵金属","螺纹/热卷","螺纹/热卷(RB2310/HC2310)","螺纹/热卷(RB2305/HC2305)","煤焦","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
          "沪铅","苹果","红枣","鸡蛋","PX","郑糖","外糖","烧碱","沥青","碳酸锂","生猪","燃料油","集运指数","锌","白糖","EC","硅","甲醇","PVC","PTA","MEG","集运指数",
-         "尿素","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油","工业硅","沪锡","锰硅/硅铁","钢矿","焦煤/焦炭","合金"]
+         "尿素","纯碱","玻璃","塑料/PP","苯乙烯","聚酯","原油","工业硅","沪锡","锰硅/硅铁","钢矿","焦煤/焦炭","合金","黑色品种"]
 
 
 next = False
@@ -3145,6 +3149,10 @@ for l in lines:
         else:
             idea[prev_item.strip()] = l.strip().strip('\n').split("本研究报告由")[0]
         next = False
+        continue
+    if '黑色品种' in stripped:
+        prev_item = '黑色品种'
+        next = True
         continue
     if '：' in stripped:
         stripped_first = l.strip().strip('\n').split('：')[0].strip(" ")
@@ -3187,6 +3195,13 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "黑色品种":
+        topop.append("黑色品种")
+        toadd.append(["螺纹", idea[key]])
+        toadd.append(["热卷", idea[key]])
+        toadd.append(["焦煤", idea[key]])
+        toadd.append(["焦炭", idea[key]])
+        toadd.append(["铁矿", idea[key]])
     if key == "EC":
         topop.append("EC")
         toadd.append(["集运", idea[key]])
