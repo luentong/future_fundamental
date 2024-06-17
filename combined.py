@@ -489,7 +489,7 @@ for l in lines:
         else:
             idea[prev.strip()] = l.strip().strip('\n').split("后期关注")[0]
         continue
-    if len(l) < 15 and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "小结" not in l\
+    if len(l) < 25 and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "小结" not in l\
             and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l:
         a1 = l.replace("【", "").split("：")[0]
         a2 = a1.replace("】", "")
