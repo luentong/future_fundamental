@@ -2922,7 +2922,8 @@ dongwu_idea = idea
 with open('华联.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","铜","铝","橡胶","液化气","原油","锌","PVC","甲醇","工业硅","聚烯烃","螺纹钢","玻璃","焦煤","煤焦","铁矿石","白糖","鸡蛋","生猪","油脂","饲料"]
+items = ["股指","国债","铜","铝","橡胶","液化气","原油","锌","PVC","甲醇","工业硅","聚烯烃","锡","铁合金","碳酸锂",
+         "螺纹钢","玻璃","焦煤","黄金","煤焦","铁矿石","白糖","鸡蛋","镍","生猪","油脂","饲料","集运指数"]
 next = False
 prev_item = ""
 for l in lines:
@@ -2961,6 +2962,13 @@ topop = []
 toadd = []
 for key in idea:
     ###不做了
+    if key == "铁合金":
+        topop.append("铁合金")
+        toadd.append(["硅铁", idea[key]])
+        toadd.append(["锰硅", idea[key]])
+    if key == "集运指数":
+        topop.append("集运指数")
+        toadd.append(["集运", idea[key]])
     if key == "液化气":
         topop.append("液化气")
         toadd.append(["LPG", idea[key]])
