@@ -185,23 +185,37 @@ items = ["白银","铜","氧化铝","锌","铅","不锈钢","锡","工业硅","�
 
 prev_item = ""
 res_string = ""
+started = False
 for res_index in res:
     print("Res:", res[res_index])
     res_string = ""
     for res_sub in res[res_index]:
         res_string += str(res_sub)
+    print("Res_string", type(res_string))
 #
 # res_string = res_string.split(".................................................................................................................................")[-1]
-
+    if not started and "花生：" not in res_string:
+        continue
+    if not started and "花生："  in res_string:
+        started = True
     inside = False
     for i in items:
-        print("item:", i)
         #print("res:", res_string)
         if i+"：" in res_string:
-            print("hahaha", i)
             inside = True
+            if prev_item != "" and prev_item in idea:
+                idea[prev_item] += "".join(res_string.split(i+"：")[0])
             prev_item = i
             sub = "".join(res_string.split(i+"：")[1:])
+            if "请务必阅读正文" in sub:
+                sub = sub.split("请务必阅读正文")[0]
+            if "分析师声明作者具有" in sub:
+                sub = sub.split("分析师声明作者具有")[0]
+            if "不应被视为任何投资" in sub:
+                sub = sub.split("不应被视为任何投资")[0]
+            if "个人观点，仅供参" in res_string:
+                sub = sub.split("个人观点，仅供参")[0]
+
             if "观点及建议" in sub:
                 #to_add = sub.split("观点及建议")[1].split("商品研究")[0]
                 to_add = sub.split("观点及建议")[1]
@@ -216,8 +230,29 @@ for res_index in res:
                     to_add = "".join(to_add.split("\', \'【")[:-1])
                 idea[i] = to_add
     if not inside and prev_item != "" and prev_item in idea:
+        print("inside 1")
+        print("不应被视为任何投资" in res_string)
+        if "请务必阅读正文" in res_string:
+            res_string = res_string.split("请务必阅读正文")[0]
+        if "分析师声明作者具有" in res_string:
+            res_string = res_string.split("分析师声明作者具有")[0]
+        if "不应被视为任何投资" in res_string:
+            res_string = res_string.split("不应被视为任何投资")[0]
+        if "个人观点" in res_string:
+            res_string = res_string.split("个人观点")[0]
         idea[prev_item] += res_string
-    elif not inside and prev_item != "":
+
+
+    elif not inside and prev_item != "" and prev_item not in idea:
+        print("inside 2")
+        if "请务必阅读正文" in res_string:
+            res_string = res_string.split("请务必阅读正文")[0]
+        if "分析师声明作者具有" in res_string:
+            res_string = res_string.split("分析师声明作者具有")[0]
+        if "不应被视为任何投资" in res_string:
+            res_string = res_string.split("不应被视为任何投资")[0]
+        if "个人观点" in res_string:
+            res_string = res_string.split("个人观点")[0]
         idea[prev_item] = res_string
 topop = []
 toadd = []
@@ -996,7 +1031,13 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
-
+    if ("想要每个交易日早上" in stripped) and next:
+        if prev_item.strip("：") in items:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("想要每个交易日早上")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("想要每个交易日早上")[0]
+        next = False
+        continue
     if ("以上观点仅供参" in stripped) and next:
         if prev_item.strip("：") in idea:
             idea[prev_item.strip()] += l.strip().strip('\n').split("以上观点仅供参")[0]
@@ -1153,6 +1194,13 @@ prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
+        continue
+    if ("想要每个交易日早上" in stripped) and next:
+        if prev_item.strip("：") in items:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("想要每个交易日早上")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("想要每个交易日早上")[0]
+        next = False
         continue
     if ("套利:" in stripped) and next:
         if prev_item.strip("：") in idea:
@@ -1793,6 +1841,12 @@ for l in lines:
     stripped = l.strip()
     if stripped == "":
         continue
+    if "图片阅读" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("图片阅读")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("图片阅读")[0]
+        next = False
     if stripped == "国都期货研究所":
         break
     if stripped in items:
@@ -1998,6 +2052,13 @@ prev_item = ""
 for l in lines:
     stripped = l.strip()
     if stripped == "":
+        continue
+    if ("重要声明：以上内容及观点仅供参考" in stripped) and next:
+        if prev_item.strip("：") in items:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("重要声明：以上内容及观点仅供参考")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("重要声明：以上内容及观点仅供参考")[0]
+        next = False
         continue
     if "以上评论由分析师" in stripped:
         stripped = stripped.split("以上评论由分析师")[0]
@@ -2578,6 +2639,13 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
+    if "免责声明" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("免责声明")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("免责声明")[0]
+        next = False
+        continue
     if ("从业资格证号" in stripped) and next:
         if prev_item.strip("：") in idea:
             idea[prev_item] += l.strip().strip('\n').split("从业资格证号")[0]
@@ -2747,6 +2815,13 @@ for l in lines:
     stripped = ""
     if "：" in l and l.strip().split("：")[0] in group or ":" in l and l.strip().split(":")[0] in group:
         prev_item = ""
+        next = False
+        continue
+    if "投资咨询业务" in l.strip() and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("投资咨询业务")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("投资咨询业务")[0]
         next = False
         continue
     if "。" in l:
@@ -3103,6 +3178,13 @@ for l in lines:
     stripped = l.strip().strip('\n').strip('【').strip('】')
     if stripped == "":
         continue
+    if ("一德期货研究团队：" in stripped) and next:
+        if prev_item.strip("：") in items:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("一德期货研究团队：")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("一德期货研究团队：")[0]
+        next = False
+        continue
     if ("本研究报告由" in stripped) and next:
         if prev_item.strip("：") in items:
             idea[prev_item.strip()] += l.strip().strip('\n').split("本研究报告由")[0]
@@ -3424,6 +3506,13 @@ for l in lines:
         next = True
         prev_item = stripped.split("：")[0]
         continue
+    if "更多内容" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("更多内容")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("更多内容")[0]
+        next = False
+        continue
     if "观点" in stripped and stripped.split("观点")[0] in items:
         next = True
         prev_item = stripped.split("观点")[0]
@@ -3569,6 +3658,13 @@ for l in lines:
     stripped = l.strip().strip('\n')
     if stripped == "":
         continue
+    if "编辑：刘德勇" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("编辑：刘德勇")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("编辑：刘德勇")[0]
+        next = False
+        continue
     if stripped in items:
         next = True
         prev_item = stripped.split("：")[0]
@@ -3641,6 +3737,13 @@ for l in lines:
     stripped = l.strip().strip('\n')
     if stripped == "":
         continue
+    if ("投资咨询业务资格" in stripped) and next:
+        if prev_item.strip("：") in items:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("投资咨询业务资格")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("投资咨询业务资格")[0]
+        next = False
+        continue
     if "：" in stripped and stripped.split("：")[0] in items:
         next = True
         prev_item = stripped.split("：")[0]
@@ -3707,6 +3810,13 @@ prev_item = ""
 for l in lines:
     stripped = l.strip().strip('\n')
     if stripped == "":
+        continue
+    if "作者栏" in stripped and next:
+        if prev_item.strip("：") in idea:
+            idea[prev_item.strip()] += l.strip().strip('\n').split("作者栏")[0]
+        else:
+            idea[prev_item.strip()] = l.strip().strip('\n').split("作者栏")[0]
+        next = False
         continue
     if "黑色板块" in stripped:
         next = False
