@@ -1,0 +1,75 @@
+#coding=gb2312
+
+import keywords
+with open('»ª°².txt',encoding='gbk') as f:
+    lines = f.readlines()
+idea = {}
+items = ["¹ÉÖ¸","¼¯ÔËÖ¸Êı£¨Å·Ïß£©","»Æ½ğ","Í­","ÂÁ","Ì¼Ëáï®","Ë«½¹","´¿¼î","²£Á§","²»Ğâ¸Ö","»¦Äø","¸Ö²Ä","ËÜÁÏ","PVC","Ö½½¬","ÓÍÖ¬","¶¹ÆÉ","¼¦µ°","ÉúÖí",
+         "ÃŞ»¨"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip().strip('\n')
+    if stripped == "":
+        continue
+    if stripped in items:
+        next = True
+        prev_item = stripped.split("£º")[0]
+        continue
+    if next:
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
+        else:
+            idea[prev_item] = l.strip().strip('\n')
+huaan_old = {}
+for i in idea:
+    huaan_old[i] = idea[i][:]
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "¼¯ÔËÖ¸Êı£¨Å·Ïß£©":
+        topop.append("¼¯ÔËÖ¸Êı£¨Å·Ïß£©")
+        toadd.append(["¼¯ÔË", idea[key]])
+    if key == "Ë«½¹":
+        topop.append("Ë«½¹")
+        toadd.append(["½¹Ãº", idea[key]])
+        toadd.append(["½¹Ì¿", idea[key]])
+    if key == "»¦Äø":
+        topop.append("»¦Äø")
+        toadd.append(["Äø", idea[key]])
+    if key == "¸Ö²Ä":
+        topop.append("¸Ö²Ä")
+        toadd.append(["ÂİÎÆ", idea[key]])
+        toadd.append(["ÈÈ¾í", idea[key]])
+    if key == "ÓÍÖ¬":
+        topop.append("ÓÍÖ¬")
+        toadd.append(["×ØéµÓÍ", idea[key]])
+        toadd.append(["¶¹ÓÍ", idea[key]])
+        toadd.append(["²ËÓÍ", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+huaan_old = {}
+for i in idea:
+    huaan_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in huaan_old:
+    if i in idea:
+        huaan_old[i] = idea[i] + " »ª°² " + huaan_old[i]
+    else:
+        huaan_old[i] = ""
+
+huaan_idea = idea
+for i in idea:
+    print(i)
+    print(idea[i])
+    print(huaan_old[i])

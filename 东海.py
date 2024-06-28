@@ -1,0 +1,89 @@
+#coding=gb2312
+
+import keywords
+with open('¶«º£.txt',encoding='gbk') as f:
+    lines = f.readlines()
+idea = {}
+items = ["¹ÉÖ¸","¸Ö²Ä","Ìú¿óÊ¯","½¹Ì¿/½¹Ãº","¹èÃÌ/¹èÌú","Í­","Îı","Ì¼Ëáï®","ÂÁ","Ğ¿","½ğ/Òø","Ô­ÓÍ","Á¤Çà","PTA",
+         "ÒÒ¶ş´¼","¼×´¼","¾Û±ûÏ©","ËÜÁÏ","ÃÀ¶¹","µ°°×ÆÉ","¶¹²ËÓÍ","×ØéµÓÍ","ÓñÃ×","ÉúÖí","ÃŞ»¨"]
+next = False
+prev_item = ""
+for l in lines:
+    stripped = l.strip().strip('\n')
+    if stripped == "":
+        continue
+    if "¡¾" in stripped and "¡¿" in stripped and stripped.split("¡¿")[0].split("¡¾")[1] in items:
+        next = True
+        prev_item = stripped.split("£º")[0]
+        idea[prev_item] = stripped.split("¡¿")[1]
+        continue
+    if next:
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
+        else:
+            idea[prev_item] = l.strip().strip('\n')
+donghai_old = {}
+for i in idea:
+    donghai_old[i] = idea[i][:]
+
+topop = []
+toadd = []
+for key in idea:
+    if key == "¶¹²ËÓÍ":
+        toadd.append(["¶¹ÓÍ", idea[key]])
+        toadd.append(["²ËÓÍ", idea[key]])
+    if key == "µ°°×ÆÉ":
+        toadd.append(["¶¹ÆÉ", idea[key]])
+    if key == "ÃÀ¶¹":
+        toadd.append(["¶¹Ò»", idea[key]])
+    if key == "¾Û±ûÏ©":
+        toadd.append(["PP", idea[key]])
+    if key == "½¹Ì¿/½¹Ãº":
+        topop.append("½¹Ì¿/½¹Ãº")
+        toadd.append(["½¹Ãº", idea[key]])
+        toadd.append(["½¹Ì¿", idea[key]])
+    if key == "¹èÃÌ/¹èÌú":
+        topop.append("¹èÃÌ/¹èÌú")
+        toadd.append(["¹èÌú", idea[key]])
+        toadd.append(["ÃÌ¹è", idea[key]])
+    if key == "½ğ/Òø":
+        topop.append("½ğ/Òø")
+        toadd.append(["»Æ½ğ", idea[key]])
+        toadd.append(["°×Òø", idea[key]])
+    if key == "Ìú¿óÊ¯":
+        toadd.append(["Ìú¿ó", idea[key]])
+    if key == "ÓÍÖ¬":
+        topop.append("ÓÍÖ¬")
+        toadd.append(["×ØéµÓÍ", idea[key]])
+        toadd.append(["¶¹ÓÍ", idea[key]])
+        toadd.append(["²ËÓÍ", idea[key]])
+    if key == "¸Ö²Ä":
+        topop.append("¸Ö²Ä")
+        toadd.append(["ÂİÎÆ", idea[key]])
+        toadd.append(["ÈÈ¾í", idea[key]])
+
+for i in topop:
+    idea.pop(i)
+for i in toadd:
+    idea[i[0]] = i[1]
+
+donghai_old = {}
+for i in idea:
+    donghai_old[i] = idea[i][:]
+
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in donghai_old:
+    if i in idea:
+        donghai_old[i] = idea[i] + " ¶«º£ " + donghai_old[i]
+    else:
+        donghai_old[i] = ""
+
+donghai_idea = idea
+for i in idea:
+    print(i)
+    print(idea[i])
+    print(donghai_old[i])

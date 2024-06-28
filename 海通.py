@@ -1,61 +1,71 @@
-import keywords
+#coding=gb2312
 
-with open('æµ·é€š.txt',encoding='utf-8') as f:
+import keywords
+with open('º£Í¨.txt',encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["é“","é’¢æé“çŸ¿","æ²¹è„‚","ç„¦ç…¤ç„¦ç‚­","çº¸ æµ†","ã€åŸæ²¹ã€‘","ã€æ²¥é’ã€‘","æ©¡èƒ¶","ã€LPGã€‘","å°¿ ç´ ","è±†ç±»æ²¹è„‚","æ£‰èŠ±","ç™½ ç³–","ç”Ÿ çŒª","ç”ŸçŒª","è±†ç²•","æ¶²åŒ–æ°”","RU","èšçƒ¯çƒƒ","èšé…¯"]
+items = ["¹ÉÖ¸","¼¯ÔËÖ¸Êı£¨Å·Ïß£©","»Æ½ğ","Í­","ÂÁ","Ì¼Ëáï®","Ë«½¹","´¿¼î","²£Á§","»¦Äø","¸Ö²Ä","ËÜÁÏ","PVC","Ö½½¬","¶¹ÆÉ",
+         "¼¦µ°","ÉúÖí","ÃŞ»¨","¹úÕ®","½¹Ì¿","¼×´¼","²»Ğâ¸Ö","ÓÍÖ¬","¼¯×°ÏäÔË¼Û"]
 next = False
 prev_item = ""
 for l in lines:
-    stripped = l.strip()
-    print(stripped)
+    stripped = l.strip().strip('\n')
     if stripped == "":
         continue
-    if stripped in items:
+    if "£º" in stripped and stripped.split("£º")[0] in items:
         next = True
-        prev_item = stripped
+        prev_item = stripped.split("£º")[0]
+        idea[prev_item] = stripped.split("£º")[1]
         continue
     if next:
-        if prev_item.strip("ï¼š") in idea:
-            idea[prev_item.strip()] += l.strip().strip('\n')
+        if prev_item in idea:
+            idea[prev_item] += l.strip().strip('\n')
         else:
-            idea[prev_item.strip()] = l.strip().strip('\n')
-
+            idea[prev_item] = l.strip().strip('\n')
 haitong_old = {}
 for i in idea:
     haitong_old[i] = idea[i][:]
 
-for i in haitong_old:
-    print(i)
-    print(haitong_old[i])
-
 topop = []
 toadd = []
 for key in idea:
-    if not idea[key].isdecimal():
-        idea[key] = keywords.simplify_sent(idea[key])
-    if key == "ç„¦ç…¤ç„¦ç‚­":
-        topop.append("ç„¦ç…¤ç„¦ç‚­")
-        toadd.append(["ç„¦ç…¤", idea[key]])
-        toadd.append(["ç„¦ç‚­", idea[key]])
-    if key == "é’¢æé“çŸ¿":
-        topop.append("é’¢æé“çŸ¿")
-        toadd.append(["é“çŸ¿", idea[key]])
-        toadd.append(["èºçº¹", idea[key]])
-        toadd.append(["çƒ­å·", idea[key]])
-    if key == "æ²¹è„‚":
-        topop.append("æ²¹è„‚")
-        toadd.append(["è±†æ²¹", idea[key]])
-        toadd.append(["èœæ²¹", idea[key]])
-        toadd.append(["æ£•æ¦ˆæ²¹", idea[key]])
+    if key == "¼¯×°ÏäÔË¼Û":
+        topop.append("¼¯×°ÏäÔË¼Û")
+        toadd.append(["¼¯ÔË", idea[key]])
+    if key == "½¹Ì¿":
+        toadd.append(["½¹Ãº", idea[key]])
+    if key == "ÓÍÖ¬":
+        topop.append("ÓÍÖ¬")
+        toadd.append(["×ØéµÓÍ", idea[key]])
+        toadd.append(["¶¹ÓÍ", idea[key]])
+        toadd.append(["²ËÓÍ", idea[key]])
+    if key == "¸Ö²Ä":
+        topop.append("¸Ö²Ä")
+        toadd.append(["ÂİÎÆ", idea[key]])
+        toadd.append(["ÈÈ¾í", idea[key]])
 
 for i in topop:
     idea.pop(i)
 for i in toadd:
     idea[i[0]] = i[1]
 
-haitong_idea = idea
+haitong_old = {}
+for i in idea:
+    haitong_old[i] = idea[i][:]
 
+for key in idea:
+    if not idea[key].isdecimal():
+        idea[key] = keywords.simplify_sent(idea[key])
+
+
+for i in haitong_old:
+    if i in idea:
+        haitong_old[i] = idea[i] + " ¶«º£ " + haitong_old[i]
+    else:
+        haitong_old[i] = ""
+
+haitong_idea = idea
 for i in idea:
     print(i)
     print(idea[i])
+    print(haitong_old[i])
