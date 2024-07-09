@@ -3494,7 +3494,7 @@ with open('华泰.txt',encoding='gbk') as f:
 idea = {}
 items = ["股指期货","航运","国债期货","原油","燃料油","液化石油气","石油沥青","PX、PTA、PF","甲醇","尿素","粕类","玉米","生猪","鸡蛋","苹果","红枣","棉花","纸浆","白糖",
          "聚烯烃","EG","EB","尿素","天然橡胶","PVC","烧碱","贵金属","顺丁橡胶","贵金属","镍不锈钢","钢材","天然橡胶与合成橡胶","氯碱",
-         "铜","锌","镍不锈钢","铝","铅","工业硅","碳酸锂","钢材","铁矿","双焦","玻璃纯碱","双硅","铁矿","大豆","花生","养殖",
+         "铜","锌","镍不锈钢","铝","铅","工业硅","碳酸锂","钢材","铁矿","双焦","玻璃纯碱","双硅","铁矿","大豆","花生","养殖","铁矿石","PX、PTA、PF、MEG",
          "油脂","大豆观点","花生观点","粕类观点","玉米观点","生猪观点","鸡蛋观点","苹果观点","红枣观点","棉花观点","纸浆观点","白糖观点"]
 next = False
 prev_item = ""
@@ -3532,6 +3532,9 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "铁矿石":
+        topop.append("铁矿石")
+        toadd.append(["铁矿", idea[key]])
     if key == "粕类":
         topop.append("粕类")
         toadd.append(["豆粕", idea[key]])
@@ -3573,6 +3576,12 @@ for key in idea:
     if key == "航运":
         topop.append("航运")
         toadd.append(["集运", idea[key]])
+    if key == "PX、PTA、PF、MEG":
+        topop.append("PX、PTA、PF、MEG")
+        toadd.append(["PX", idea[key]])
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["短纤", idea[key]])
+        toadd.append(["MEG", idea[key]])
     if key == "PX、PTA、PF":
         topop.append("PX、PTA、PF")
         toadd.append(["PX", idea[key]])
