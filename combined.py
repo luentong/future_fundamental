@@ -3920,9 +3920,9 @@ donghai_idea = idea
 
 idea_combined = {}
 for i in [guangzhou_old, hualian_old, dongxing_old, guotai_old, yongan_old, zhongxin_old,
-          wukuang_old, haitong_old, guangfa_old, guotou_old, guangda_old, yinhe_old, yinhenong_old,
+          wukuang_old, guangfa_old, guotou_old, guangda_old, yinhe_old, yinhenong_old,
           zhongqi_old,
-          guoxin_old, dongwu_old, yide_old, huaan_old, beite_old, luzheng_old, nanhua_old, zhongzhou_old, hongye_old,
+          guoxin_old, dongwu_old, yide_old, beite_old, luzheng_old, nanhua_old, zhongzhou_old, hongye_old,
           hundungong_old, hundunneng_old, hundunagri_old, guodu_old, zhongtai_old, huatai_old, huaan_old, haitong_old, donghai_old
           ]:
     for j in i:
@@ -4041,9 +4041,9 @@ with open('详细观点.txt', 'w') as f:
 
 combined = {}
 for i in [guangzhou_idea, hualian_idea, dongxing_idea, guotai_idea, yongan_idea, citrix_idea,
-          wukuang_idea, haitong_idea, guangfa_idea, guotou_idea, guangda_idea, yinhe_idea, yinhenong_idea,
+          wukuang_idea, guangfa_idea, guotou_idea, guangda_idea, yinhe_idea, yinhenong_idea,
           zhongqi_idea,
-          guoxin_idea, dongwu_idea, yide_idea, huaan_idea, beite_idea, luzheng_idea, nanhua_idea, zhongzhou_idea, hongye_idea,
+          guoxin_idea, dongwu_idea, yide_idea, beite_idea, luzheng_idea, nanhua_idea, zhongzhou_idea, hongye_idea,
           hundungong_idea, hundunneng_idea, hundunagri_idea, guodu_idea, zhongtai_idea, huatai_idea, huaan_idea, haitong_idea, donghai_idea
           ]:
     for j in i:
@@ -4115,9 +4115,9 @@ except:
 ############## 详细观点分公司
 with open('详细观点分公司.txt', 'w') as f:
     for i in [guangzhou_old, hualian_old, dongxing_old, guotai_old, yongan_old, zhongxin_old,
-          wukuang_old, haitong_old, guangfa_old, guotou_old, guangda_old, yinhe_old, yinhenong_old,
+          wukuang_old, guangfa_old, guotou_old, guangda_old, yinhe_old, yinhenong_old,
           zhongqi_old,
-          guoxin_old, dongwu_old, yide_old, huaan_old, beite_old, luzheng_old, nanhua_old, zhongzhou_old, hongye_old,
+          guoxin_old, dongwu_old, yide_old, beite_old, luzheng_old, nanhua_old, zhongzhou_old, hongye_old,
           hundungong_old, hundunneng_old, hundunagri_old, guodu_old, zhongtai_old, huatai_old, huaan_old, haitong_old, donghai_old
           ]:
         new = True
