@@ -1449,7 +1449,7 @@ guangfa_idea = idea
 with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指",
+items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指","铝","油脂类",
          "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕"]
 next = False
 prev_item = ""
@@ -1472,7 +1472,11 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
-    ######不做了
+    if key == "油脂类":
+        topop.append("油脂类")
+        toadd.append(["豆油", idea[key]])
+        toadd.append(["菜油", idea[key]])
+        toadd.append(["棕榈油", idea[key]])
     if key == "畜禽养殖":
         topop.append("畜禽养殖")
         toadd.append(["生猪", idea[key]])
