@@ -523,7 +523,7 @@ topop = []
 toadd = []
 items = ["股指","国债","贵金属","螺纹钢","铁矿石","焦煤","焦炭","硅铁","锰硅","铜","镍&不锈钢","氧化铝&电解铝","锡","锌",
          "工业硅","碳酸锂","原油","燃料油","沥青","橡胶","聚酯","甲醇","聚烯烃","聚氯乙烯","尿素","纯碱","玻璃","蛋白粕","油脂","生猪","鸡蛋",
-         "玉米","白糖","棉花","双焦","废钢","油脂油料","PVC"]
+         "玉米","白糖","棉花","双焦","废钢","油脂油料","PVC","纯碱&玻璃"]
 for l in lines:
     stripped = l.strip().strip('\n')
     if "完整报告请联系" in stripped:
@@ -552,6 +552,10 @@ for l in lines:
 
 
 for key in idea:
+    if key == "纯碱&玻璃":
+        topop.append("纯碱&玻璃")
+        toadd.append(["纯碱", idea[key]])
+        toadd.append(["玻璃", idea[key]])
     if key == "聚乙烯":
         topop.append("聚乙烯")
         toadd.append(["塑料", idea[key]])
@@ -569,10 +573,6 @@ for key in idea:
         toadd.append(["MEG", idea[key]])
     if key == "纯碱玻璃":
         topop.append("纯碱玻璃")
-        toadd.append(["玻璃", idea[key]])
-        toadd.append(["纯碱", idea[key]])
-    if key == "纯碱&玻璃":
-        topop.append("纯碱&玻璃")
         toadd.append(["玻璃", idea[key]])
         toadd.append(["纯碱", idea[key]])
     if key == "铁矿石":
@@ -1450,7 +1450,7 @@ with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指","铝","油脂类",
-         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕"]
+         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕","PTA"]
 next = False
 prev_item = ""
 for l in lines:
