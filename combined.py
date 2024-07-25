@@ -325,7 +325,7 @@ prev = ""
 for l in lines:
     if l.strip("\n") == "Image" and prev != "":
         break
-    if "【" in l and len(l) < 20:
+    if "【" in l and len(l) < 30:
         a1 = l.replace("【", "")
         a2 = a1.replace("】", "")
         a3 = a2.replace("\n", "")
@@ -342,6 +342,10 @@ topop = []
 toadd = []
 for key in idea:
     ####不做了
+    if key == "投资咨询&20号胶&天然橡胶&丁二烯橡胶":
+        topop.append("投资咨询&20号胶&天然橡胶&丁二烯橡胶")
+        toadd.append(["橡胶", idea[key]])
+        toadd.append(["合成橡胶", idea[key]])
     if key == "聚丙烯&塑料&PVC&烧碱":
         topop.append("聚丙烯&塑料&PVC&烧碱")
         toadd.append(["PP", idea[key]])
