@@ -1245,7 +1245,6 @@ toadd = []
 for key in idea:
     if key == "瓦楞纸":
         topop.append("瓦楞纸")
-        toadd.append(["纸浆", idea[key]])
     if key == "棉花-棉纱":
         topop.append("棉花-棉纱")
         toadd.append(["棉花", idea[key]])
@@ -1454,7 +1453,7 @@ with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指","铝","油脂类",
-         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕","PTA"]
+         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕","PTA","乙二醇"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1535,6 +1534,9 @@ for key in idea:
     if key == "蛋白粕":
         topop.append("蛋白粕")
         toadd.append(["豆粕", idea[key]])
+    if key == "乙二醇":
+        topop.append("乙二醇")
+        toadd.append(["MEG", idea[key]])
 
 
 for i in topop:
