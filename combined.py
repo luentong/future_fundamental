@@ -525,7 +525,7 @@ idea = {}
 prev_item = ""
 topop = []
 toadd = []
-items = ["股指","国债","贵金属","螺纹钢","铁矿石","焦煤","焦炭","硅铁","锰硅","铜","镍&不锈钢","氧化铝&电解铝","锡","锌",
+items = ["股指","国债","贵金属","螺纹钢","铁矿石","焦煤","焦炭","硅铁","锰硅","铜","镍&不锈钢","氧化铝&电解铝","锡","锌","锰硅",
          "工业硅","碳酸锂","原油","燃料油","沥青","橡胶","聚酯","甲醇","聚烯烃","聚氯乙烯","尿素","纯碱","玻璃","蛋白粕","油脂","生猪","鸡蛋",
          "玉米","白糖","棉花","双焦","废钢","油脂油料","PVC","纯碱&玻璃"]
 for l in lines:
@@ -545,8 +545,9 @@ for l in lines:
         continue
     if stripped.split("：")[0] in items and l.strip().strip("\n") != "" and "操作建议" not in l and "期货方面" not in l and "小结" not in l\
             and "现货方面" not in l and "图片" not in l and l.strip("\n") != " " and "重要提示" not in l and "免责声明" not in l:
-        next = True
         prev_item = stripped.split("：")[0]
+        idea[prev_item] = l.strip().strip('\n').split("：")[1]
+        next = True
         continue
     if next:
         if prev_item in idea:
@@ -817,7 +818,8 @@ zhongqi_idea = idea
 with open('五矿.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","国债","油脂","碳酸锂","蛋白粕","焦炭：","焦煤：","焦煤焦炭","高、低硫燃料油","鸡蛋","生猪","白糖","苹果","棉花","贵金属","铜","锌","铅","原油","玻璃纯碱","PX","贵 金 属","乙二醇","PX",
+items = ["股指","国债","油脂","碳酸锂","蛋白粕","焦炭：","焦煤：","焦煤焦炭","高、低硫燃料油","鸡蛋","生猪","不锈钢"
+        ,"白糖","苹果","棉花","贵金属","铜","锌","铅","原油","玻璃纯碱","PX","贵 金 属","乙二醇","PX",
          "铝","镍","锡","锰硅","硅铁","铁矿石","碳酸锂","工业硅","聚乙烯","钢材","双焦","橡胶","甲醇","尿素","苯乙烯","PVC","PTA","玻璃","纯碱","LPG","沥青","动力煤","FU燃料油","LU低硫燃料油"]
 next = False
 prev_item = ""
@@ -3885,8 +3887,8 @@ haitong_idea = idea
 with open('东海.txt',encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","钢材","铁矿石","焦炭/焦煤","硅锰/硅铁","铜","锡","碳酸锂","铝","锌","金/银","原油","沥青","PTA","白糖",
-         "乙二醇","甲醇","聚丙烯","塑料","美豆","蛋白粕","豆菜油","棕榈油","玉米","生猪","棉花"]
+items = ["股指","钢材","铁矿石","焦炭/焦煤","硅锰/硅铁","铜","锡","碳酸锂","铝","锌","金/银","原油","沥青","PTA","白糖","LLDPE",
+         "乙二醇","甲醇","聚丙烯","塑料","美豆","蛋白粕","豆菜油","棕榈油","玉米","生猪","棉花","镍&不锈钢","工业硅"]
 next = False
 prev_item = ""
 for l in lines:
@@ -3919,7 +3921,15 @@ for i in idea:
 
 topop = []
 toadd = []
+
 for key in idea:
+    if key == "LLDPE":
+        topop.append("LLDPE")
+        toadd.append(["塑料", idea[key]])
+    if key == "镍&不锈钢":
+        topop.append("镍&不锈钢")
+        toadd.append(["镍", idea[key]])
+        toadd.append(["不锈钢", idea[key]])
     if key == "乙二醇":
         topop.append("乙二醇")
         toadd.append(["MEG", idea[key]])
