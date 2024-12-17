@@ -1457,8 +1457,7 @@ guangfa_idea = idea
 with open('广州.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指","铝","油脂类",
-         "动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕","PTA","乙二醇"]
+items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","天然橡胶","棉花","白糖","股指","铝","油脂类","PVC","PTA/PX/短纤","动力煤","纯碱","玻璃","生猪","豆粕","液化气","RU","聚烯烃","聚酯","工业硅","集运指数","畜禽养殖","碳酸锂","蛋白粕","PTA","乙二醇"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1480,6 +1479,11 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
+    if key == "PTA/PX/短纤":
+        topop.append("PTA/PX/短纤")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["PX", idea[key]])
+        toadd.append(["短纤", idea[key]])
     if key == "油脂类":
         topop.append("油脂类")
         toadd.append(["豆油", idea[key]])
@@ -3731,8 +3735,7 @@ huatai_idea = idea
 with open('华安.txt',encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
-items = ["股指","集运指数（欧线）","黄金","铜","铝","碳酸锂","双焦","纯碱","玻璃","不锈钢","沪镍","钢材","塑料","PVC","纸浆","油脂","豆粕","鸡蛋","生猪",
-         "棉花","PTA","尿素"]
+items = ["股指","集运指数（欧线）","黄金","铜","铝","碳酸锂","双焦","纯碱","玻璃","不锈钢","沪镍","钢材","塑料","PVC","纸浆","油脂","豆粕","鸡蛋","生猪","塑料PP","棉花","PTA","尿素"]
 next = False
 prev_item = ""
 for l in lines:
@@ -3762,6 +3765,10 @@ for i in idea:
 topop = []
 toadd = []
 for key in idea:
+    if key == "塑料PP":
+        topop.append("塑料PP")
+        toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
     if key == "集运指数（欧线）":
         topop.append("集运指数（欧线）")
         toadd.append(["集运", idea[key]])
