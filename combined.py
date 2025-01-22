@@ -534,7 +534,7 @@ topop = []
 toadd = []
 items = ["股指","国债","贵金属","螺纹钢","铁矿石","焦煤","焦炭","硅铁","锰硅","铜","镍&不锈钢","氧化铝&电解铝","锡","锌","锰硅",
          "工业硅","碳酸锂","原油","燃料油","沥青","橡胶","聚酯","甲醇","聚烯烃","聚氯乙烯","尿素","纯碱","玻璃","蛋白粕","油脂","生猪","鸡蛋",
-         "玉米","白糖","棉花","双焦","废钢","油脂油料","PVC","纯碱&玻璃"]
+         "玉米","白糖","棉花","双焦","废钢","油脂油料","PVC","纯碱&玻璃","PX","PX&PTA&MEG"]
 for l in lines:
     stripped = l.strip().strip('\n')
     if "完整报告请联系" in stripped:
@@ -564,6 +564,11 @@ for l in lines:
 
 
 for key in idea:
+    if key == "PX&PTA&MEG":
+        topop.append("PX&PTA&MEG")
+        toadd.append(["PTA", idea[key]])
+        toadd.append(["PX", idea[key]])
+        toadd.append(["MEG", idea[key]])
     if key == "纯碱&玻璃":
         topop.append("纯碱&玻璃")
         toadd.append(["纯碱", idea[key]])
@@ -1047,8 +1052,8 @@ with open('银河.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","电解铝","氧化铝","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素",
-         "动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","工业硅","纯碱","玻璃","丁二烯橡胶",
-         "贵金属","短纤","苯乙烯","乙二醇","液化气","双硅","铅","镍","不锈钢","锡","碳酸锂"]
+         "动力煤","PTA","PF","MEG","EB","PP","塑料","PVC","烧碱","纯碱“,“玻璃","EB","PX","工业硅","纯碱","玻璃","丁二烯橡胶","PVC烧碱",
+         "贵金属","短纤","苯乙烯","乙二醇","液化气","双硅","铅","镍","不锈钢","锡","碳酸锂","塑料PP"]
 next = False
 prev_item = ""
 for l in lines:
@@ -1124,6 +1129,14 @@ for l in lines:
 topop = []
 toadd = []
 for key in idea:
+    if key == "塑料PP":
+        topop.append("塑料PP")
+        toadd.append(["塑料", idea[key]])
+        toadd.append(["PP", idea[key]])
+    if key == "PVC烧碱":
+        topop.append("PVC烧碱")
+        toadd.append(["PVC", idea[key]])
+        toadd.append(["烧碱", idea[key]])
     if key == "丁二烯橡胶":
         topop.append("丁二烯橡胶")
         toadd.append(["合成橡胶", idea[key]])
