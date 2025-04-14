@@ -315,7 +315,7 @@ for i in guotai_old:
 guotai_idea = idea
 
 ###########################################国投安信开始
-with open('国投安信.txt', encoding='gbk') as f:
+with open('国投安信.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 prev = ""
@@ -523,7 +523,7 @@ guotou_idea = idea
 
 ###########################################光大开始
 
-with open('光大.txt', encoding='gbk') as f:
+with open('光大.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 prev_item = ""
@@ -828,7 +828,7 @@ zhongqi_idea = idea
 
 ###########################################五矿开始
 
-with open('五矿.txt', encoding='gbk') as f:
+with open('五矿.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","油脂","碳酸锂","蛋白粕","焦炭：","焦煤：","焦煤焦炭","高、低硫燃料油","鸡蛋","生猪","不锈钢","锰硅硅铁",
@@ -961,7 +961,7 @@ wukuang_idea = idea
 ###########################################倍特期货
 
 
-with open('倍特.txt', encoding='gbk') as f:
+with open('倍特.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["金银","铜","尿素","橡胶","苹果","豆粕","螺纹钢","鸡蛋","油脂","花生","原油","工业硅"]
@@ -1049,7 +1049,7 @@ beite_idea = idea
 
 ###########################################银河开始
 
-with open('银河.txt', encoding='gbk') as f:
+with open('银河.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["铁矿","钢材","焦煤焦炭","镍及不锈钢","电解铝","氧化铝","铜","锌","铝","沥青","原油","燃料油","航运板块","纸浆","天然橡胶及20号胶","甲醇","尿素",
@@ -1222,7 +1222,7 @@ yinhe_idea = idea
 # -*- coding: gbk -*-
 import keywords
 
-with open('银河农产品.txt', encoding='gbk') as f:
+with open('银河农产品.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["花生","棉花-棉纱","白糖","鸡蛋","生猪","玉米/玉米淀粉","油脂板块","大豆/粕类","瓦楞纸"]
@@ -1479,7 +1479,7 @@ guangfa_idea = idea
 
 ############################################广州开始
 
-with open('广州.txt', encoding='gbk') as f:
+with open('广州.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","沥青","铜","郑棉","螺纹钢","焦炭","铝","锌","焦煤","镍","贵金属","不锈钢","玉米与淀粉","铅","锡","多晶硅",
@@ -1613,7 +1613,7 @@ guangzhou_idea = idea
 
 ###########################################国信开始
 
-with open('国信.txt', encoding='gbk') as f:
+with open('国信.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","贵金属","铜铝","碳酸锂","纯碱：","尿素","焦炭焦煤","玻璃","铜铝、氧化铝","铝、氧化铝","热卷","纸浆","玻璃纯碱","工业硅 多晶硅",
@@ -1904,7 +1904,7 @@ yongan_idea = idea
 ###########################################国都开始
 
 
-with open('国都.txt', encoding='gbk') as f:
+with open('国都.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["图片豆粕","豆粕","PTA","涤纶短纤","橡胶","棉花","豆类","橡胶","油脂","白糖","玉米、淀粉","生猪","铁矿石","螺纹钢","热卷"]
@@ -2112,7 +2112,7 @@ guodu_idea = idea
 
 ############################################南华期市早餐开始
 
-with open('南华.txt', encoding='gbk') as f:
+with open('南华.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["国债日报","股指","黄金","螺纹","热卷","国债","碳酸锂","铁矿","焦煤","焦炭","锰硅","尿素","黄金&白银","镍，不锈钢","PP","PE",
@@ -2912,7 +2912,7 @@ hongye_idea = idea
 
 ###########################################东吴开始
 
-with open('东吴.txt', encoding='gbk') as f:
+with open('东吴.txt', encoding='utf-8') as f:
 #with open('东吴.txt', encoding='gbk') as f:
     lines = f.readlines()
 idea = {}
@@ -3057,7 +3057,7 @@ dongwu_idea = idea
 ###########################################华联开始
 
 
-with open('华联.txt', encoding='gbk') as f:
+with open('华联.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","国债","铜","铝","橡胶","液化气","原油","锌","PVC","甲醇","工业硅","聚烯烃","锡","铁合金","碳酸锂",
@@ -3167,7 +3167,7 @@ hualian_idea = idea
 
 ###########################################中洲开始
 
-with open('中洲.txt', encoding='gbk') as f:
+with open('中洲.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["原油","钢材","铁矿","铁矿石","美豆","焦煤焦炭","沪铜","沪铝","苯乙烯","美豆、豆粕","玉米","白糖","鸡蛋","生猪","塑料","油脂","美豆&豆粕"]
@@ -3275,7 +3275,7 @@ zhongzhou_idea = idea
 
 ###########################################一德开始
 
-with open('一德.txt', encoding='gbk') as f:
+with open('一德.txt', encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["期指","期债","黄金/白银","贵金属","螺纹/热卷","螺纹/热卷(RB2310/HC2310)","螺纹/热卷(RB2305/HC2305)","煤焦","塑料/PP","塑料/pp","硅锰","硅铁","动力煤","铁矿石","沪铝","沪镍","沪铜","沪锌",
@@ -3806,7 +3806,7 @@ huatai_idea = idea
 
 ###############################################华安开始############
 
-with open('华安.txt',encoding='gbk') as f:
+with open('华安.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","集运指数（欧线）","黄金","铜","铝","碳酸锂","双焦","纯碱","玻璃","不锈钢","沪镍","钢材","塑料","PVC","纸浆","沪铝",
@@ -3896,7 +3896,7 @@ huaan_idea = idea
 
 ################################################海通开始##########
 
-with open('海通.txt',encoding='gbk') as f:
+with open('海通.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","集运指数（欧线）","黄金","铜","铝","碳酸锂","双焦","纯碱","玻璃","不锈钢","白糖","沪镍","钢材","塑料","PVC","纸浆","油脂","豆粕","鸡蛋","生猪",
@@ -3973,7 +3973,7 @@ haitong_idea = idea
 
 ###########################################东海######
 
-with open('东海.txt',encoding='gbk') as f:
+with open('东海.txt',encoding='utf-8') as f:
     lines = f.readlines()
 idea = {}
 items = ["股指","钢材","铁矿石","焦炭/焦煤","硅锰/硅铁","铜","锡","碳酸锂","铝","锌","金/银","原油","沥青","PTA","白糖","LLDPE","油脂",
